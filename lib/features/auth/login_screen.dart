@@ -1,3 +1,4 @@
+import 'package:car_deals/features/auth/phone_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/register_screen.dart';
 import 'package:car_deals/features/auth/fade_animation.dart';
@@ -29,11 +30,9 @@ class LoginScreen extends StatelessWidget {
             children: [
               const FadeAnimation(
                 .25,
-                child: SizedBox(
-                  height: 200,
-                  width: 200,
+                child: Center(
                   child: Image(
-                    image: AssetImage('assets/images/auth/app_logo.png'),
+                    image: AssetImage('assets/images/auth/app_logo.png',),height: 200,width: 200,
                   ),
                 ),
               ),
@@ -202,44 +201,37 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              FadeAnimation(2.75,
-                  child: Center(
-                    child: Text(
-                      '${getLang(context, 'login_Screen_login_with_social_networks')}',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // FadeAnimation(2.75,
+              //     child: Center(
+              //       child: Text(
+              //         '${getLang(context, 'login_Screen_login_with_social_networks')}',
+              //         style: const TextStyle(fontWeight: FontWeight.bold),
+              //       ),
+              //     )),
               const SizedBox(
                 height: 20,
               ),
               FadeAnimation(
                 3,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InkWell(
-                      borderRadius: BorderRadius.circular(25),
-                      onTap: () {},
-                      child: const Image(
-                        image: AssetImage(
-                          'assets/images/auth/facebook logo.png',
-                        ),
-                        width: 50,
-                        height: 50,
-                      ),
+                    Text(
+                      '${getLang(context, 'login_Screen_login_with_phone_number')}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(25),
-                      onTap: () {},
-                      child: const Image(
-                        image: AssetImage('assets/images/auth/google logo.png'),
-                        width: 50,
-                        height: 50,
-                      ),
-                    ),
+                    TextButton(
+                        onPressed: () {
+                          defaultNavigate(context, PhoneScreen.phoneScreenId);
+                        },
+                        child: Text(
+                          '${getLang(context, 'login_Screen_phone_button_login')}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: defaultColor),
+                        ))
                   ],
                 ),
               )

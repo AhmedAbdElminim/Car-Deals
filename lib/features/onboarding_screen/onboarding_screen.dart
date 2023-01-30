@@ -23,15 +23,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     final List<OnBoardingModel> onBoardingList = [
       OnBoardingModel(
-          'assets/images/onboarding/merc.jpg',
+          'assets/images/onboarding/welcome.png',
           '${getLang(context, 'onBoarding1_title')}',
           '${getLang(context, 'onBoarding1_description')}'),
       OnBoardingModel(
-          'assets/images/brands_logo/porsche.png',
+          'assets/images/onboarding/onboarding2.png',
           '${getLang(context, 'onBoarding2_title')}',
           '${getLang(context, 'onBoarding2_description')}'),
       OnBoardingModel(
-          'assets/images/brands_logo/Volkswagen.png',
+          'assets/images/onboarding/onboarding3.png',
           '${getLang(context, 'onBoarding3_title')}',
           '${getLang(context, 'onBoarding3_description')}'),
     ];
@@ -48,7 +48,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      navigateAndFinish(context, PhoneScreen.phoneScreenId);
+                      navigateAndFinish(context, LoginScreen.loginScreenId);
                     },
                     child: Text(
                       '${getLang(context, "onBoarding_skip_button")}',
@@ -123,7 +123,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onPressed: () {
                   if (currentIndex == onBoardingList.length - 1) {
                     ///TODO NAVIGATE TO THE NEXT SCREEN
-                    navigateAndFinish(context, PhoneScreen.phoneScreenId);
+                    navigateAndFinish(context, LoginScreen.loginScreenId);
                   } else {
                     pageController.nextPage(
                       duration: const Duration(

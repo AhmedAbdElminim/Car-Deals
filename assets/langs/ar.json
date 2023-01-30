@@ -19,6 +19,8 @@
   "login_Screen_dont_have_an_account":"هل لا تمتلك حساب؟ ",
   "login_Screen_or":"  او  ",
   "login_Screen_login_with_social_networks":"سجل عن طريق وسائل التواصل الاجتماعي",
+  "login_Screen_login_with_phone_number":"سجل دخول برقم موبايلك !",
+  "login_Screen_phone_button_login":"سجل دخول دلوقتي",
 
 
   "register_Screen_register": "تسجيل",
@@ -32,6 +34,8 @@
   "register_Screen_already_have_an_account":"هل تمتلك حساب بالفعل؟",
   "register_Screen_or":"  او  ",
   "register_Screen_login_with_social_networks":"سجل عن طريق وسائل التواصل الاجتماعي",
+  "register_Screen_register_with_phone_number":"سجل دلوقتي برقم موبايلك !",
+  "register_Screen_phone_button_register":"سجل دلوقتي",
 
   "phone_Screen_register": "        تسجيل",
   "phone_screen_description": "سنرسل لك كلمة مرور لمرة واحدة (OTP)",
@@ -86,11 +90,11 @@
   "detail_0_100": "0 - 100",
   "detail_capacity": "سعه المحرك",
   "detail_transmission": "ناقل الحركه",
-  "detail_apply_your_price": "  قدم سعرك  ",
+  "detail_apply_your_price": "  زايد دلوقتي  ",
   "detail_starting_price": "السعر المبدئي",
   "detail_price": "350000 جنيه",
   "enter_your_price": "ادخل سعرك",
-  "submit": "ارسل",
+  "submit": "ابعت",
   "sec": "ثانيه",
   "cc": "سي سي",
   "auto": "اتوماتيك",

@@ -29,14 +29,15 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: defaultColor,
-      appBar: AppBar(
-        title: const Text('KindaCode'),
-      ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(
+            height: screenHeight * .2,
+          ),
           Text(
             '${getLang(context, 'otp_screen_we_send_otp')}',
             style: const TextStyle(color: Colors.white),
@@ -44,7 +45,7 @@ class _OtpScreenState extends State<OtpScreen> {
           const SizedBox(
             height: 30,
           ),
-          // Implement 4 input fields
+          // Implement 6 input fields
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -64,6 +65,7 @@ class _OtpScreenState extends State<OtpScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   '${getLang(context, 'otp_screen_didnt_receive')}',
@@ -84,6 +86,7 @@ class _OtpScreenState extends State<OtpScreen> {
           const SizedBox(
             height: 20,
           ),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GridView(
@@ -327,7 +330,18 @@ class _OtpScreenState extends State<OtpScreen> {
                   backgroundColor: Colors.white,
                   child: GestureDetector(
                     onTap: () {
-                      defaultNavigate(context, LayOutScreen.layoutScreenId);
+                      setState(() {
+                        _otp = _fieldOne.text +
+                            _fieldTwo.text +
+                            _fieldThree.text +
+                            _fieldFour.text +
+                            _fieldFive.text +
+                            _fieldSix.text;
+                        if (_otp == '123456') {
+                          navigateAndFinish(
+                              context, LayOutScreen.layoutScreenId);
+                        }
+                      });
                     },
                     child: Icon(
                       Icons.done,
@@ -337,6 +351,9 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
               ],
             ),
+          ),
+          SizedBox(
+            height: 40,
           ),
         ],
       ),

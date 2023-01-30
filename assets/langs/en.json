@@ -20,6 +20,9 @@
   "login_Screen_dont_have_an_account":"Don/'t have an account? ",
   "login_Screen_or":"  OR  ",
   "login_Screen_login_with_social_networks":"Login with Social Networks",
+  "login_Screen_login_with_phone_number":"Login using phone number!",
+  "login_Screen_phone_button_login":"Login Now",
+
 
 
 
@@ -34,6 +37,8 @@
   "register_Screen_already_have_an_account":"Already have an account? ",
   "register_Screen_or":"  OR  ",
   "register_Screen_login_with_social_networks":"Sign up with Social Networks",
+  "register_Screen_register_with_phone_number":"Register using phone number!",
+  "register_Screen_phone_button_register":"Register Now",
 
 
   "phone_Screen_register": "OTP Verification",
