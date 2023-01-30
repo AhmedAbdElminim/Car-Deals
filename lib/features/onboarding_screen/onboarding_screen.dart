@@ -23,7 +23,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     final List<OnBoardingModel> onBoardingList = [
       OnBoardingModel(
-          'assets/images/onboarding/welcome.png',
+          'assets/images/onboarding/onboarding1.png',
           '${getLang(context, 'onBoarding1_title')}',
           '${getLang(context, 'onBoarding1_description')}'),
       OnBoardingModel(
