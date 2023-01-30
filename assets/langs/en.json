@@ -1,0 +1,114 @@
+{
+  "onBoarding_next_button": "NEXT",
+  "onBoarding_go_button": "GO",
+  "onBoarding_skip_button": "SKIP",
+  "onBoarding1_title": "Welcome \uD83D\uDE0A",
+  "onBoarding1_description": "to the largest online car dealership",
+  "onBoarding2_title": "YOU CAN NOW \uD83E\uDD18",
+  "onBoarding2_description": "sell or buy your car at\nthe best price and the fastest time",
+  "onBoarding3_title": "WHAT YOU NEED HERE \uD83D\uDE09",
+  "onBoarding3_description": "here, any brand or model you need,\nyou will find it at the best price\nand the best condition",
+
+
+
+  "login_Screen_login": "LOGIN!",
+  "login_Screen_email":"Email",
+  "login_Screen_password":"Password",
+  "login_Screen_forgot_password": "Forgot Password?",
+  "login_Screen_reset_password": "Reset Password?",
+  "login_Screen_register_now":"Register Now",
+  "login_Screen_dont_have_an_account":"Don/'t have an account? ",
+  "login_Screen_or":"  OR  ",
+  "login_Screen_login_with_social_networks":"Login with Social Networks",
+
+
+
+  "register_Screen_register": "SIGN UP",
+  "register_Screen_email":"Email",
+  "register_Screen_password":"Password",
+  "register_Screen_phone":"Phone",
+  "register_Screen_name":"Name",
+  "register_Screen_phone_hint": "010........",
+  "register_Screen_name_hint": "example",
+  "register_Screen_register_now":"Login Now",
+  "register_Screen_already_have_an_account":"Already have an account? ",
+  "register_Screen_or":"  OR  ",
+  "register_Screen_login_with_social_networks":"Sign up with Social Networks",
+
+
+  "phone_Screen_register": "OTP Verification",
+  "phone_screen_description": "We will send you one time\npassword (OTP)",
+  "phone_screen_enter_your_phone_number": "Enter your phone number",
+  "otp_screen_enter_verification_code": "Enter Verification Code",
+  "otp_screen_we_send_otp": "We have sent OTP on your number",
+  "otp_screen_didnt_receive": "Didn/'t receive a OTP? ",
+  "otp_screen_resend_otp":"Resend OTP",
+
+
+
+  "home_appbar_title": "Explore",
+
+
+
+
+  "profile_title": "PROFILE",
+  "profile_email": "Email",
+  "profile_phone": "Phone",
+  "profile_history": "History",
+  "profile_history_description": "All your cars here",
+  "profile_logout": "LOGOUT",
+
+
+
+  "update_uer_data_appbar_title": "Update",
+  "update_uer_data_name": "Name",
+  "update_uer_data_phone": "Phone",
+  "update_uer_data_password": "Password",
+  "update_uer_data_update_button": "UPDATE",
+
+
+  "history_appbar_title": "History",
+  "history_title": "\uD83D\uDE14",
+  "history_description": "You didnt sell or buy any car",
+
+
+
+
+  "notification_appbar_title": "Notification",
+  "notification_title": "No Notification Now",
+  "notification_description": "We will notify you when\nexist new notification",
+  "notification_success": "Success",
+  "notification_customer_service": "Customer service",
+
+
+  "categories_appbar_title": "Categories",
+
+
+  "post_appbar_title": "Post Your Car",
+  "post_title_description": "Please select this information to apply",
+  "post_car_brand": "Car Brand : ",
+  "post_car_name": "Car Name : ",
+  "post_car_model": "Car Model : ",
+  "post_car_button": "APPLY",
+
+  "detail_0_100": "0 - 100",
+  "detail_capacity": "Capacity",
+  "detail_transmission": "Transmission",
+  "detail_apply_your_price": "put your price",
+  "detail_starting_price": "Starting price",
+  "detail_price": "350000 EGP",
+  "enter_your_price": "Enter your Price",
+  "submit": "Submit",
+  "sec": "Sec",
+  "cc": "cc",
+  "auto": "Auto",
+  "manual": "Manual",
+
+
+  "search_name": "Name",
+  "search_brand": "Brand",
+  "search": "search",
+  "search_empty": "Search about what you need",
+  "search_try_anther": "Try search anther car",
+  "search_no_result_found": "No Result Found"
+}

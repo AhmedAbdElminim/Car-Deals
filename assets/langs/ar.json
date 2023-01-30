@@ -1,0 +1,107 @@
+{
+  "onBoarding_next_button": "اللي بعده",
+  "onBoarding_go_button": "يلا بينا",
+  "onBoarding_skip_button": "تخطي",
+  "onBoarding1_title": "مرحبا \uD83D\uDE0A",
+  "onBoarding1_description": "بك في اكبر متجر لبيع العربيات علي الانترنت",
+  "onBoarding2_title": " انت تقدر دلوقتي \uD83E\uDD18",
+  "onBoarding2_description": "تبيع او تشتري عربيتك \nبافضل سعر واسرع وقت.",
+  "onBoarding3_title": "اللي هتحتاجه هتلاقيه\n هنا \uD83D\uDE09 ",
+  "onBoarding3_description": "هنا ، أي ماركة أو موديل تحتاجه ،\n هتلاققيه بأفضل سعر وأفضل حالة.",
+
+
+  "login_Screen_login": "تسجيل الدخول",
+  "login_Screen_email":"البريد الالكتروني",
+  "login_Screen_password":"الرقم السري",
+  "login_Screen_forgot_password": "هل نسيت الرقم السري؟",
+  "login_Screen_reset_password": "اعاده تعيين الان",
+  "login_Screen_register_now":"سجل الان",
+  "login_Screen_dont_have_an_account":"هل لا تمتلك حساب؟ ",
+  "login_Screen_or":"  او  ",
+  "login_Screen_login_with_social_networks":"سجل عن طريق وسائل التواصل الاجتماعي",
+
+
+  "register_Screen_register": "تسجيل",
+  "register_Screen_email":"البريد الالكتروني",
+  "register_Screen_password":"الرقم السري",
+  "register_Screen_phone":"رقم الهاتف",
+  "register_Screen_name":"الاسم",
+  "register_Screen_phone_hint": "010.......",
+  "register_Screen_name_hint": "مثال",
+  "register_Screen_register_now":"سجل دخول الان",
+  "register_Screen_already_have_an_account":"هل تمتلك حساب بالفعل؟",
+  "register_Screen_or":"  او  ",
+  "register_Screen_login_with_social_networks":"سجل عن طريق وسائل التواصل الاجتماعي",
+
+  "phone_Screen_register": "        تسجيل",
+  "phone_screen_description": "سنرسل لك كلمة مرور لمرة واحدة (OTP)",
+  "phone_screen_enter_your_phone_number": "ادخل رقم هاتفك",
+  "otp_screen_enter_verification_code": "ادخل رمز التاكيد",
+  "otp_screen_we_send_otp": "ارسلنا رمز التاكيد الي هاتفك",
+  "otp_screen_didnt_receive": "هل لم تستلم رمزا؟  ",
+  "otp_screen_resend_otp":"اعد ارسال الرمز",
+
+  "home_appbar_title": "تصفح",
+
+
+
+  "profile_title": "حسابك",
+  "profile_email": "البريد الالكتروني",
+  "profile_phone": "الهاتف المحمول",
+  "profile_history": "موخرا",
+  "profile_history_description": "كل العربيات التي تمت عليها مزايده منك",
+  "profile_logout": "تسجيل الخروج",
+
+
+
+
+  "update_uer_data_appbar_title": "تحديث",
+  "update_uer_data_name": "الاسم",
+  "update_uer_data_phone": "رقم الهاتف",
+  "update_uer_data_password": "الرقم السري",
+  "update_uer_data_update_button": "تحديث",
+
+
+  "history_appbar_title": "مؤخرا",
+  "history_title": "\uD83D\uDE14",
+  "history_description": "لا يوجد لديك اي عمليات بيع او شراء",
+
+
+  "notification_appbar_title": "الاشعارات",
+  "notification_title": "لا يوجد اشعارات الان",
+  "notification_description": "سوف نبلغك عند وجود إشعار جديد",
+  "notification_success": "تم بنجاح",
+  "notification_customer_service": "خدمه العملاء",
+
+  "categories_appbar_title": "التصنيفات",
+
+
+  "post_appbar_title": "انشر سيارتك",
+  "post_title_description": "من فضلك حدد المعلومات الاتيه لكي تقدم طلب",
+  "post_car_brand": "ماركة السيارة : ",
+  "post_car_name": "طراز السياره : ",
+  "post_car_model": "موديل السياره : ",
+  "post_car_button": "قدم",
+
+  "detail_0_100": "0 - 100",
+  "detail_capacity": "سعه المحرك",
+  "detail_transmission": "ناقل الحركه",
+  "detail_apply_your_price": "  قدم سعرك  ",
+  "detail_starting_price": "السعر المبدئي",
+  "detail_price": "350000 جنيه",
+  "enter_your_price": "ادخل سعرك",
+  "submit": "ارسل",
+  "sec": "ثانيه",
+  "cc": "سي سي",
+  "auto": "اتوماتيك",
+  "manual": "مانيوال",
+
+
+  "search_name": "الطراز",
+  "search_brand": "الماركه",
+  "search": "بحث",
+  "search_empty": "ابحث عن اللي عاوزة",
+  "search_try_anther": "حاول البحث عن سياره اخري",
+  "search_no_result_found": "لا توجد نتائج"
+
+}

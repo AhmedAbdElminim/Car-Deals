@@ -1,0 +1,161 @@
+import 'package:flutter/material.dart';
+
+
+import '../../shared/component/app_local.dart';
+import '../../shared/style/colors.dart';
+import '../../utils/app_lists.dart';
+
+class PostScreen extends StatefulWidget {
+  const PostScreen({Key? key}) : super(key: key);
+  static const String postScreenId = 'PostScreenId';
+
+  @override
+  State<PostScreen> createState() => _PostScreenState();
+}
+
+class _PostScreenState extends State<PostScreen> {
+  // Initial Selected Value
+  String carBrandValue = carBrands[0];
+  // List of items in our dropdown menu
+  late String carNameValue = carNames[carBrandValue]![0];
+  String carModelValue = carModel[0];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title:  Text('${getLang(context, 'post_appbar_title')}')),
+      body: Padding(
+        padding:
+            const EdgeInsets.only(top: 20, bottom: 10, left: 20, right: 20),
+        child: Column(
+          children: [
+            Text(
+              '${getLang(context, 'post_title_description')}',
+              style: TextStyle(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                 Text(
+                  '${getLang(context, 'post_car_brand')}',
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const Spacer(),
+                DropdownButton(
+                  // Initial Value
+                  value: carBrandValue,
+
+                  // Down Arrow Icon
+                  icon: const Icon(Icons.keyboard_arrow_down),
+
+                  // Array list of items
+                  items: carBrands.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      carBrandValue = newValue!;
+                      carNameValue = carNames[carBrandValue]![0];
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                 Text(
+                  '${getLang(context, 'post_car_name')}',
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const Spacer(),
+                DropdownButton(
+                  // Initial Value
+                  value: carNameValue,
+
+                  // Down Arrow Icon
+                  icon: const Icon(Icons.keyboard_arrow_down),
+
+                  // Array list of items
+                  items: carNames[carBrandValue]!.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      carNameValue = newValue!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                 Text(
+                  '${getLang(context, 'post_car_model')}',
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const Spacer(),
+                DropdownButton(
+                  // Initial Value
+                  value: carModelValue,
+
+                  // Down Arrow Icon
+                  icon: const Icon(Icons.keyboard_arrow_down),
+
+                  // Array list of items
+                  items: carModel.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      carModelValue = newValue!;
+                      // carNameValue = carNames[carBrandValue]![0];
+                    });
+                  },
+                ),
+              ],
+            ),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              child: MaterialButton(
+                onPressed: () {},
+                color: defaultColor,
+                child:  Text(
+                  '${getLang(context, 'post_car_button')}',
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
