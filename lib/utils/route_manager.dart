@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../features/auth/login_screen.dart';
 import '../features/auth/otp_screen.dart';
 import '../features/auth/phone_screen.dart';
@@ -12,6 +11,7 @@ import '../features/layout/layout_screen.dart';
 import '../features/onboarding_screen/onboarding_screen.dart';
 import '../features/search/search_screen.dart';
 import '../features/sell/post_screen.dart';
+import '../features/splash_screen/splash_screen.dart';
 import '../features/user/screens/history_screen.dart';
 import '../features/user/screens/update_user_information_screen.dart';
 
@@ -28,7 +28,7 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
       const UpdateUserInformationScreen(),
   BrandCarsScreen.brandCarsScreenId: (context) => const BrandCarsScreen(),
   PutPriceScreen.putPriceScreenId: (context) => const PutPriceScreen(),
-  PhoneScreen.phoneScreenId: (context) =>  PhoneScreen(),
-  OtpScreen.otpScreenId: (context) =>  OtpScreen(),
-
+  PhoneScreen.phoneScreenId: (context) => PhoneScreen(),
+  OtpScreen.otpScreenId: (context) => const OtpScreen(),
+  SplashScreen.splashScreenId: (context) => const SplashScreen(),
 };

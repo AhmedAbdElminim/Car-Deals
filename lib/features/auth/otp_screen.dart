@@ -46,16 +46,19 @@ class _OtpScreenState extends State<OtpScreen> {
             height: 30,
           ),
           // Implement 6 input fields
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              OtpInput(_fieldOne, true, true), // auto focus
-              OtpInput(_fieldTwo, false, true),
-              OtpInput(_fieldThree, false, true),
-              OtpInput(_fieldFour, false, true),
-              OtpInput(_fieldFive, false, true),
-              OtpInput(_fieldSix, false, false),
-            ],
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OtpInput(_fieldOne, true, true), // auto focus
+                OtpInput(_fieldTwo, false, true),
+                OtpInput(_fieldThree, false, true),
+                OtpInput(_fieldFour, false, true),
+                OtpInput(_fieldFive, false, true),
+                OtpInput(_fieldSix, false, false),
+              ],
+            ),
           ),
           const SizedBox(
             height: 5,
@@ -89,267 +92,270 @@ class _OtpScreenState extends State<OtpScreen> {
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: GridView(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 2.2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              children: [
-                KeyBoardButton(
-                  buttonTitle: "1",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '1';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '1';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '1';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '1';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '1';
-                      } else {
-                        _fieldSix.text = '1';
-                      }
-                    });
-                  },
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: GridView(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 2.2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
                 ),
-                KeyBoardButton(
-                  buttonTitle: "2",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '2';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '2';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '2';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '2';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '2';
-                      } else {
-                        _fieldSix.text = '2';
-                      }
-                    });
-                  },
-                ),
-                KeyBoardButton(
-                  buttonTitle: "3",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '3';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '3';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '3';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '3';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '3';
-                      } else {
-                        _fieldSix.text = '3';
-                      }
-                    });
-                  },
-                ),
-                KeyBoardButton(
-                  buttonTitle: "4",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '4';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '4';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '4';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '4';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '4';
-                      } else {
-                        _fieldSix.text = '4';
-                      }
-                    });
-                  },
-                ),
-                KeyBoardButton(
-                  buttonTitle: "5",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '5';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '5';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '5';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '5';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '5';
-                      } else {
-                        _fieldSix.text = '5';
-                      }
-                    });
-                  },
-                ),
-                KeyBoardButton(
-                  buttonTitle: "6",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '6';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '6';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '6';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '6';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '6';
-                      } else {
-                        _fieldSix.text = '6';
-                      }
-                    });
-                  },
-                ),
-                KeyBoardButton(
-                  buttonTitle: '7',
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '7';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '7';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '7';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '7';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '7';
-                      } else {
-                        _fieldSix.text = '7';
-                      }
-                    });
-                  },
-                ),
-                KeyBoardButton(
-                  buttonTitle: "8",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '8';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '8';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '8';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '8';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '8';
-                      } else {
-                        _fieldSix.text = '8';
-                      }
-                    });
-                  },
-                ),
-                KeyBoardButton(
-                  buttonTitle: "9",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '9';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '9';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '9';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '9';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '9';
-                      } else {
-                        _fieldSix.text = '9';
-                      }
-                    });
-                  },
-                ),
-                CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.white,
-                  child: GestureDetector(
+                children: [
+                  KeyBoardButton(
+                    buttonTitle: "1",
                     onTap: () {
                       setState(() {
-                        if (_fieldSix.text.length == 1) {
-                          _fieldSix.text = '';
-                        } else if (_fieldFive.text.length == 1) {
-                          _fieldFive.text = '';
-                        } else if (_fieldFour.text.length == 1) {
-                          _fieldFour.text = '';
-                        } else if (_fieldThree.text.length == 1) {
-                          _fieldThree.text = '';
-                        } else if (_fieldTwo.text.length == 1) {
-                          _fieldTwo.text = '';
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '1';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '1';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '1';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '1';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '1';
                         } else {
-                          _fieldOne.text = '';
+                          _fieldSix.text = '1';
                         }
                       });
                     },
-                    child: const Icon(
-                      Icons.remove,
-                      color: Colors.black,
-                    ),
                   ),
-                ),
-                KeyBoardButton(
-                  buttonTitle: "0",
-                  onTap: () {
-                    setState(() {
-                      if (_fieldOne.text.length != 1) {
-                        _fieldOne.text = '0';
-                      } else if (_fieldTwo.text.length != 1) {
-                        _fieldTwo.text = '0';
-                      } else if (_fieldThree.text.length != 1) {
-                        _fieldThree.text = '0';
-                      } else if (_fieldFour.text.length != 1) {
-                        _fieldFour.text = '0';
-                      } else if (_fieldFive.text.length != 1) {
-                        _fieldFive.text = '0';
-                      } else {
-                        _fieldSix.text = '0';
-                      }
-                    });
-                  },
-                ),
-                CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.white,
-                  child: GestureDetector(
+                  KeyBoardButton(
+                    buttonTitle: "2",
                     onTap: () {
                       setState(() {
-                        _otp = _fieldOne.text +
-                            _fieldTwo.text +
-                            _fieldThree.text +
-                            _fieldFour.text +
-                            _fieldFive.text +
-                            _fieldSix.text;
-                        if (_otp == '123456') {
-                          navigateAndFinish(
-                              context, LayOutScreen.layoutScreenId);
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '2';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '2';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '2';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '2';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '2';
+                        } else {
+                          _fieldSix.text = '2';
                         }
                       });
                     },
-                    child: Icon(
-                      Icons.done,
-                      color: defaultColor,
+                  ),
+                  KeyBoardButton(
+                    buttonTitle: "3",
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '3';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '3';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '3';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '3';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '3';
+                        } else {
+                          _fieldSix.text = '3';
+                        }
+                      });
+                    },
+                  ),
+                  KeyBoardButton(
+                    buttonTitle: "4",
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '4';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '4';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '4';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '4';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '4';
+                        } else {
+                          _fieldSix.text = '4';
+                        }
+                      });
+                    },
+                  ),
+                  KeyBoardButton(
+                    buttonTitle: "5",
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '5';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '5';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '5';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '5';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '5';
+                        } else {
+                          _fieldSix.text = '5';
+                        }
+                      });
+                    },
+                  ),
+                  KeyBoardButton(
+                    buttonTitle: "6",
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '6';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '6';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '6';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '6';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '6';
+                        } else {
+                          _fieldSix.text = '6';
+                        }
+                      });
+                    },
+                  ),
+                  KeyBoardButton(
+                    buttonTitle: '7',
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '7';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '7';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '7';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '7';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '7';
+                        } else {
+                          _fieldSix.text = '7';
+                        }
+                      });
+                    },
+                  ),
+                  KeyBoardButton(
+                    buttonTitle: "8",
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '8';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '8';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '8';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '8';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '8';
+                        } else {
+                          _fieldSix.text = '8';
+                        }
+                      });
+                    },
+                  ),
+                  KeyBoardButton(
+                    buttonTitle: "9",
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '9';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '9';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '9';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '9';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '9';
+                        } else {
+                          _fieldSix.text = '9';
+                        }
+                      });
+                    },
+                  ),
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (_fieldSix.text.length == 1) {
+                            _fieldSix.text = '';
+                          } else if (_fieldFive.text.length == 1) {
+                            _fieldFive.text = '';
+                          } else if (_fieldFour.text.length == 1) {
+                            _fieldFour.text = '';
+                          } else if (_fieldThree.text.length == 1) {
+                            _fieldThree.text = '';
+                          } else if (_fieldTwo.text.length == 1) {
+                            _fieldTwo.text = '';
+                          } else {
+                            _fieldOne.text = '';
+                          }
+                        });
+                      },
+                      child: const Icon(
+                        Icons.remove,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  KeyBoardButton(
+                    buttonTitle: "0",
+                    onTap: () {
+                      setState(() {
+                        if (_fieldOne.text.length != 1) {
+                          _fieldOne.text = '0';
+                        } else if (_fieldTwo.text.length != 1) {
+                          _fieldTwo.text = '0';
+                        } else if (_fieldThree.text.length != 1) {
+                          _fieldThree.text = '0';
+                        } else if (_fieldFour.text.length != 1) {
+                          _fieldFour.text = '0';
+                        } else if (_fieldFive.text.length != 1) {
+                          _fieldFive.text = '0';
+                        } else {
+                          _fieldSix.text = '0';
+                        }
+                      });
+                    },
+                  ),
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _otp = _fieldOne.text +
+                              _fieldTwo.text +
+                              _fieldThree.text +
+                              _fieldFour.text +
+                              _fieldFive.text +
+                              _fieldSix.text;
+                          if (_otp == '123456') {
+                            navigateAndFinish(
+                                context, LayOutScreen.layoutScreenId);
+                          }
+                        });
+                      },
+                      child: Icon(
+                        Icons.done,
+                        color: defaultColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'features/onboarding_screen/onboarding_screen.dart';
+import 'features/splash_screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.openSans().fontFamily,
       ),
       routes: appRoutes,
-      initialRoute: OnBoardingScreen.onBoardingScreenId,
+      initialRoute:SplashScreen.splashScreenId,// OnBoardingScreen.onBoardingScreenId,
       localizationsDelegates: const [
         AppLocale.delegate,
         GlobalMaterialLocalizations.delegate,
