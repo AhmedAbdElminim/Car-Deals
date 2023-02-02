@@ -1,29 +1,32 @@
+import 'package:car_deals/models/apply_model.dart';
+import 'package:car_deals/shared/component/constants.dart';
+import 'package:car_deals/shared/component/widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 
 import '../../shared/component/app_local.dart';
 import '../../shared/style/colors.dart';
 import '../../utils/app_lists.dart';
 
-class PostScreen extends StatefulWidget {
-  const PostScreen({Key? key}) : super(key: key);
-  static const String postScreenId = 'PostScreenId';
+class ApplyScreen extends StatefulWidget {
+  const ApplyScreen({Key? key}) : super(key: key);
+  static const String applyScreenId = 'ApplyScreenId';
 
   @override
-  State<PostScreen> createState() => _PostScreenState();
+  State<ApplyScreen> createState() => _ApplyScreenState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _ApplyScreenState extends State<ApplyScreen> {
   // Initial Selected Value
   String carBrandValue = carBrands[0];
   // List of items in our dropdown menu
   late String carNameValue = carNames[carBrandValue]![0];
   String carModelValue = carModel[0];
-
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text('${getLang(context, 'post_appbar_title')}')),
+      appBar: AppBar(title: Text('${getLang(context, 'post_appbar_title')}')),
       body: Padding(
         padding:
             const EdgeInsets.only(top: 20, bottom: 10, left: 20, right: 20),
@@ -41,9 +44,10 @@ class _PostScreenState extends State<PostScreen> {
             ),
             Row(
               children: [
-                 Text(
+                Text(
                   '${getLang(context, 'post_car_brand')}',
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
                 DropdownButton(
@@ -76,9 +80,10 @@ class _PostScreenState extends State<PostScreen> {
             ),
             Row(
               children: [
-                 Text(
+                Text(
                   '${getLang(context, 'post_car_name')}',
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
                 DropdownButton(
@@ -110,9 +115,10 @@ class _PostScreenState extends State<PostScreen> {
             ),
             Row(
               children: [
-                 Text(
+                Text(
                   '${getLang(context, 'post_car_model')}',
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
                 DropdownButton(
@@ -144,13 +150,41 @@ class _PostScreenState extends State<PostScreen> {
             SizedBox(
               width: double.infinity,
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  ApplyModel applyModel = ApplyModel(
+                      userName: userModel.userName,
+                      uId: userModel.uId,
+                      userPhone: userModel.userPhone,
+                      carBrand: carBrandValue,
+                      carName: carNameValue,
+                      carModel: carModelValue);
+                  FirebaseFirestore.instance
+                      .collection('requests')
+                      .add(applyModel.toJson())
+                      .then((value) {
+                    setState(() {
+                      isLoading = false;
+                    });
+                    showToAst(msg: 'Request Sent Successfully', isError: false);
+                    Navigator.pop(context);
+                  });
+                },
                 color: defaultColor,
-                child:  Text(
-                  '${getLang(context, 'post_car_button')}',
-                  style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
+                child: isLoading
+                    ? const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : Text(
+                        '${getLang(context, 'post_car_button')}',
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
               ),
             )
           ],

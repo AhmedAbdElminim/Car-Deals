@@ -1,3 +1,4 @@
+import 'package:car_deals/shared/network/local/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/login_screen.dart';
 import 'package:car_deals/shared/component/app_local.dart';
@@ -37,28 +38,31 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     ];
     return Scaffold(
       body: Column(
-       // crossAxisAlignment: CrossAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //if(currentIndex != onBoardingList.length - 1)
-            Padding(
-              padding: const EdgeInsets.only(top:40,left: 20, right: 20, bottom: 70),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 70),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    CacheHelper.saveData(key: 'onBoarding', value: true)
+                        .then((value) {
                       navigateAndFinish(context, LoginScreen.loginScreenId);
-                    },
-                    child: Text(
-                      '${getLang(context, "onBoarding_skip_button")}',
-
-                      style: TextStyle(color: defaultColor),
-                    ),
+                    });
+                  },
+                  child: Text(
+                    '${getLang(context, "onBoarding_skip_button")}',
+                    style: TextStyle(color: defaultColor),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
           Flexible(
             child: PageView.builder(
               physics: const BouncingScrollPhysics(),
@@ -122,8 +126,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: MaterialButton(
                 onPressed: () {
                   if (currentIndex == onBoardingList.length - 1) {
-                    ///TODO NAVIGATE TO THE NEXT SCREEN
-                    navigateAndFinish(context, LoginScreen.loginScreenId);
+                    CacheHelper.saveData(key: 'onBoarding', value: true)
+                        .then((value) {
+                      navigateAndFinish(context, LoginScreen.loginScreenId);
+                    });
                   } else {
                     pageController.nextPage(
                       duration: const Duration(
@@ -146,8 +152,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ),
           ),
-
-
         ],
       ),
     );

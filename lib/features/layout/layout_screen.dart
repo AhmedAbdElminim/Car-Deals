@@ -11,7 +11,7 @@ import 'package:car_deals/shared/style/colors.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:unicons/unicons.dart';
 
-import '../sell/post_screen.dart';
+import '../apply/apply_screen.dart';
 
 class LayOutScreen extends StatefulWidget {
   const LayOutScreen({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class _LayOutScreenState extends State<LayOutScreen> {
       body: screens[currentIndex],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          defaultNavigate(context, PostScreen.postScreenId);
+          defaultNavigate(context, ApplyScreen.applyScreenId);
         },
         backgroundColor: defaultColor,
         child: const Icon(UniconsLine.plus),

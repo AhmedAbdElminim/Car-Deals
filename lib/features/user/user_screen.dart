@@ -1,7 +1,10 @@
+import 'package:car_deals/features/auth/login_screen.dart';
 import 'package:car_deals/features/user/screens/history_screen.dart';
 import 'package:car_deals/features/user/screens/update_user_information_screen.dart';
+import 'package:car_deals/shared/component/constants.dart';
+import 'package:car_deals/shared/network/local/cache_helper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 import '../../shared/component/app_local.dart';
 import '../../shared/component/widgets.dart';
@@ -34,7 +37,7 @@ class UserScreen extends StatelessWidget {
             alignment: AlignmentDirectional.topCenter,
             child: Padding(
               padding: EdgeInsets.only(top: screenHeight * .08),
-              child:  Text(
+              child: Text(
                 '${getLang(context, "profile_title")}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
@@ -68,21 +71,21 @@ class UserScreen extends StatelessWidget {
                               radius: 40,
                               backgroundColor: defaultColor,
                               backgroundImage: const AssetImage(
-                                  'assets/images/onboarding/onbaordingcar1.jpeg'),
+                                  'assets/images/onboarding/merc.jpg'),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            const Text(
-                              'Mercedes Benz',
-                              style: TextStyle(
+                            Text(
+                              userModel.userName,
+                              style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
                               height: 5,
                             ),
-                            const Text(
-                              '@mercedesbenz',
+                            Text(
+                              '@${userModel.userName}',
                               style: TextStyle(color: Colors.grey),
                             ),
                           ],
@@ -105,8 +108,8 @@ class UserScreen extends StatelessWidget {
                         color: Colors.white,
                       )),
                     ),
-                    title:  Text('${getLang(context, "profile_email")}'),
-                    subtitle: const Text('mercdesbenz@mercedes.com'),
+                    title: Text('${getLang(context, "profile_email")}'),
+                    subtitle: Text(userModel.userEmail),
                   ),
                 ),
                 FadeAnimation(
@@ -120,8 +123,8 @@ class UserScreen extends StatelessWidget {
                         color: Colors.white,
                       )),
                     ),
-                    title:  Text('${getLang(context, "profile_phone")}'),
-                    subtitle: const Text('01095295641'),
+                    title: Text('${getLang(context, "profile_phone")}'),
+                    subtitle: Text(userModel.userPhone),
                   ),
                 ),
                 FadeAnimation(
@@ -135,8 +138,9 @@ class UserScreen extends StatelessWidget {
                         color: Colors.white,
                       )),
                     ),
-                    title:  Text('${getLang(context, "profile_history")}'),
-                    subtitle:  Text('${getLang(context, 'profile_history_description')}'),
+                    title: Text('${getLang(context, "profile_history")}'),
+                    subtitle: Text(
+                        '${getLang(context, 'profile_history_description')}'),
                     onTap: () {
                       defaultNavigate(context, HistoryScreen.historyScreenId);
                     },
@@ -145,6 +149,52 @@ class UserScreen extends StatelessWidget {
                 FadeAnimation(
                   1.75,
                   child: ListTile(
+                    onTap: () {
+                      showDialog<void>(
+                        context: context,
+                        barrierDismissible: false, // user must tap button!
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(
+                                '${getLang(context, 'logout_dialog_title')}'),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: const <Widget>[
+                                  // Text('This is a demo alert dialog.'),
+                                  // Text('Would you like to approve of this message?'),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text(
+                                  '${getLang(context, 'Logout_dialog_cancel_button')}',
+                                  style: TextStyle(color: defaultColor),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: Text(
+                                  '${getLang(context, 'logout_dialog_approve_button')}',
+                                  style: TextStyle(color: defaultColor),
+                                ),
+                                onPressed: () async {
+                                  await FirebaseAuth.instance
+                                      .signOut()
+                                      .then((value) {
+                                    CacheHelper.removeData(key: 'uId');
+                                    navigateAndFinish(
+                                        context, LoginScreen.loginScreenId);
+                                  });
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                     leading: CircleAvatar(
                       backgroundColor: defaultColor,
                       child: const Center(
@@ -153,7 +203,7 @@ class UserScreen extends StatelessWidget {
                         color: Colors.white,
                       )),
                     ),
-                    title:  Text('${getLang(context, "profile_logout")}'),
+                    title: Text('${getLang(context, "profile_logout")}'),
                   ),
                 ),
               ],

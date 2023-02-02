@@ -1,7 +1,10 @@
+import 'package:car_deals/features/auth/login_screen.dart';
+import 'package:car_deals/features/layout/layout_screen.dart';
 import 'package:car_deals/features/onboarding_screen/onboarding_screen.dart';
+import 'package:car_deals/shared/component/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import '../../shared/component/widgets.dart';
 import '../../shared/style/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,8 +30,11 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.addListener(() {
       if (_controller.isCompleted) {
-        Navigator.pushReplacementNamed(
-            context, OnBoardingScreen.onBoardingScreenId);
+        onBoarding
+            ? uId != ''
+                ? navigateAndFinish(context, LayOutScreen.layoutScreenId)
+                : navigateAndFinish(context, LoginScreen.loginScreenId)
+            : navigateAndFinish(context, OnBoardingScreen.onBoardingScreenId);
       }
     });
   }

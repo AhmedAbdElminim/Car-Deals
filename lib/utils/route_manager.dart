@@ -10,17 +10,17 @@ import '../features/categories/brand_cars_screen.dart';
 import '../features/layout/layout_screen.dart';
 import '../features/onboarding_screen/onboarding_screen.dart';
 import '../features/search/search_screen.dart';
-import '../features/sell/post_screen.dart';
+import '../features/apply/apply_screen.dart';
 import '../features/splash_screen/splash_screen.dart';
 import '../features/user/screens/history_screen.dart';
 import '../features/user/screens/update_user_information_screen.dart';
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
   OnBoardingScreen.onBoardingScreenId: (context) => const OnBoardingScreen(),
-  LoginScreen.loginScreenId: (context) => const LoginScreen(),
-  RegisterScreen.registerScreenId: (context) => const RegisterScreen(),
+  LoginScreen.loginScreenId: (context) =>  LoginScreen(),
+  RegisterScreen.registerScreenId: (context) =>  RegisterScreen(),
   LayOutScreen.layoutScreenId: (context) => const LayOutScreen(),
-  PostScreen.postScreenId: (context) => const PostScreen(),
+  ApplyScreen.applyScreenId: (context) => const ApplyScreen(),
   SearchScreen.searchScreenId: (context) => const SearchScreen(),
   CarDetailScreen.carDetailScreen: (context) => const CarDetailScreen(),
   HistoryScreen.historyScreenId: (context) => const HistoryScreen(),

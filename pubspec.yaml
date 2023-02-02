@@ -39,6 +39,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   smooth_page_indicator: ^1.0.0+2
+  google_fonts: ^4.0.1
   simple_animations: ^4.2.0
   supercharged: ^2.1.1
   shared_preferences: ^2.0.15
@@ -48,9 +49,18 @@ dependencies:
   cached_network_image: ^3.2.2
   shimmer: ^2.0.0
   checkbox_grouped: ^1.8.1
-  google_fonts: ^3.0.1
   telephony: ^0.2.0
   lottie: ^2.2.0
+  fluttertoast: ^8.1.2
+
+  #bloc
+  flutter_bloc: ^8.1.1
+
+  #firebase
+  firebase_core: ^2.4.1
+  firebase_auth:
+  cloud_firestore:
+  firebase_storage:
 
 
 dev_dependencies:

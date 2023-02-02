@@ -24,6 +24,14 @@
   "login_Screen_phone_button_login":"Login Now",
 
 
+  "text_form_validate_email": "Email must not be empty",
+  "text_form_validate_password": "Password must not be empty",
+  "text_form_validate_phone": "Phone must not be empty",
+  "text_form_validate_name": "Name must not be empty",
+
+
+
+
 
 
   "register_Screen_register": "SIGN UP",
@@ -115,5 +123,9 @@
   "search": "search",
   "search_empty": "Search about what you need",
   "search_try_anther": "Try search anther car",
-  "search_no_result_found": "No Result Found"
+  "search_no_result_found": "No Result Found",
+
+  "logout_dialog_title": "Are You Sure You Need SignOut? \uD83D\uDE14",
+  "logout_dialog_approve_button": "Yes",
+  "Logout_dialog_cancel_button": "No don't Angry"
 }

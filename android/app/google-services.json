@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "994474668699",
+    "project_id": "cars-deals",
+    "storage_bucket": "cars-deals.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994474668699:android:e53297e6836c1ba9b4cc3e",
+        "android_client_info": {
+          "package_name": "com.example.car_deals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994474668699-ba614u3puntf0lq92qbpqouc54rqekga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0WbsmKKHBnfnWAqh3cP62gEu-34zLkac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994474668699-ba614u3puntf0lq92qbpqouc54rqekga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
