@@ -33,7 +33,7 @@ class CarCardComponent extends StatelessWidget {
                 imageHeight: 175,
                 imageWidth: screenWidth / 3,
                 imagePath:
-                    'https://www.carlogos.org/car-logos/lamborghini-logo-1100x1200.png',
+                    'https://i.pinimg.com/236x/4d/b7/1e/4db71eb5013211a120d0bd40ba98ce2d.jpg',
               ),
               const SizedBox(
                 width: 5,
@@ -42,111 +42,125 @@ class CarCardComponent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Brand : ',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 20),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'Mercedes',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[900],
-                                  fontSize: 20)),
-                        ],
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[350],
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Type : ',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 20),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'S-Class',
+                      child: Row(
+                        children: const [
+                          Image(
+                              image: AssetImage(
+                                  'assets/images/app_icons/brandIcon.png')),
+                          Text('   Mercedes  ',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[900],
-                                  fontSize: 20)),
+                                  fontWeight: FontWeight.w600,
+                                  // color: Colors.blue[900],
+                                  fontSize: 18))
                         ],
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Model : ',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 20),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '2019',
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[350],
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Row(
+                        children: const [
+                          Image(
+                              image: AssetImage(
+                                  'assets/images/app_icons/model.png')),
+                          Text('   S-Class  ',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[900],
-                                  fontSize: 20)),
+                                  fontWeight: FontWeight.w600,
+                                  // color: Colors.blue[900],
+                                  fontSize: 18))
                         ],
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Color : ',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 20),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'Red',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[900],
-                                  fontSize: 20)),
-                        ],
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 0),
+                        child: Container(
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[350],
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child: Row(
+                            children: const [
+                              Image(
+                                  image: AssetImage(
+                                      'assets/images/app_icons/year.png')),
+                              Text('   2022  ',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      // color: Colors.blue[900],
+                                      fontSize: 18))
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 10),
+                        child: Container(
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[350],
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child: Row(
+                            children: const [
+                              Image(
+                                  image: AssetImage(
+                                      'assets/images/app_icons/coloricon.png')),
+                              Text('   Red  ',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      // color: Colors.blue[900],
+                                      fontSize: 18))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Price : ',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 20),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '1000000',
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[350],
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Row(
+                        children: const [
+                          Image(
+                              image: AssetImage(
+                                  'assets/images/app_icons/price.png')),
+                          Text('   35000 EGP  ',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[900],
-                                  fontSize: 20)),
-                          const TextSpan(
-                              text: ' EGP',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green,
-                                  fontSize: 20)),
+                                  fontWeight: FontWeight.w600,
+                                  // color: Colors.blue[900],
+                                  fontSize: 18))
                         ],
                       ),
                     ),

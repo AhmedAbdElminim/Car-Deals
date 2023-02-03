@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/component/app_local.dart';
+import '../../shared/component/loading_widget.dart';
 import '../../shared/style/colors.dart';
 import '../../utils/app_lists.dart';
 
@@ -149,43 +150,45 @@ class _ApplyScreenState extends State<ApplyScreen> {
             const Spacer(),
             SizedBox(
               width: double.infinity,
-              child: MaterialButton(
-                onPressed: () {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  ApplyModel applyModel = ApplyModel(
-                      userName: userModel.userName,
-                      uId: userModel.uId,
-                      userPhone: userModel.userPhone,
-                      carBrand: carBrandValue,
-                      carName: carNameValue,
-                      carModel: carModelValue);
-                  FirebaseFirestore.instance
-                      .collection('requests')
-                      .add(applyModel.toJson())
-                      .then((value) {
-                    setState(() {
-                      isLoading = false;
-                    });
-                    showToAst(msg: 'Request Sent Successfully', isError: false);
-                    Navigator.pop(context);
-                  });
-                },
-                color: defaultColor,
-                child: isLoading
-                    ? const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                      )
-                    : Text(
+              child: isLoading
+                  ? const Padding(
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: LoadingWidget(
+                        loadingNum: 1,
+                      ),
+                    )
+                  : MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        ApplyModel applyModel = ApplyModel(
+                            userName: userModel.userName,
+                            uId: userModel.uId,
+                            userPhone: userModel.userPhone,
+                            carBrand: carBrandValue,
+                            carName: carNameValue,
+                            carModel: carModelValue);
+                        FirebaseFirestore.instance
+                            .collection('requests')
+                            .doc(uId)
+                            .set(applyModel.toJson())
+                            .then((value) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          showToAst(
+                              msg: 'Request Sent Successfully', isError: false);
+                          Navigator.pop(context);
+                        });
+                      },
+                      color: defaultColor,
+                      child: Text(
                         '${getLang(context, 'post_car_button')}',
                         style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-              ),
+                    ),
             )
           ],
         ),

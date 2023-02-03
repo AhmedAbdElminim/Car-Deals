@@ -9,6 +9,7 @@ import 'package:car_deals/shared/style/colors.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/component/loading_widget.dart';
 import '../../shared/component/widgets.dart';
 import '../layout/layout_screen.dart';
 
@@ -31,8 +32,8 @@ class LoginScreen extends StatelessWidget {
             navigateAndFinish(context, LayOutScreen.layoutScreenId);
             showToAst(msg: 'LoginSuccessfully', isError: false);
           }
-          if(state is LoginErrorState){
-            showToAst(msg:state.error, isError: true);
+          if (state is LoginErrorState) {
+            showToAst(msg: state.error, isError: true);
           }
         },
         builder: (context, state) {
@@ -169,31 +170,29 @@ class LoginScreen extends StatelessWidget {
                                   password: passController.text);
                             }
                           },
-                          child: Container(
-                            width: screenWidth,
-                            decoration: BoxDecoration(
-                              color: defaultColor,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              child: Center(
-                                child: state is LoginLoadingState
-                                    ? const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: CircularProgressIndicator(
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    : Text(
+                          child: state is LoginLoadingState
+                              ? const LoadingWidget(
+                                  loadingNum: 1,
+                                )
+                              : Container(
+                                  width: screenWidth,
+                                  decoration: BoxDecoration(
+                                    color: defaultColor,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 15),
+                                    child: Center(
+                                      child: Text(
                                         '${getLang(context, 'login_Screen_login')}',
                                         style: const TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 20),
                                       ),
-                              ),
-                            ),
-                          ),
+                                    ),
+                                  ),
+                                ),
                         ),
                       ),
                       FadeAnimation(

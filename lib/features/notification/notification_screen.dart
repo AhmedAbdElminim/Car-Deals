@@ -7,6 +7,8 @@ import 'package:car_deals/features/notification/widgets/full_notification.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/component/loading_widget.dart';
+
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 
@@ -17,19 +19,29 @@ class NotificationScreen extends StatelessWidget {
       child: BlocConsumer<NotificationCubit, NotificationStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit=NotificationCubit.get(context);
+          var cubit = NotificationCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               // backgroundColor: Colors.blue[900],
               title: Text('${getLang(context, 'notification_appbar_title')}'),
             ),
             body: state is GetNotificationLoadingState
-                ?Center(child: CircularProgressIndicator(color: defaultColor,),):cubit.notificationList.isEmpty? const EmptyNotification()
-                : ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) =>   FullNotification(content: cubit.notificationList[index].content, senderName: cubit.notificationList[index].senderName, index: index+1,),
-                    itemCount: cubit.notificationList.length,
-                  ),
+                ? const Center(
+                    child: LoadingWidget(
+                      loadingNum: 1,
+                    ),
+                  )
+                : cubit.notificationList.isEmpty
+                    ? const EmptyNotification()
+                    : ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) => FullNotification(
+                          content: cubit.notificationList[index].content,
+                          senderName: cubit.notificationList[index].senderName,
+                          index: index + 1,
+                        ),
+                        itemCount: cubit.notificationList.length,
+                      ),
           );
         },
       ),

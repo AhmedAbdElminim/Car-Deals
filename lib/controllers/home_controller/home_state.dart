@@ -10,3 +10,12 @@ class HomeGetUserDataErrorState extends HomeStates {
   final String error;
   HomeGetUserDataErrorState({required this.error});
 }
+
+class HomeGetCarsLoadingState extends HomeStates {}
+
+class HomeGetCarsSuccessState extends HomeStates {}
+
+class HomeGetCarsErrorState extends HomeStates {
+  final String error;
+  HomeGetCarsErrorState({required this.error});
+}

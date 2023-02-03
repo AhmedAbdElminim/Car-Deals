@@ -1,3 +1,4 @@
+import 'package:car_deals/models/car_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/component/cached_network_image_component.dart';
@@ -5,8 +6,8 @@ import '../../../shared/component/widgets.dart';
 import '../../car_details/car_details_screen.dart';
 
 class CarAdsComponent extends StatelessWidget {
-  const CarAdsComponent({Key? key}) : super(key: key);
-
+  const CarAdsComponent({required this.carModel, Key? key}) : super(key: key);
+  final CarModel carModel;
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -29,34 +30,36 @@ class CarAdsComponent extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CacheNetworkImageWidget(
-                imageHeight: 175,
-                imageWidth: screenWidth / 3,
-                imagePath:
-                    'https://i.pinimg.com/236x/4d/b7/1e/4db71eb5013211a120d0bd40ba98ce2d.jpg',
+              Flexible(
+                child: CacheNetworkImageWidget(
+                  imageHeight: 175,
+                  imageWidth: screenWidth / 3,
+                  imagePath: carModel.carImage,
+                ),
               ),
-              const SizedBox(
-                width: 5,
-              ),
+              // const SizedBox(
+              //   width: 2,
+              // ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Container(
                       height: 30,
-                      decoration:  BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.grey[350],
-                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
                       ),
                       child: Row(
-                        children: const [
-                          Image(
+                        children: [
+                          const Image(
                               image: AssetImage(
                                   'assets/images/app_icons/brandIcon.png')),
-                          Text('   Mercedes  ',
-                              style: TextStyle(
+                          Text('   ${carModel.carBrand}  ',
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   // color: Colors.blue[900],
                                   fontSize: 18))
@@ -65,21 +68,22 @@ class CarAdsComponent extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Container(
                       height: 30,
-                      decoration:  BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.grey[350],
-                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
                       ),
                       child: Row(
-                        children: const [
-                          Image(
+                        children: [
+                          const Image(
                               image: AssetImage(
                                   'assets/images/app_icons/model.png')),
-                          Text('   S-Class  ',
-                              style: TextStyle(
+                          Text('   ${carModel.carName}  ',
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   // color: Colors.blue[900],
                                   fontSize: 18))
@@ -94,17 +98,18 @@ class CarAdsComponent extends StatelessWidget {
                             horizontal: 5, vertical: 0),
                         child: Container(
                           height: 30,
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.grey[350],
-                            borderRadius: const BorderRadius.all(Radius.circular(20)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
                           ),
                           child: Row(
-                            children: const [
-                              Image(
+                            children: [
+                              const Image(
                                   image: AssetImage(
                                       'assets/images/app_icons/year.png')),
-                              Text('   2022  ',
-                                  style: TextStyle(
+                              Text('   ${carModel.carModel}  ',
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       // color: Colors.blue[900],
                                       fontSize: 18))
@@ -117,17 +122,18 @@ class CarAdsComponent extends StatelessWidget {
                             horizontal: 5, vertical: 10),
                         child: Container(
                           height: 30,
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.grey[350],
-                            borderRadius: const BorderRadius.all(Radius.circular(20)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
                           ),
                           child: Row(
-                            children: const [
-                              Image(
+                            children: [
+                              const Image(
                                   image: AssetImage(
                                       'assets/images/app_icons/coloricon.png')),
-                              Text('   Red  ',
-                                  style: TextStyle(
+                              Text('   ${carModel.carColor}  ',
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       // color: Colors.blue[900],
                                       fontSize: 18))
@@ -138,21 +144,22 @@ class CarAdsComponent extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Container(
                       height: 30,
-                      decoration:  BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.grey[350],
-                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
                       ),
                       child: Row(
-                        children: const [
-                          Image(
+                        children: [
+                          const Image(
                               image: AssetImage(
                                   'assets/images/app_icons/price.png')),
-                          Text('   35000 EGP  ',
-                              style: TextStyle(
+                          Text('   ${carModel.carPrice} EGP  ',
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   // color: Colors.blue[900],
                                   fontSize: 18))

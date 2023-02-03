@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
         //primarySwatch:Colors.blue,
         appBarTheme: AppBarTheme(backgroundColor: defaultColor),
         fontFamily: GoogleFonts.openSans().fontFamily,
+
       ),
       routes: appRoutes,
       initialRoute:

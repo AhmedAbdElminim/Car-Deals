@@ -2,16 +2,16 @@ class CarModel {
   final String carId;
   final String carBrand;
   final String carName;
-  final String carModel;
   final String carColor;
   final String carImage;
-  final String carPrice;
   final String carTransmission;
-  final String carSpeed;
   final String carDescription;
-  final String carCapacity;
   final String carType;
   final String carPublishedDate;
+  final double carSpeed;
+  final int carPrice;
+  final int carModel;
+  final int carCapacity;
 
   CarModel(
       {required this.carType,
@@ -51,7 +51,7 @@ class CarModel {
       "carImage": carImage,
       "carPrice": carPrice,
       "carTransmission": carTransmission,
-      "carSSpeed": carSpeed,
+      "carSpeed": carSpeed,
       "carDescription": carDescription,
       "carCapacity": carCapacity,
       "carType": carType,
