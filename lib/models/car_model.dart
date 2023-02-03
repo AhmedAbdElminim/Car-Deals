@@ -10,9 +10,13 @@ class CarModel {
   final String carSpeed;
   final String carDescription;
   final String carCapacity;
+  final String carType;
+  final String carPublishedDate;
 
   CarModel(
-      {required this.carId,
+      {required this.carType,
+      required this.carPublishedDate,
+      required this.carId,
       required this.carBrand,
       required this.carName,
       required this.carModel,
@@ -34,7 +38,9 @@ class CarModel {
       carTransmission: json['carTransmission'],
       carSpeed: json['carSpeed'],
       carDescription: json['carDescription'],
-      carCapacity: json['carCapacity']);
+      carCapacity: json['carCapacity'],
+      carType: json['carType'],
+      carPublishedDate: json['carPublishedDate']);
   Map<String, dynamic> toJson() {
     return {
       "carId": carId,
@@ -47,7 +53,9 @@ class CarModel {
       "carTransmission": carTransmission,
       "carSSpeed": carSpeed,
       "carDescription": carDescription,
-      "carCapacity": carCapacity
+      "carCapacity": carCapacity,
+      "carType": carType,
+      "carPublishedDate": carPublishedDate
     };
   }
 }
