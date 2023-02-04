@@ -5,11 +5,11 @@ import 'package:car_deals/shared/component/app_local.dart';
 import 'package:car_deals/shared/component/widgets.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../controllers/car_detail_controller/car_detail_cubit.dart';
 import '../../controllers/car_detail_controller/car_detail_states.dart';
 import '../../shared/component/loading_widget.dart';
 import 'components/banner_component_in_detail_screen.dart';
+import 'components/car_prices_argument.dart';
 
 class CarDetailScreen extends StatelessWidget {
   const CarDetailScreen({Key? key}) : super(key: key);
@@ -93,7 +93,9 @@ class CarDetailScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                         BannerComponentInDetailScreen(imageUrl: cubit.carModel.carImage,),
+                        BannerComponentInDetailScreen(
+                          imageUrl: cubit.carModel.carImage,
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -234,7 +236,14 @@ class CarDetailScreen extends StatelessWidget {
                                   defaultNavigate(
                                       context: context,
                                       screenName:
-                                          PutPriceScreen.putPriceScreenId);
+                                          PutPriceScreen.putPriceScreenId,
+                                      args: CarPricesArgument(
+                                          carId: cubit.carModel.carId,
+                                          carImage: cubit.carModel.carImage,
+                                          carName: cubit.carModel.carName,
+                                          carExpired: cubit.getExpired(
+                                              date: cubit
+                                                  .carModel.carPublishedDate)));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(8),
@@ -242,14 +251,21 @@ class CarDetailScreen extends StatelessWidget {
                                       color: defaultColor,
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(20))),
-                                  child: Text(
+                                  child:cubit.getExpired(
+                                      date: cubit
+                                          .carModel.carPublishedDate)?Text(
+                                    '   ${getLang(context, 'detail_show_price_list')}   ',
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ): Text(
                                     '${getLang(context, 'detail_apply_your_price')}',
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         )

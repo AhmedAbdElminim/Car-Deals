@@ -54,7 +54,7 @@ class RegisterScreen extends StatelessWidget {
                         child: Center(
                           child: Image(
                             image:
-                                AssetImage('assets/images/auth/app_logo.png'),
+                                AssetImage('assets/images/auth/app_logo1.png'),
                             height: 200,
                             width: 200,
                           ),
