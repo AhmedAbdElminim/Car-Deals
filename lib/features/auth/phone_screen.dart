@@ -71,7 +71,7 @@ class PhoneScreen extends StatelessWidget {
                           controller: phoneController,
                           decoration: InputDecoration(
                               hintText:
-                              '${getLang(context, 'phone_screen_enter_your_phone_number')}'),
+                                  '${getLang(context, 'phone_screen_enter_your_phone_number')}'),
                         ),
                       ),
                       Padding(
@@ -86,7 +86,6 @@ class PhoneScreen extends StatelessWidget {
                   ),
                 ),
               )),
-
           FadeAnimation(
             1.5,
             child: Padding(
@@ -96,7 +95,8 @@ class PhoneScreen extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      defaultNavigate(context, OtpScreen.otpScreenId);
+                      defaultNavigate(
+                          context: context, screenName: OtpScreen.otpScreenId);
                     },
                     borderRadius: BorderRadius.circular(20),
                     child: CircleAvatar(

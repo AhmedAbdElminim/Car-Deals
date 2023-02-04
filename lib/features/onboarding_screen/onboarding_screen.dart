@@ -52,7 +52,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () {
                     CacheHelper.saveData(key: 'onBoarding', value: true)
                         .then((value) {
-                      navigateAndFinish(context, LoginScreen.loginScreenId);
+                      navigateAndFinish(
+                          context: context,
+                          screenName: LoginScreen.loginScreenId);
                     });
                   },
                   child: Text(
@@ -128,7 +130,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   if (currentIndex == onBoardingList.length - 1) {
                     CacheHelper.saveData(key: 'onBoarding', value: true)
                         .then((value) {
-                      navigateAndFinish(context, LoginScreen.loginScreenId);
+                      navigateAndFinish(
+                          context: context,
+                          screenName: LoginScreen.loginScreenId);
                     });
                   } else {
                     pageController.nextPage(

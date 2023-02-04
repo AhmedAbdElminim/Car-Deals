@@ -23,7 +23,8 @@ class CarCardComponent extends StatelessWidget {
               topLeft: Radius.circular(15), bottomLeft: Radius.circular(15)),
           onTap: () {
             /// TODO : NAVIGATE TO  CAR DETAILS
-            defaultNavigate(context, CarDetailScreen.carDetailScreen);
+            defaultNavigate(
+                context: context, screenName: CarDetailScreen.carDetailScreen);
           },
           child: Row(
             mainAxisSize: MainAxisSize.min,

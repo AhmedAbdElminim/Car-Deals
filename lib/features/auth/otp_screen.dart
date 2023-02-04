@@ -344,7 +344,8 @@ class _OtpScreenState extends State<OtpScreen> {
                               _fieldSix.text;
                           if (_otp == '123456') {
                             navigateAndFinish(
-                                context, LayOutScreen.layoutScreenId);
+                                context: context,
+                                screenName: LayOutScreen.layoutScreenId);
                           }
                         });
                       },

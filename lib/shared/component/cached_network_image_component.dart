@@ -16,7 +16,7 @@ class CacheNetworkImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(15.0), topLeft: Radius.circular(15.0)),
+          bottomLeft: Radius.circular(0.0), topLeft: Radius.circular(0.0)),
       child: CachedNetworkImage(
         width: imageWidth,
         height: imageHeight,

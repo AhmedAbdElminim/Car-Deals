@@ -1,79 +1,136 @@
+import 'package:car_deals/controllers/user_controller/user_cubit.dart';
+import 'package:car_deals/controllers/user_controller/user_states.dart';
+import 'package:car_deals/shared/component/loading_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/component/app_local.dart';
+import '../../../shared/component/constants.dart';
 import '../../../shared/style/colors.dart';
 
-
 class UpdateUserInformationScreen extends StatelessWidget {
-  const UpdateUserInformationScreen({Key? key}) : super(key: key);
+  UpdateUserInformationScreen({Key? key}) : super(key: key);
   static const String updateUserInformationScreenId =
       'UpdateUserInformationScreenId';
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  static final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: defaultColor,
-        title:  Text('${getLang(context, 'update_uer_data_appbar_title')}'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-             Text(
-              '${getLang(context, 'update_uer_data_name')}',
-              style: const TextStyle(color: Colors.grey),
+    return BlocProvider(
+      create: (context) => UserCubit(),
+      child: BlocConsumer<UserCubit, UserStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = UserCubit.get(context);
+          return Scaffold(
+            appBar: AppBar(
+              // backgroundColor: defaultColor,
+              title:
+                  Text('${getLang(context, 'update_uer_data_appbar_title')}'),
             ),
-            TextFormField(
-              keyboardType: TextInputType.text,
-              controller: TextEditingController(),
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.edit), hintText: 'Mercedes Benz'),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-             Text(
-               '${getLang(context, 'update_uer_data_phone')}',
-              style: const TextStyle(color: Colors.grey),
-            ),
-            TextFormField(
-              keyboardType: TextInputType.phone,
-              controller: TextEditingController(),
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.phone_android),
-                  hintText: '01095295641'),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-             Text(
-              '${getLang(context, 'update_uer_data_password')}',
-              style: const TextStyle(color: Colors.grey),
-            ),
-            TextFormField(
-              keyboardType: TextInputType.visiblePassword,
-              controller: TextEditingController(),
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline), hintText: '123456'),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: MaterialButton(
-                onPressed: () {},
-                color: defaultColor,
-                child:  Text(
-                  '${getLang(context, 'update_uer_data_appbar_title')}'.toUpperCase(),
-                  style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: formKey,
+                child: ListView(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${getLang(context, 'update_uer_data_name')}',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: nameController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "${getLang(context, 'text_form_validate_name')}";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.edit),
+                          hintText: userModel.userName),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      '${getLang(context, 'update_uer_data_phone')}',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.phone,
+                      controller: phoneController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "${getLang(context, 'text_form_validate_phone')}";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.phone_android),
+                          hintText: userModel.userPhone),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      '${getLang(context, 'update_uer_data_password')}',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: passController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "${getLang(context, 'text_form_validate_password')}";
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.lock_outline),
+                          hintText: '123456'),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: state is UpdateUserInformationLoadingState
+                          ? const LoadingWidget(loadingNum: 1)
+                          : MaterialButton(
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  cubit
+                                      .updateUserInfo(
+                                          userName: nameController.text,
+                                          userPhone: phoneController.text)
+                                      .then((value) {
+                                    // Navigator.pop(context);
+                                  });
+                                  // Navigator.pop(context);
+                                }
+                              },
+                              color: defaultColor,
+                              child: Text(
+                                '${getLang(context, 'update_uer_data_appbar_title')}'
+                                    .toUpperCase(),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                    )
+                  ],
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          );
+        },
       ),
     );
   }

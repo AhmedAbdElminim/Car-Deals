@@ -7,8 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'features/onboarding_screen/onboarding_screen.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'firebase_options.dart';
 
@@ -36,7 +34,6 @@ class MyApp extends StatelessWidget {
         //primarySwatch:Colors.blue,
         appBarTheme: AppBarTheme(backgroundColor: defaultColor),
         fontFamily: GoogleFonts.openSans().fontFamily,
-
       ),
       routes: appRoutes,
       initialRoute:

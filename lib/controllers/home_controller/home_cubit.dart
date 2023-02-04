@@ -37,7 +37,7 @@ class HomeCubit extends Cubit<HomeStates> {
         value.docs.forEach((value) {
           carsList.add(CarModel.fromJson(value.data()));
         });
-        print('the length of car lis is: ${carsList.length}');
+       // print('the length of car lis is: ${carsList.length}');
         _getUserData(userId: uId);
         emit(HomeGetCarsSuccessState());
       });

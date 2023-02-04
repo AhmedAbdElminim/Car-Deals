@@ -12,7 +12,7 @@ class CategoryCardItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        defaultNavigate(context, BrandCarsScreen.brandCarsScreenId);
+        defaultNavigate(context: context, screenName:BrandCarsScreen.brandCarsScreenId);
       },
       child: Container(
         decoration: BoxDecoration(border: Border.all(color: defaultColor)),

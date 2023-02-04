@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../shared/component/cached_network_image_component.dart';
 import '../../../shared/component/widgets.dart';
 import '../../car_details/car_details_screen.dart';
+import '../../car_details/components/car_details_argument.dart';
 
 class CarAdsComponent extends StatelessWidget {
   const CarAdsComponent({required this.carModel, Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class CarAdsComponent extends StatelessWidget {
               topLeft: Radius.circular(15), bottomLeft: Radius.circular(15)),
           onTap: () {
             /// TODO : NAVIGATE TO  CAR DETAILS
-            defaultNavigate(context, CarDetailScreen.carDetailScreen);
+            defaultNavigate(context:context, screenName:CarDetailScreen.carDetailScreen,args: CarDetailsArgument(carId: carModel.carId));
           },
           child: Row(
             mainAxisSize: MainAxisSize.min,

@@ -29,7 +29,8 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<RegisterCubit, RegisterStates>(
         listener: (context, state) {
           if (state is RegisterSuccessState) {
-            navigateAndFinish(context, LayOutScreen.layoutScreenId);
+            navigateAndFinish(
+                context: context, screenName: LayOutScreen.layoutScreenId);
             showToAst(msg: 'Register Done Successfully', isError: false);
           }
           if (state is RegisterErrorState) {
@@ -250,7 +251,8 @@ class RegisterScreen extends StatelessWidget {
                             TextButton(
                                 onPressed: () {
                                   navigateAndFinish(
-                                      context, LoginScreen.loginScreenId);
+                                      context: context,
+                                      screenName: LoginScreen.loginScreenId);
                                 },
                                 child: Text(
                                   '${getLang(context, 'register_Screen_register_now')}',
@@ -310,7 +312,8 @@ class RegisterScreen extends StatelessWidget {
                             TextButton(
                                 onPressed: () {
                                   defaultNavigate(
-                                      context, PhoneScreen.phoneScreenId);
+                                      context: context,
+                                      screenName: PhoneScreen.phoneScreenId);
                                 },
                                 child: Text(
                                   '${getLang(context, 'register_Screen_phone_button_register')}',

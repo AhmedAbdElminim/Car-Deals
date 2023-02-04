@@ -28,7 +28,9 @@ class HomeScreen extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      defaultNavigate(context, SearchScreen.searchScreenId);
+                      defaultNavigate(
+                          context: context,
+                          screenName: SearchScreen.searchScreenId);
                     },
                     icon: const Icon(UniconsLine.search))
               ],
@@ -45,14 +47,22 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) => CarAdsComponent(
+
+                      for (int index = 0;
+                          index < cubit.carsList.length;
+                          index++)
+                        CarAdsComponent(
                           carModel: cubit.carsList[index],
-                        ),
-                        itemCount: cubit.carsList.length,
-                      ),
+                        )
+
+                      // ListView.builder(
+                      //   physics: const NeverScrollableScrollPhysics(),
+                      //   shrinkWrap: true,
+                      //   itemBuilder: (context, index) => CarAdsComponent(
+                      //     carModel: cubit.carsList[index],
+                      //   ),
+                      //   itemCount: cubit.carsList.length,
+                      // ),
                     ],
                   ),
           );

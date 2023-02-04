@@ -36,7 +36,8 @@ class _LayOutScreenState extends State<LayOutScreen> {
       body: screens[currentIndex],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          defaultNavigate(context, ApplyScreen.applyScreenId);
+          defaultNavigate(
+              context: context, screenName: ApplyScreen.applyScreenId);
         },
         backgroundColor: defaultColor,
         child: const Icon(UniconsLine.plus),

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Future<void> navigateAndFinish(BuildContext context, String screenName) =>
-    Navigator.pushNamedAndRemoveUntil(context, screenName, (route) => false);
-Future<void> defaultNavigate(BuildContext context, String screenName) =>
-    Navigator.pushNamed(context, screenName);
+Future<void> navigateAndFinish(
+        {required BuildContext context,
+        required String screenName,
+        Object? args}) =>
+    Navigator.pushNamedAndRemoveUntil(
+        context, screenName, arguments: args, (route) => false);
+Future<void> defaultNavigate(
+        {required BuildContext context,
+        required String screenName,
+        Object? args}) =>
+    Navigator.pushNamed(context, screenName, arguments: args);
+
 Future<void> showToAst({required String msg, required bool isError}) {
-  return  Fluttertoast.showToast(
+  return Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
@@ -15,4 +23,3 @@ Future<void> showToAst({required String msg, required bool isError}) {
       textColor: Colors.white,
       fontSize: 16.0);
 }
-

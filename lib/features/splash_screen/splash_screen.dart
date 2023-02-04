@@ -32,9 +32,13 @@ class _SplashScreenState extends State<SplashScreen>
       if (_controller.isCompleted) {
         onBoarding
             ? uId != ''
-                ? navigateAndFinish(context, LayOutScreen.layoutScreenId)
-                : navigateAndFinish(context, LoginScreen.loginScreenId)
-            : navigateAndFinish(context, OnBoardingScreen.onBoardingScreenId);
+                ? navigateAndFinish(
+                    context: context, screenName: LayOutScreen.layoutScreenId)
+                : navigateAndFinish(
+                    context: context, screenName: LoginScreen.loginScreenId)
+            : navigateAndFinish(
+                context: context,
+                screenName: OnBoardingScreen.onBoardingScreenId);
       }
     });
   }
