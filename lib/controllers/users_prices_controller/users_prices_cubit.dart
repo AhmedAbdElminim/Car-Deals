@@ -41,9 +41,10 @@ class UsersPricesCubit extends Cubit<UsersPricesStates> {
           .collection('cars')
           .doc(carId)
           .collection('prices')
-          .doc()
+          .doc(uId)
           .set(priceModel.toJson())
           .then((value) {
+        pricesList.add(priceModel);
         emit(PutPricesSuccessState());
       });
     } catch (error) {

@@ -16,7 +16,7 @@ class CoupeScreen extends StatelessWidget {
       children: List.generate(
           brandLogoPaths.length,
           (index) => CategoryCardItemWidget(
-                logoPath: brandLogoPaths[index],
+                logoPath: brandLogoPaths[index], carBrand: brandsName[index], carType: 'Coupe',
               )),
     );
   }

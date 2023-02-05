@@ -17,6 +17,8 @@ class HatchBackScreen extends StatelessWidget {
           brandLogoPaths.length,
           (index) => CategoryCardItemWidget(
                 logoPath: brandLogoPaths[index],
+                carBrand: brandsName[index],
+                carType: 'Hatchback',
               )),
     );
   }
