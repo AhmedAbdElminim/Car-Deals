@@ -130,5 +130,6 @@
   "logout_dialog_title": "Are You Sure You Need SignOut? \uD83D\uDE14",
   "logout_dialog_approve_button": "Yes",
   "Logout_dialog_cancel_button": "No don't Angry",
-  "no_prices_until_now": "There is no prices until now"
+  "no_prices_until_now": "There is no prices until now",
+  "empty_category": "No car available in this category now"
 }

@@ -119,7 +119,9 @@
   "logout_dialog_title": "انت متاكد انك عاوز تخرج؟\uD83D\uDE14",
   "logout_dialog_approve_button": "اه علشان انا بضان",
   "Logout_dialog_cancel_button": "لا خلاص متزعلش❤️",
-  "no_prices_until_now": "لا يوجد احد وضع سعر حتي الان"
+  "no_prices_until_now": "لا يوجد احد وضع سعر حتي الان",
+  "empty_category": "لا يوجد سيارات متاحه في هذا القسم حاليا"
+
 
 
 }
