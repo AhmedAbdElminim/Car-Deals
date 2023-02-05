@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'BE3HALY',
       theme: ThemeData(
         //primarySwatch:Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(backgroundColor: defaultColor),
         fontFamily: GoogleFonts.openSans().fontFamily,
       ),

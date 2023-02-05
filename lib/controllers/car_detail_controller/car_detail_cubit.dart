@@ -27,6 +27,6 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
   bool getExpired({required String date}) {
     //"2023-01-28"
 
-    return DateTime.now().difference(DateTime.parse(date)).inDays == 7;
+    return DateTime.now().difference(DateTime.parse(date)).inDays >= 7;
   }
 }

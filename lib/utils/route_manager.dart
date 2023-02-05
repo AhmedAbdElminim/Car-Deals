@@ -27,7 +27,7 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   UpdateUserInformationScreen.updateUserInformationScreenId: (context) =>
        UpdateUserInformationScreen(),
   BrandCarsScreen.brandCarsScreenId: (context) => const BrandCarsScreen(),
-  PutPriceScreen.putPriceScreenId: (context) => const PutPriceScreen(),
+  PutPriceScreen.putPriceScreenId: (context) =>  PutPriceScreen(),
   PhoneScreen.phoneScreenId: (context) => PhoneScreen(),
   OtpScreen.otpScreenId: (context) => const OtpScreen(),
   SplashScreen.splashScreenId: (context) => const SplashScreen(),

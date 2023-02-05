@@ -241,6 +241,7 @@ class CarDetailScreen extends StatelessWidget {
                                           carId: cubit.carModel.carId,
                                           carImage: cubit.carModel.carImage,
                                           carName: cubit.carModel.carName,
+                                          initialPrice: cubit.carModel.carPrice,
                                           carExpired: cubit.getExpired(
                                               date: cubit
                                                   .carModel.carPublishedDate)));

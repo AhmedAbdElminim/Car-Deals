@@ -29,7 +29,8 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
-            navigateAndFinish(context: context, screenName:LayOutScreen.layoutScreenId);
+            navigateAndFinish(
+                context: context, screenName: LayOutScreen.layoutScreenId);
             showToAst(msg: 'LoginSuccessfully', isError: false);
           }
           if (state is LoginErrorState) {
@@ -209,7 +210,9 @@ class LoginScreen extends StatelessWidget {
                             TextButton(
                                 onPressed: () {
                                   navigateAndFinish(
-                                      context:context,screenName:RegisterScreen.registerScreenId);
+                                      context: context,
+                                      screenName:
+                                          RegisterScreen.registerScreenId);
                                 },
                                 child: Text(
                                   '${getLang(context, 'login_Screen_register_now')}',
@@ -269,7 +272,8 @@ class LoginScreen extends StatelessWidget {
                             TextButton(
                                 onPressed: () {
                                   defaultNavigate(
-                                      context: context, screenName:PhoneScreen.phoneScreenId);
+                                      context: context,
+                                      screenName: PhoneScreen.phoneScreenId);
                                 },
                                 child: Text(
                                   '${getLang(context, 'login_Screen_phone_button_login')}',
