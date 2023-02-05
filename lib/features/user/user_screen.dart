@@ -82,7 +82,7 @@ class UserScreen extends StatelessWidget {
                                           radius: 40,
                                           backgroundColor: defaultColor,
                                           backgroundImage: const AssetImage(
-                                              'assets/images/onboarding/merc.jpg'),
+                                              'assets/images/onboarding/onboarding1.png'),
                                         ),
                                         const SizedBox(
                                           height: 10,

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/otp_screen.dart';
 import 'package:car_deals/shared/component/app_local.dart';
@@ -94,9 +95,18 @@ class PhoneScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {
-                      defaultNavigate(
-                          context: context, screenName: OtpScreen.otpScreenId);
+                    onTap: () async{
+                      // defaultNavigate(
+                      //     context: context, screenName: OtpScreen.otpScreenId);
+                      await FirebaseAuth.instance.verifyPhoneNumber(
+                        phoneNumber: '+201095295641',
+                        verificationCompleted: (PhoneAuthCredential credential) {},
+                        verificationFailed: (FirebaseAuthException e) {},
+                        codeSent: (String verificationId, int? resendToken) {
+                          print('code sent successfully');
+                        },
+                        codeAutoRetrievalTimeout: (String verificationId) {},
+                      );
                     },
                     borderRadius: BorderRadius.circular(20),
                     child: CircleAvatar(
