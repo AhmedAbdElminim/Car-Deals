@@ -10,3 +10,11 @@ class PhoneAuthErrorStates extends PhoneAuthStates {
 
 class AutoFillSuccessStates extends PhoneAuthStates {}
 
+class CheckPinCodeLoadingStates extends PhoneAuthStates {}
+class CheckPinCodeSuccessStates extends PhoneAuthStates {}
+class CheckPinCodeErrorStates extends PhoneAuthStates {
+  final String error;
+  CheckPinCodeErrorStates({required this.error});
+}
+
+

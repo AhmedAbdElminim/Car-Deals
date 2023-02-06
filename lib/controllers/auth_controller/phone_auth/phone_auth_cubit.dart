@@ -8,28 +8,49 @@ import 'package:telephony/telephony.dart';
 class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
   PhoneAuthCubit() : super(PhoneAuthInitialStates());
   static PhoneAuthCubit get(context) => BlocProvider.of(context);
-  //final pinController = TextEditingController();
 
-  Future<void> phoneAuth({required String phoneNumber}) async {
+  String? verificationCode;
+  String? uId;
+  Future<void> phoneAuth({
+    required String phoneNumber,
+  }) async {
     try {
       emit(PhoneAuthLoadingStates());
       FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '+201091007198',
-        verificationCompleted: (PhoneAuthCredential credential) {
-          // pinController.setText(credential.smsCode!);
-          print('${credential.smsCode}');
-          print('${credential.token}');
-
-        },
+        phoneNumber: '+2$phoneNumber',
+        verificationCompleted: (PhoneAuthCredential credential) {},
         verificationFailed: (FirebaseAuthException e) {
-          print(e.toString());
+          if (e.code == 'invalid-phone-number') {
+            emit(PhoneAuthErrorStates(
+                error: 'The provided phone number is not valid.'));
+          }
         },
         codeSent: (String verificationId, int? resendToken) {
+          verificationCode = verificationId;
+          emit(PhoneAuthSuccessStates());
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
       );
     } catch (error) {
       emit(PhoneAuthErrorStates(error: error.toString()));
+    }
+  }
+
+  Future<void> checkPinCode({required String pinCode}) async {
+    try {
+      // Create a PhoneAuthCredential with the code
+      emit(CheckPinCodeLoadingStates());
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationCode!, smsCode: pinCode);
+
+      await FirebaseAuth.instance
+          .signInWithCredential(credential)
+          .then((value) {
+        uId = value.user!.uid;
+        emit(CheckPinCodeSuccessStates());
+      });
+    } catch (error) {
+      emit(CheckPinCodeErrorStates(error: error.toString()));
     }
   }
 
@@ -42,9 +63,10 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
 
         String sms = message.body.toString(); //get the message
 
-        if (message.address == "CloudOTP") {
+        if (true) {
           String otpCode = sms.replaceAll(RegExp(r'[^0-9]'), '');
           pinController.setText(otpCode);
+
           emit(AutoFillSuccessStates());
         }
       },

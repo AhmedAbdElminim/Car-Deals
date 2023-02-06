@@ -1,3 +1,6 @@
+
+
+import 'package:car_deals/features/auth/phone_form.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/login_screen.dart';
@@ -31,4 +34,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   PhoneScreen.phoneScreenId: (context) => PhoneScreen(),
   OtpScreen.otpScreenId: (context) =>  OtpScreen(),
   SplashScreen.splashScreenId: (context) => const SplashScreen(),
+  PhoneForm.phoneFormScreenId:(context)=>const PhoneForm(),
 };
