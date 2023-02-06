@@ -1,3 +1,4 @@
+import 'package:car_deals/features/auth/widgets/otp_screen_argument.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/otp_screen.dart';
@@ -11,6 +12,7 @@ class PhoneScreen extends StatelessWidget {
   PhoneScreen({Key? key}) : super(key: key);
   static const String phoneScreenId = "PhoneScreenId";
   final TextEditingController phoneController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -67,12 +69,22 @@ class PhoneScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(
                             bottom: 25, left: 10, right: 10, top: 10),
-                        child: TextFormField(
-                          keyboardType: TextInputType.phone,
-                          controller: phoneController,
-                          decoration: InputDecoration(
-                              hintText:
-                                  '${getLang(context, 'phone_screen_enter_your_phone_number')}'),
+                        child: Form(
+                          key: formKey,
+                          child: TextFormField(
+                            keyboardType: TextInputType.phone,
+                            controller: phoneController,
+                            validator: (value) {
+                              if (value!.isEmpty)
+                                return "Please input phone number";
+                              if (value.length != 11)
+                                return "please enter correct number";
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                hintText:
+                                    '${getLang(context, 'phone_screen_enter_your_phone_number')}'),
+                          ),
                         ),
                       ),
                       Padding(
@@ -95,18 +107,14 @@ class PhoneScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () async{
-                      // defaultNavigate(
-                      //     context: context, screenName: OtpScreen.otpScreenId);
-                      await FirebaseAuth.instance.verifyPhoneNumber(
-                        phoneNumber: '+201095295641',
-                        verificationCompleted: (PhoneAuthCredential credential) {},
-                        verificationFailed: (FirebaseAuthException e) {},
-                        codeSent: (String verificationId, int? resendToken) {
-                          print('code sent successfully');
-                        },
-                        codeAutoRetrievalTimeout: (String verificationId) {},
-                      );
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        defaultNavigate(
+                            context: context,
+                            screenName: OtpScreen.otpScreenId,
+                            args: OtpScreenArgument(
+                                phoneNumber: phoneController.text));
+                      }
                     },
                     borderRadius: BorderRadius.circular(20),
                     child: CircleAvatar(

@@ -46,8 +46,8 @@
   "phone_Screen_register": "        تسجيل",
   "phone_screen_description": "سنرسل لك كلمة مرور لمرة واحدة (OTP)",
   "phone_screen_enter_your_phone_number": "ادخل رقم هاتفك",
-  "otp_screen_enter_verification_code": "ادخل رمز التاكيد",
-  "otp_screen_we_send_otp": "ارسلنا رمز التاكيد الي هاتفك",
+  "otp_screen_verification": "التحقق",
+  "otp_screen_we_send_otp": "ادخل الرمز الذي ارسل الي رقم",
   "otp_screen_didnt_receive": "هل لم تستلم رمزا؟  ",
   "otp_screen_resend_otp":"اعد ارسال الرمز",
 

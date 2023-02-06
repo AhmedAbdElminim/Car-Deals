@@ -52,8 +52,8 @@
   "phone_Screen_register": "OTP Verification",
   "phone_screen_description": "We will send you one time\npassword (OTP)",
   "phone_screen_enter_your_phone_number": "Enter your phone number",
-  "otp_screen_enter_verification_code": "Enter Verification Code",
-  "otp_screen_we_send_otp": "We have sent OTP on your number",
+  "otp_screen_verification": "Verification",
+  "otp_screen_we_send_otp": "Enter the code sent to the number",
   "otp_screen_didnt_receive": "Didn/'t receive a OTP? ",
   "otp_screen_resend_otp":"Resend OTP",
 

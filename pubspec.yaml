@@ -50,9 +50,11 @@ dependencies:
   shimmer: ^2.0.0
   checkbox_grouped: ^1.8.1
   telephony: ^0.2.0
+  pinput: ^2.2.23
   lottie: ^2.2.0
   fluttertoast: ^8.1.2
   flutter_spinkit: ^5.1.0
+
 
   #bloc
   flutter_bloc: ^8.1.1
