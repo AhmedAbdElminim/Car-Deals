@@ -27,6 +27,13 @@
   "text_form_validate_password": "ما تدخل الباسورد يبضان",
   "text_form_validate_phone": "تاني يبضان دخل رقم الفون",
   "text_form_validate_name": "دخل اسمك يا بيضه متحركه",
+  "text_form_correct_phone_number": "ادخل رقم صحيح",
+  "submit_button": "يلا بينا",
+  "successfully_login_message": " تم تسجيل الدخول بنجاح",
+  "successfully_logout_message": "تم تسجيل الخروج بنجاح",
+  "successfully_register_message": "تم التسجيل بنجاح",
+  "apply_successful_message":"تم ارسال الطلب بنجاح",
+
 
 
   "register_Screen_register": "تسجيل",

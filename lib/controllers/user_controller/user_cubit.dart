@@ -19,7 +19,7 @@ class UserCubit extends Cubit<UserStates> {
           userName: userName,
           uId:uId,
           userEmail: userModel.userEmail,
-          userImage: userModel.userImage,
+
           userPhone: userPhone);
       FirebaseFirestore.instance
           .collection('users')

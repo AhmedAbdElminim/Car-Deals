@@ -28,6 +28,15 @@
   "text_form_validate_password": "Password must not be empty",
   "text_form_validate_phone": "Phone must not be empty",
   "text_form_validate_name": "Name must not be empty",
+  "text_form_correct_phone_number": "Please enter correct phone number",
+
+  "submit_button": "Submit",
+  "successfully_login_message": "Login Done Successfully",
+  "successfully_logout_message": "LogOut Done Successfully",
+  "successfully_register_message": "Register Done Successfully",
+  "apply_successful_message":"Request sent successfully",
+
+
 
 
 

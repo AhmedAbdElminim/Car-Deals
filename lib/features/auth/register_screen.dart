@@ -31,7 +31,9 @@ class RegisterScreen extends StatelessWidget {
           if (state is RegisterSuccessState) {
             navigateAndFinish(
                 context: context, screenName: LayOutScreen.layoutScreenId);
-            showToAst(msg: 'Register Done Successfully', isError: false);
+            showToAst(
+                msg: '${getLang(context, 'successfully_register_message')}',
+                isError: false);
           }
           if (state is RegisterErrorState) {
             showToAst(msg: state.error, isError: true);
@@ -207,7 +209,6 @@ class RegisterScreen extends StatelessWidget {
                               cubit.registerNewUser(
                                   userName: nameController.text,
                                   password: passController.text,
-                                  userImage: '',
                                   userPhone: phoneController.text,
                                   emailAddress: emailController.text);
                             }

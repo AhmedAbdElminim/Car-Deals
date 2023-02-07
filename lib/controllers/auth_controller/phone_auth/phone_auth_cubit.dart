@@ -1,16 +1,20 @@
 import 'package:car_deals/controllers/auth_controller/phone_auth/phone_auth_states.dart';
+import 'package:car_deals/shared/network/local/cache_helper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:telephony/telephony.dart';
 
+import '../../../models/user_model.dart';
+import '../../../shared/component/constants.dart';
+
 class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
   PhoneAuthCubit() : super(PhoneAuthInitialStates());
   static PhoneAuthCubit get(context) => BlocProvider.of(context);
 
   String? verificationCode;
-  String? uId;
   Future<void> phoneAuth({
     required String phoneNumber,
   }) async {
@@ -46,6 +50,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
       await FirebaseAuth.instance
           .signInWithCredential(credential)
           .then((value) {
+        print('the user id is : ${value.user!.uid}');
         uId = value.user!.uid;
         emit(CheckPinCodeSuccessStates());
       });
@@ -54,16 +59,41 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
     }
   }
 
+  Future<void> addNewUser({
+    required String userName,
+    required String uId,
+    required String userPhone,
+    required String userEmail,
+  }) {
+    // Call the user's CollectionReference to add a new user
+    emit(CreateNewUserLoadingStates());
+    UserModel userModel1 = UserModel(
+        userName: userName,
+        uId: uId,
+        userEmail: userEmail,
+        userPhone: userPhone);
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .set(userModel1.toJson())
+        .then((value) {
+      CacheHelper.saveData(key: 'uId', value: uId);
+      emit(CreateNewUserSuccessStates());
+    }).catchError((error) {
+      emit(CreateNewUserErrorStates(error: error.toString()));
+    });
+  }
+
   Future<void> listenToNewMessage(
       {required TextEditingController pinController}) async {
     Telephony.instance.listenIncomingSms(
       onNewMessage: (SmsMessage message) {
-        print(message.address); //+977981******67, sender nubmer
-        print(message.body); //Your OTP code is 34567
+        // print(message.address); //+977981******67, sender nubmer
+        // print(message.body); //Your OTP code is 34567
 
         String sms = message.body.toString(); //get the message
 
-        if (true) {
+        if (message.address == 'CloudOTP') {
           String otpCode = sms.replaceAll(RegExp(r'[^0-9]'), '');
           pinController.setText(otpCode);
 

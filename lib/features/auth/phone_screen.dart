@@ -75,10 +75,12 @@ class PhoneScreen extends StatelessWidget {
                             keyboardType: TextInputType.phone,
                             controller: phoneController,
                             validator: (value) {
-                              if (value!.isEmpty)
-                                return "Please input phone number";
-                              if (value.length != 11)
-                                return "please enter correct number";
+                              if (value!.isEmpty) {
+                                return "${getLang(context, 'text_form_validate_phone')}";
+                              }
+                              if (value.length != 11) {
+                                return "${getLang(context, 'text_form_correct_phone_number')}";
+                              }
                               return null;
                             },
                             decoration: InputDecoration(

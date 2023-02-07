@@ -6,9 +6,7 @@ import 'package:car_deals/features/auth/register_screen.dart';
 import 'package:car_deals/features/auth/fade_animation.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:car_deals/shared/style/colors.dart';
-import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../shared/component/loading_widget.dart';
 import '../../shared/component/widgets.dart';
 import '../layout/layout_screen.dart';
@@ -31,7 +29,9 @@ class LoginScreen extends StatelessWidget {
           if (state is LoginSuccessState) {
             navigateAndFinish(
                 context: context, screenName: LayOutScreen.layoutScreenId);
-            showToAst(msg: 'LoginSuccessfully', isError: false);
+            showToAst(
+                msg: '${getLang(context, 'successfully_login_message')}',
+                isError: false);
           }
           if (state is LoginErrorState) {
             showToAst(msg: state.error, isError: true);

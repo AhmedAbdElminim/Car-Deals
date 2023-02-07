@@ -178,7 +178,9 @@ class _ApplyScreenState extends State<ApplyScreen> {
                             isLoading = false;
                           });
                           showToAst(
-                              msg: 'Request Sent Successfully', isError: false);
+                              msg:
+                                  '${getLang(context, 'apply_successful_message')}',
+                              isError: false);
                           Navigator.pop(context);
                         });
                       },

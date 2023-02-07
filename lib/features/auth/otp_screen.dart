@@ -2,12 +2,14 @@ import 'package:car_deals/controllers/auth_controller/phone_auth/phone_auth_cubi
 import 'package:car_deals/controllers/auth_controller/phone_auth/phone_auth_states.dart';
 import 'package:car_deals/features/auth/phone_form.dart';
 import 'package:car_deals/features/auth/widgets/otp_screen_argument.dart';
+import 'package:car_deals/features/auth/widgets/phone_form_screen_argument.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/widgets/keyboard_button_component.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pinput/pinput.dart';
+import '../../shared/component/constants.dart';
 import '../../shared/component/widgets.dart';
 import '../../shared/style/colors.dart';
 
@@ -22,7 +24,8 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    var args = ModalRoute.of(context)!.settings.arguments as OtpScreenArgument;
+    final args =
+        ModalRoute.of(context)!.settings.arguments as OtpScreenArgument;
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
@@ -119,12 +122,14 @@ class OtpScreen extends StatelessWidget {
                                   .then((value) {
                                 navigateAndFinish(
                                     context: context,
-                                    screenName: PhoneForm.phoneFormScreenId);
+                                    screenName: PhoneForm.phoneFormScreenId,
+                                    args: PhoneFormArgument(
+                                        phoneNum: args.phoneNumber));
                               });
                             },
                             onChanged: (value) {
                               debugPrint('onChanged: $value');
-                            },
+                            },//01008894079
                             onSubmitted: (pin) {},
                             cursor: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -186,11 +191,6 @@ class OtpScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      // if (state is CheckPinCodeLoadingStates)
-                      //   const SpinKitFadingCube(
-                      //     color: Colors.white,
-                      //     size: 50.0,
-                      //   ),
 
                       const Spacer(),
                       Padding(
@@ -291,8 +291,11 @@ class OtpScreen extends StatelessWidget {
                                               .then((value) {
                                             navigateAndFinish(
                                                 context: context,
-                                                screenName: PhoneForm
-                                                    .phoneFormScreenId);
+                                                screenName:
+                                                    PhoneForm.phoneFormScreenId,
+                                                args: PhoneFormArgument(
+                                                    phoneNum:
+                                                        args.phoneNumber));
                                           });
                                         },
                                   child: Icon(

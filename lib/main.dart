@@ -31,11 +31,20 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BE3HALY',
       theme: ThemeData(
-        //primarySwatch:Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(backgroundColor: defaultColor),
-        fontFamily: GoogleFonts.openSans().fontFamily,
-      ),
+          //primarySwatch:Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(backgroundColor: defaultColor),
+          fontFamily: GoogleFonts.openSans().fontFamily,
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: defaultColor, //<-- SEE HERE
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: defaultColor,
+              ),
+            ),
+          )),
       routes: appRoutes,
       initialRoute:
           SplashScreen.splashScreenId, // OnBoardingScreen.onBoardingScreenId,

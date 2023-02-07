@@ -17,4 +17,10 @@ class CheckPinCodeErrorStates extends PhoneAuthStates {
   CheckPinCodeErrorStates({required this.error});
 }
 
+class CreateNewUserLoadingStates extends PhoneAuthStates {}
+class CreateNewUserSuccessStates extends PhoneAuthStates {}
+class CreateNewUserErrorStates extends PhoneAuthStates {
+  final String error;
+  CreateNewUserErrorStates({required this.error});
+}
 

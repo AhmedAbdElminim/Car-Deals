@@ -13,7 +13,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
   Future<void> registerNewUser({
     required String userName,
     required String password,
-    required String userImage,
     required String userPhone,
     required String emailAddress,
   }) async {
@@ -26,16 +25,14 @@ class RegisterCubit extends Cubit<RegisterStates> {
       )
           .then((value) {
         CacheHelper.saveData(key: 'uId', value: value.user!.uid);
-        uId=value.user!.uid;
+        uId = value.user!.uid;
 
         _addNewUser(
             userName: userName,
             uId: value.user!.uid,
-            userImage: userImage,
             userPhone: userPhone,
             userEmail: emailAddress);
         emit(RegisterSuccessState());
-
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -57,7 +54,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
   Future<void> _addNewUser({
     required String userName,
     required String uId,
-    required String userImage,
     required String userPhone,
     required String userEmail,
   }) {
@@ -66,7 +62,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
         userName: userName,
         uId: uId,
         userEmail: userEmail,
-        userImage: userImage,
         userPhone: userPhone);
     return users
         .doc(uId)
