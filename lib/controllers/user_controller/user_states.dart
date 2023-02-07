@@ -11,13 +11,9 @@ class UpdateUserInformationErrorState extends UserStates {
   UpdateUserInformationErrorState({required this.error});
 }
 
-class GetUserDataLoadingState extends UserStates {
+class GetUserDataLoadingState extends UserStates {}
 
-}
-
-class GetUserDataSuccessState extends UserStates {
-
-}
+class GetUserDataSuccessState extends UserStates {}
 
 class GetUserDataErrorState extends UserStates {
   final String error;

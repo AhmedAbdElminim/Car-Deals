@@ -9,7 +9,6 @@ import 'package:car_deals/shared/network/local/cache_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../shared/component/app_local.dart';
 import '../../shared/component/widgets.dart';
 import '../../shared/style/colors.dart';
@@ -24,13 +23,11 @@ class UserScreen extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return BlocProvider(
-      create: (context) => UserCubit()..getUserData(userId: uId),
+      create: (context) => UserCubit(),
       child: BlocConsumer<UserCubit, UserStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          return state is GetUserDataLoadingState
-              ? const LoadingWidget(loadingNum: 1)
-              : Stack(
+          return Stack(
                   children: [
                     Container(
                       height: screenHeight,

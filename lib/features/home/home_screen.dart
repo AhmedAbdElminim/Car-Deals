@@ -10,6 +10,7 @@ import '../../shared/component/loading_widget.dart';
 import '../../shared/component/widgets.dart';
 import '../../shared/style/colors.dart';
 import '../search/search_screen.dart';
+import '../search/search_screen_argument.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,11 +28,15 @@ class HomeScreen extends StatelessWidget {
               title: Text('${getLang(context, "home_appbar_title")}'),
               actions: [
                 IconButton(
-                    onPressed: () {
-                      defaultNavigate(
-                          context: context,
-                          screenName: SearchScreen.searchScreenId);
-                    },
+                    onPressed: state is HomeGetCarsLoadingState
+                        ? null
+                        : () {
+                            defaultNavigate(
+                                context: context,
+                                screenName: SearchScreen.searchScreenId,
+                                args: SearchScreenArgument(
+                                    carsList: cubit.carsList));
+                          },
                     icon: const Icon(UniconsLine.search))
               ],
             ),

@@ -14,7 +14,6 @@ class UpdateUserInformationScreen extends StatelessWidget {
       'UpdateUserInformationScreenId';
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController passController = TextEditingController();
   static final formKey = GlobalKey<FormState>();
 
   @override
@@ -22,7 +21,11 @@ class UpdateUserInformationScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserCubit(),
       child: BlocConsumer<UserCubit, UserStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is UpdateUserInformationSuccessState) {
+            Navigator.pop(context);
+          }
+        },
         builder: (context, state) {
           var cubit = UserCubit.get(context);
           return Scaffold(
@@ -72,28 +75,8 @@ class UpdateUserInformationScreen extends StatelessWidget {
                         return null;
                       },
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.phone_android),
+                          prefixIcon: const Icon(Icons.phone_android),
                           hintText: userModel.userPhone),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      '${getLang(context, 'update_uer_data_password')}',
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                    TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: passController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "${getLang(context, 'text_form_validate_password')}";
-                        }
-                        return null;
-                      },
-                      decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.lock_outline),
-                          hintText: '123456'),
                     ),
                     const SizedBox(
                       height: 15,
@@ -109,10 +92,7 @@ class UpdateUserInformationScreen extends StatelessWidget {
                                       .updateUserInfo(
                                           userName: nameController.text,
                                           userPhone: phoneController.text)
-                                      .then((value) {
-                                    // Navigator.pop(context);
-                                  });
-                                  // Navigator.pop(context);
+                                      .then((value) {});
                                 }
                               },
                               color: defaultColor,
