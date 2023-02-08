@@ -29,6 +29,7 @@
   "text_form_validate_phone": "Phone must not be empty",
   "text_form_validate_name": "Name must not be empty",
   "text_form_correct_phone_number": "Please enter correct phone number",
+  "otp_validation_message": "Please enter the correct otp code",
 
   "submit_button": "Submit",
   "successfully_login_message": "Login Done Successfully",

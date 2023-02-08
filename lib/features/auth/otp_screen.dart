@@ -9,7 +9,6 @@ import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pinput/pinput.dart';
-import '../../shared/component/constants.dart';
 import '../../shared/component/widgets.dart';
 import '../../shared/style/colors.dart';
 
@@ -31,7 +30,7 @@ class OtpScreen extends StatelessWidget {
       height: 56,
       textStyle: const TextStyle(
         fontSize: 22,
-        color: Color.fromRGBO(30, 60, 87, 1),
+        color: Colors.black,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(19),
@@ -100,64 +99,71 @@ class OtpScreen extends StatelessWidget {
                         textDirection: TextDirection.ltr,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Pinput(
-                            controller: pinController,
-                            //focusNode: focusNode,
-                            length: 6,
-                            keyboardType: TextInputType.none,
-                            androidSmsAutofillMethod:
-                                AndroidSmsAutofillMethod.smsUserConsentApi,
-                            listenForMultipleSmsOnAndroid: true,
-                            defaultPinTheme: defaultPinTheme,
-                            validator: (value) {
-                              return value!.length == 6
-                                  ? null
-                                  : 'Please enter correct code';
-                            },
+                          child: Form(
+                            key: formKey,
+                            child: Pinput(
+                              controller: pinController,
+                              //focusNode: focusNode,
+                              length: 6,
+                              keyboardType: TextInputType.none,
+                              androidSmsAutofillMethod:
+                                  AndroidSmsAutofillMethod.smsUserConsentApi,
+                              listenForMultipleSmsOnAndroid: true,
+                              defaultPinTheme: defaultPinTheme,
+                              validator: (value) {
+                                return value == '${cubit.otpCode}'
+                                    ? null
+                                    : '${getLang(context, 'otp_validation_message')}';
+                              },
 
-                            hapticFeedbackType: HapticFeedbackType.lightImpact,
-                            onCompleted: (pin) {
-                              cubit
-                                  .checkPinCode(pinCode: pinController.text)
-                                  .then((value) {
-                                navigateAndFinish(
-                                    context: context,
-                                    screenName: PhoneForm.phoneFormScreenId,
-                                    args: PhoneFormArgument(
-                                        phoneNum: args.phoneNumber));
-                              });
-                            },
-                            onChanged: (value) {
-                              debugPrint('onChanged: $value');
-                            },//01008894079
-                            onSubmitted: (pin) {},
-                            cursor: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 9),
-                                  width: 22,
-                                  height: 1,
-                                  color: Colors.grey,
+                              hapticFeedbackType:
+                                  HapticFeedbackType.lightImpact,
+                              onCompleted: (pin) {
+                                if (formKey.currentState!.validate()) {
+                                  cubit
+                                      .checkPinCode(pinCode: pinController.text)
+                                      .then((value) {
+                                    navigateAndFinish(
+                                        context: context,
+                                        screenName: PhoneForm.phoneFormScreenId,
+                                        args: PhoneFormArgument(
+                                            phoneNum: args.phoneNumber));
+                                  });
+                                }
+                              },
+                              onChanged: (value) {
+                                debugPrint('onChanged: $value');
+                              }, //01008894079
+                              onSubmitted: (pin) {},
+                              cursor: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 9),
+                                    width: 22,
+                                    height: 1,
+                                    color: Colors.grey,
+                                  ),
+                                ],
+                              ),
+                              focusedPinTheme: defaultPinTheme.copyWith(
+                                decoration:
+                                    defaultPinTheme.decoration!.copyWith(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.amber),
                                 ),
-                              ],
-                            ),
-                            focusedPinTheme: defaultPinTheme.copyWith(
-                              decoration: defaultPinTheme.decoration!.copyWith(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.amber),
                               ),
-                            ),
-                            submittedPinTheme: defaultPinTheme.copyWith(
-                              decoration: defaultPinTheme.decoration!.copyWith(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(19),
-                                border:
-                                    Border.all(color: Colors.lightGreenAccent),
+                              submittedPinTheme: defaultPinTheme.copyWith(
+                                decoration:
+                                    defaultPinTheme.decoration!.copyWith(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(19),
+                                  border: Border.all(color: Colors.black),
+                                ),
                               ),
-                            ),
-                            errorPinTheme: defaultPinTheme.copyBorderWith(
-                              border: Border.all(color: Colors.redAccent),
+                              errorPinTheme: defaultPinTheme.copyBorderWith(
+                                border: Border.all(color: Colors.redAccent),
+                              ),
                             ),
                           ),
                         ),
@@ -265,7 +271,12 @@ class OtpScreen extends StatelessWidget {
                                 radius: 25,
                                 backgroundColor: Colors.white,
                                 child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    // cubit.trimController(pinController: pinController);
+                                    pinController.text = pinController.text
+                                        .substring(
+                                            0, pinController.text.length - 1);
+                                  },
                                   child: const Icon(
                                     Icons.remove,
                                     color: Colors.black,

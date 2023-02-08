@@ -28,6 +28,7 @@
   "text_form_validate_phone": "تاني يبضان دخل رقم الفون",
   "text_form_validate_name": "دخل اسمك يا بيضه متحركه",
   "text_form_correct_phone_number": "ادخل رقم صحيح",
+  "otp_validation_message": "من فضلك ادخل الكود صحيح",
   "submit_button": "يلا بينا",
   "successfully_login_message": " تم تسجيل الدخول بنجاح",
   "successfully_logout_message": "تم تسجيل الخروج بنجاح",

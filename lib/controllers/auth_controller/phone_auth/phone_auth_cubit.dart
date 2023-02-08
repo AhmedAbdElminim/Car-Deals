@@ -15,6 +15,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
   static PhoneAuthCubit get(context) => BlocProvider.of(context);
 
   String? verificationCode;
+  String? otpCode;
   Future<void> phoneAuth({
     required String phoneNumber,
   }) async {
@@ -22,7 +23,9 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
       emit(PhoneAuthLoadingStates());
       FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: '+2$phoneNumber',
-        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationCompleted: (PhoneAuthCredential credential) {
+          otpCode = credential.smsCode;
+        },
         verificationFailed: (FirebaseAuthException e) {
           if (e.code == 'invalid-phone-number') {
             emit(PhoneAuthErrorStates(
@@ -83,6 +86,10 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
       emit(CreateNewUserErrorStates(error: error.toString()));
     });
   }
+  // void trimController({required TextEditingController pinController}){
+  //   pinController.text=pinController.text.substring(0, pinController.text.length - 1);
+  //   emit(TrimControllerStates());
+  // }
 
   Future<void> listenToNewMessage(
       {required TextEditingController pinController}) async {

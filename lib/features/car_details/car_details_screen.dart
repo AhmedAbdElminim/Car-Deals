@@ -196,10 +196,13 @@ class CarDetailScreen extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 20,
                                 ),
-                                child: Text(
-                                  cubit.carModel.carDescription,
-                                  maxLines: 4,
-                                  overflow: TextOverflow.ellipsis,
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Text(
+                                    cubit.carModel.carDescription,
+                                    maxLines: 4,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                               Padding(
