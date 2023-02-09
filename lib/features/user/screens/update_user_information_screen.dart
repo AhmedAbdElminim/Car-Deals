@@ -1,7 +1,7 @@
 import 'package:car_deals/controllers/user_controller/user_cubit.dart';
 import 'package:car_deals/controllers/user_controller/user_states.dart';
-import 'package:car_deals/features/user/user_screen.dart';
 import 'package:car_deals/shared/component/loading_widget.dart';
+import 'package:car_deals/shared/component/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,6 +25,9 @@ class UpdateUserInformationScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is UpdateUserInformationSuccessState) {
             Navigator.of(context).pop(true);
+          }
+          if(state is UpdateUserInformationErrorState){
+            showMyDialog(context: context, msg: 'msg');
           }
         },
         builder: (context, state) {

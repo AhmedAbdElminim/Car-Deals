@@ -20,7 +20,11 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeCubit()..getCars(),
       child: BlocConsumer<HomeCubit, HomeStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is HomeGetCarsErrorState){
+            showMyDialog(context: context, msg: '');
+          }
+        },
         builder: (context, state) {
           var cubit = HomeCubit.get(context);
           return Scaffold(

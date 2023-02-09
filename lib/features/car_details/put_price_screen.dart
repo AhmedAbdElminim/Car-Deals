@@ -8,6 +8,7 @@ import 'package:supercharged/supercharged.dart';
 import '../../controllers/users_prices_controller/users_prices_cubit.dart';
 import '../../controllers/users_prices_controller/users_prices_states.dart';
 import '../../shared/component/loading_widget.dart';
+import '../../shared/component/widgets.dart';
 import 'components/car_prices_argument.dart';
 import 'components/comment_item_component.dart';
 import 'components/empty_prices_widget.dart';
@@ -24,7 +25,11 @@ class PutPriceScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => UsersPricesCubit()..getPricesList(carId: args.carId),
       child: BlocConsumer<UsersPricesCubit, UsersPricesStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is GetPricesErrorState) {
+            showMyDialog(context: context, msg: '');
+          }
+        },
         builder: (context, state) {
           var cubit = UsersPricesCubit.get(context);
           return Scaffold(

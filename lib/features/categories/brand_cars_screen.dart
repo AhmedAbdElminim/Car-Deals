@@ -3,6 +3,7 @@ import 'package:car_deals/controllers/categories_controller/categories_states.da
 import 'package:car_deals/features/categories/widgets/brand_cars_screen_argument.dart';
 import 'package:car_deals/features/categories/widgets/empty_category_screen.dart';
 import 'package:car_deals/shared/component/loading_widget.dart';
+import 'package:car_deals/shared/component/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/categories/widgets/car_card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,11 @@ class BrandCarsScreen extends StatelessWidget {
       create: (context) => CategoriesCubit()
         ..getCategories(carBrand: args.carBrand, carType: args.carType),
       child: BlocConsumer<CategoriesCubit, CategoriesStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is GetCategoriesErrorStates){
+            showMyDialog(context: context, msg: '');
+          }
+        },
         builder: (context, state) {
           var cubit = CategoriesCubit.get(context);
           return Scaffold(

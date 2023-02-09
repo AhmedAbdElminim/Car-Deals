@@ -24,7 +24,11 @@ class CarDetailScreen extends StatelessWidget {
       create: (BuildContext context) =>
           CarDetailCubit()..getCarDetail(carId: args.carId),
       child: BlocConsumer<CarDetailCubit, CarDetailStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is GetCarDetailErrorState){
+            showMyDialog(context: context, msg: '');
+          }
+        },
         builder: (context, state) {
           var cubit = CarDetailCubit.get(context);
           return Scaffold(

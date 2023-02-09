@@ -8,6 +8,7 @@ import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/component/loading_widget.dart';
+import '../../shared/component/widgets.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -17,7 +18,11 @@ class NotificationScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => NotificationCubit()..getNotifications(),
       child: BlocConsumer<NotificationCubit, NotificationStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is GetNotificationErrorState){
+            showMyDialog(context: context, msg: '');
+          }
+        },
         builder: (context, state) {
           var cubit = NotificationCubit.get(context);
           return Scaffold(

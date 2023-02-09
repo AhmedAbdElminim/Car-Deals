@@ -14,6 +14,7 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
   }) async {
     try {
       emit(GetCategoriesLoadingStates());
+
       FirebaseFirestore.instance
           .collection('cars')
           .where("carBrand", isEqualTo: carBrand)
