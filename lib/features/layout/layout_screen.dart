@@ -5,10 +5,7 @@ import 'package:car_deals/features/home/home_screen.dart';
 import 'package:car_deals/features/user/user_screen.dart';
 import 'package:car_deals/shared/component/widgets.dart';
 import 'package:car_deals/shared/style/colors.dart';
-import 'package:car_deals/shared/style/colors.dart';
-import 'package:car_deals/shared/style/colors.dart';
-import 'package:car_deals/shared/style/colors.dart';
-import 'package:car_deals/shared/style/colors.dart';
+
 import 'package:unicons/unicons.dart';
 
 import '../apply/apply_screen.dart';
@@ -22,7 +19,7 @@ class LayOutScreen extends StatefulWidget {
 }
 
 class _LayOutScreenState extends State<LayOutScreen> {
-  int currentIndex = 0;
+  int currentIndex=0;
   List<Widget> screens = [
     const HomeScreen(),
     const CategoriesScreen(),
@@ -32,6 +29,8 @@ class _LayOutScreenState extends State<LayOutScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       body: screens[currentIndex],
       floatingActionButton: FloatingActionButton(

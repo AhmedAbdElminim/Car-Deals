@@ -25,30 +25,11 @@ class UserCubit extends Cubit<UserStates> {
           .doc(uId)
           .update(userModel1.toJson())
           .then((value) {
-        // _getUserData(userId: uId);
         userModel = userModel1;
         emit(UpdateUserInformationSuccessState());
       });
     } catch (error) {
       emit(UpdateUserInformationErrorState(error: error.toString()));
-    }
-  }
-
-  Future<void> getUserData({required String userId}) async {
-    try {
-      emit(GetUserDataLoadingState());
-      FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .get()
-          .then((documentSnapshot) {
-        if (documentSnapshot.exists) {
-          userModel = UserModel.fromJson(documentSnapshot.data()!);
-        }
-        emit(GetUserDataSuccessState());
-      });
-    } catch (error) {
-      emit(GetUserDataErrorState(error: error.toString()));
     }
   }
 }

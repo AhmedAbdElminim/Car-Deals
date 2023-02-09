@@ -1,5 +1,6 @@
 import 'package:car_deals/controllers/user_controller/user_cubit.dart';
 import 'package:car_deals/controllers/user_controller/user_states.dart';
+import 'package:car_deals/features/user/user_screen.dart';
 import 'package:car_deals/shared/component/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,11 +24,13 @@ class UpdateUserInformationScreen extends StatelessWidget {
       child: BlocConsumer<UserCubit, UserStates>(
         listener: (context, state) {
           if (state is UpdateUserInformationSuccessState) {
-            Navigator.pop(context);
+            Navigator.of(context).pop(true);
           }
         },
         builder: (context, state) {
           var cubit = UserCubit.get(context);
+          nameController.text = userModel.userName;
+          phoneController.text = userModel.userPhone;
           return Scaffold(
             appBar: AppBar(
               // backgroundColor: defaultColor,
@@ -71,6 +74,9 @@ class UpdateUserInformationScreen extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "${getLang(context, 'text_form_validate_phone')}";
+                        }
+                        if (value.length != 11) {
+                          return "${getLang(context, 'text_form_correct_phone_number')}";
                         }
                         return null;
                       },
