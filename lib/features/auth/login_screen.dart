@@ -36,6 +36,9 @@ class LoginScreen extends StatelessWidget {
           if (state is LoginErrorState) {
             showToAst(msg: state.error, isError: true);
           }
+          if (state is LoginInternetConnectionErrorState) {
+            showInternetConnectionDialog(context: context);
+          }
         },
         builder: (context, state) {
           var cubit = LoginCubit.get(context);

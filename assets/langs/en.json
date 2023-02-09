@@ -80,6 +80,9 @@
   "profile_history": "History",
   "profile_history_description": "All your cars here",
   "profile_logout": "LOGOUT",
+  "profile_about_app": "About the App",
+  "profile_rate_app": "Rate the App",
+  "profile_contact_with_us": "Contact With Us",
 
 
 
@@ -121,7 +124,7 @@
   "detail_show_price_list": "Show Prices",
 
   "detail_starting_price": "Starting price",
-  "detail_price": "350000 EGP",
+  "detail_price": "EGP",
   "enter_your_price": "Enter your Price",
   "submit": "Submit",
   "sec": "Sec",

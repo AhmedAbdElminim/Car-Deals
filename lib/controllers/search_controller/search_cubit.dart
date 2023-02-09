@@ -11,7 +11,7 @@ class SearchCubit extends Cubit<SearchStates> {
 
   void changeSearchFilter() {
     isBrand = !isBrand;
-    emit(ChangeSearchFilterState());
+    emit(SearchLoadingState());
   }
 
   List<CarModel> foundCars = [];

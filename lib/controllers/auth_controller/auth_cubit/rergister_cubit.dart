@@ -1,4 +1,5 @@
 import 'package:car_deals/models/user_model.dart';
+import 'package:car_deals/shared/component/widgets.dart';
 import 'package:car_deals/shared/network/local/cache_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,22 +19,26 @@ class RegisterCubit extends Cubit<RegisterStates> {
   }) async {
     try {
       emit(RegisterLoadingState());
-      final credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
-      )
-          .then((value) {
-        CacheHelper.saveData(key: 'uId', value: value.user!.uid);
-        uId = value.user!.uid;
+      if (await execute(customInstance)) {
+        final credential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+          email: emailAddress,
+          password: password,
+        )
+            .then((value) {
+          CacheHelper.saveData(key: 'uId', value: value.user!.uid);
+          uId = value.user!.uid;
 
-        _addNewUser(
-            userName: userName,
-            uId: value.user!.uid,
-            userPhone: userPhone,
-            userEmail: emailAddress);
-        emit(RegisterSuccessState());
-      });
+          _addNewUser(
+              userName: userName,
+              uId: value.user!.uid,
+              userPhone: userPhone,
+              userEmail: emailAddress);
+          emit(RegisterSuccessState());
+        });
+      } else {
+        emit(RegisterInternetConnectionErrorState());
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         //print('The password provided is too weak.');

@@ -10,3 +10,5 @@ class RegisterErrorState extends RegisterStates {
   final String error;
   RegisterErrorState({required this.error});
 }
+
+class RegisterInternetConnectionErrorState extends RegisterStates {}

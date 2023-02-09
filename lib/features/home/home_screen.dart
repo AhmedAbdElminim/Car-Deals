@@ -10,7 +10,6 @@ import 'package:unicons/unicons.dart';
 import '../../shared/component/constants.dart';
 import '../../shared/component/loading_widget.dart';
 import '../../shared/component/widgets.dart';
-import '../../shared/style/colors.dart';
 import '../search/search_screen.dart';
 import '../search/search_screen_argument.dart';
 
@@ -58,6 +57,7 @@ class HomeScreen extends StatelessWidget {
                 : state is HomeGetUserDataInternetConnectionErrorState
                     ? const NoInternetScreen()
                     : ListView(
+                        physics: const BouncingScrollPhysics(),
                         children: [
                           const BannerWidget(),
                           const SizedBox(

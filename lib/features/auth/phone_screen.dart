@@ -1,5 +1,4 @@
 import 'package:car_deals/features/auth/widgets/otp_screen_argument.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/otp_screen.dart';
 import 'package:car_deals/shared/component/app_local.dart';
@@ -109,13 +108,18 @@ class PhoneScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {
+                    onTap: ()async {
                       if (formKey.currentState!.validate()) {
-                        defaultNavigate(
-                            context: context,
-                            screenName: OtpScreen.otpScreenId,
-                            args: OtpScreenArgument(
-                                phoneNumber: phoneController.text));
+                        if(await execute(customInstance)){
+                      defaultNavigate(
+                      context: context,
+                      screenName: OtpScreen.otpScreenId,
+                      args: OtpScreenArgument(
+                      phoneNumber: phoneController.text));
+                      }else{
+                          showInternetConnectionDialog(context: context);
+                        }
+
                       }
                     },
                     borderRadius: BorderRadius.circular(20),

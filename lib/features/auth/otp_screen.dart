@@ -52,6 +52,15 @@ class OtpScreen extends StatelessWidget {
               ),
             ));
           }
+          if (state is CheckPinCodeSuccessStates) {
+            navigateAndFinish(
+                context: context,
+                screenName: PhoneForm.phoneFormScreenId,
+                args: PhoneFormArgument(phoneNum: args.phoneNumber));
+          }
+          if (state is OtpInternetConnectionErrorStates) {
+            showInternetConnectionDialog(context: context);
+          }
         },
         builder: (context, state) {
           var cubit = PhoneAuthCubit.get(context);
@@ -122,13 +131,7 @@ class OtpScreen extends StatelessWidget {
                                 if (formKey.currentState!.validate()) {
                                   cubit
                                       .checkPinCode(pinCode: pinController.text)
-                                      .then((value) {
-                                    navigateAndFinish(
-                                        context: context,
-                                        screenName: PhoneForm.phoneFormScreenId,
-                                        args: PhoneFormArgument(
-                                            phoneNum: args.phoneNumber));
-                                  });
+                                      .then((value) {});
                                 }
                               },
                               onChanged: (value) {
@@ -300,13 +303,13 @@ class OtpScreen extends StatelessWidget {
                                               .checkPinCode(
                                                   pinCode: pinController.text)
                                               .then((value) {
-                                            navigateAndFinish(
-                                                context: context,
-                                                screenName:
-                                                    PhoneForm.phoneFormScreenId,
-                                                args: PhoneFormArgument(
-                                                    phoneNum:
-                                                        args.phoneNumber));
+                                            // navigateAndFinish(
+                                            //     context: context,
+                                            //     screenName:
+                                            //         PhoneForm.phoneFormScreenId,
+                                            //     args: PhoneFormArgument(
+                                            //         phoneNum:
+                                            //             args.phoneNumber));
                                           });
                                         },
                                   child: Icon(

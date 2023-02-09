@@ -38,6 +38,9 @@ class RegisterScreen extends StatelessWidget {
           if (state is RegisterErrorState) {
             showToAst(msg: state.error, isError: true);
           }
+          if (state is RegisterInternetConnectionErrorState) {
+            showInternetConnectionDialog(context: context);
+          }
         },
         builder: (context, state) {
           var cubit = RegisterCubit.get(context);

@@ -28,6 +28,13 @@ class PhoneForm extends StatelessWidget {
             showToAst(
                 msg: '${getLang(context, 'successfully_register_message')}',
                 isError: false);
+            navigateAndFinish(
+                context: context,
+                screenName: LayOutScreen.layoutScreenId);
+          }
+
+          if (state is CreateUserInternetConnectionErrorStates) {
+            showInternetConnectionDialog(context: context);
           }
         },
         builder: (context, state) {
@@ -98,9 +105,7 @@ class PhoneForm extends StatelessWidget {
                                       userPhone: args.phoneNum,
                                       userEmail: emailController.text)
                                   .then((value) {
-                                navigateAndFinish(
-                                    context: context,
-                                    screenName: LayOutScreen.layoutScreenId);
+
                               });
                             }
                           },

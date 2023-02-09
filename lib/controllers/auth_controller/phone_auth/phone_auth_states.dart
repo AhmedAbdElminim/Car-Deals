@@ -31,4 +31,5 @@ class CreateNewUserErrorStates extends PhoneAuthStates {
   CreateNewUserErrorStates({required this.error});
 }
 
-//class TrimControllerStates extends PhoneAuthStates {}
+class CreateUserInternetConnectionErrorStates extends PhoneAuthStates {}
+class OtpInternetConnectionErrorStates extends PhoneAuthStates {}

@@ -1,4 +1,5 @@
 import 'package:car_deals/controllers/auth_controller/phone_auth/phone_auth_states.dart';
+import 'package:car_deals/shared/component/widgets.dart';
 import 'package:car_deals/shared/network/local/cache_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,16 +48,20 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
     try {
       // Create a PhoneAuthCredential with the code
       emit(CheckPinCodeLoadingStates());
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: verificationCode!, smsCode: pinCode);
+      if (await execute(customInstance)) {
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            verificationId: verificationCode!, smsCode: pinCode);
 
-      await FirebaseAuth.instance
-          .signInWithCredential(credential)
-          .then((value) {
-        print('the user id is : ${value.user!.uid}');
-        uId = value.user!.uid;
-        emit(CheckPinCodeSuccessStates());
-      });
+        await FirebaseAuth.instance
+            .signInWithCredential(credential)
+            .then((value) {
+          print('the user id is : ${value.user!.uid}');
+          uId = value.user!.uid;
+          emit(CheckPinCodeSuccessStates());
+        });
+      } else {
+        emit(OtpInternetConnectionErrorStates());
+      }
     } catch (error) {
       emit(CheckPinCodeErrorStates(error: error.toString()));
     }
@@ -67,24 +72,28 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
     required String uId,
     required String userPhone,
     required String userEmail,
-  }) {
+  }) async {
     // Call the user's CollectionReference to add a new user
     emit(CreateNewUserLoadingStates());
-    UserModel userModel1 = UserModel(
-        userName: userName,
-        uId: uId,
-        userEmail: userEmail,
-        userPhone: userPhone);
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(uId)
-        .set(userModel1.toJson())
-        .then((value) {
-      CacheHelper.saveData(key: 'uId', value: uId);
-      emit(CreateNewUserSuccessStates());
-    }).catchError((error) {
-      emit(CreateNewUserErrorStates(error: error.toString()));
-    });
+    if (await execute(customInstance)) {
+      UserModel userModel1 = UserModel(
+          userName: userName,
+          uId: uId,
+          userEmail: userEmail,
+          userPhone: userPhone);
+      return FirebaseFirestore.instance
+          .collection('users')
+          .doc(uId)
+          .set(userModel1.toJson())
+          .then((value) {
+        CacheHelper.saveData(key: 'uId', value: uId);
+        emit(CreateNewUserSuccessStates());
+      }).catchError((error) {
+        emit(CreateNewUserErrorStates(error: error.toString()));
+      });
+    } else {
+      emit(CreateUserInternetConnectionErrorStates());
+    }
   }
   // void trimController({required TextEditingController pinController}){
   //   pinController.text=pinController.text.substring(0, pinController.text.length - 1);
