@@ -1,5 +1,6 @@
 import 'package:car_deals/controllers/notification_controller/notification_cubit.dart';
 import 'package:car_deals/controllers/notification_controller/notification_states.dart';
+import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/notification/widgets/empty_notification.dart';
@@ -19,8 +20,11 @@ class NotificationScreen extends StatelessWidget {
       create: (context) => NotificationCubit()..getNotifications(),
       child: BlocConsumer<NotificationCubit, NotificationStates>(
         listener: (context, state) {
-          if(state is GetNotificationErrorState){
+          if (state is GetNotificationErrorState) {
             showMyDialog(context: context, msg: '');
+          }
+          if (state is GetNotificationInternetConnectionErrorState) {
+            showInternetConnectionDialog(context: context);
           }
         },
         builder: (context, state) {
@@ -36,17 +40,20 @@ class NotificationScreen extends StatelessWidget {
                       loadingNum: 1,
                     ),
                   )
-                : cubit.notificationList.isEmpty
-                    ? const EmptyNotification()
-                    : ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) => FullNotification(
-                          content: cubit.notificationList[index].content,
-                          senderName: cubit.notificationList[index].senderName,
-                          index: index + 1,
-                        ),
-                        itemCount: cubit.notificationList.length,
-                      ),
+                : state is GetNotificationInternetConnectionErrorState
+                    ? const NoInternetScreen()
+                    : cubit.notificationList.isEmpty
+                        ? const EmptyNotification()
+                        : ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (context, index) => FullNotification(
+                              content: cubit.notificationList[index].content,
+                              senderName:
+                                  cubit.notificationList[index].senderName,
+                              index: index + 1,
+                            ),
+                            itemCount: cubit.notificationList.length,
+                          ),
           );
         },
       ),

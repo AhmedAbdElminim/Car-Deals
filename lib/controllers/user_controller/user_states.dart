@@ -10,3 +10,7 @@ class UpdateUserInformationErrorState extends UserStates {
   final String error;
   UpdateUserInformationErrorState({required this.error});
 }
+class InternetConnectionErrorState extends UserStates {
+  final String error;
+  InternetConnectionErrorState({required this.error});
+}

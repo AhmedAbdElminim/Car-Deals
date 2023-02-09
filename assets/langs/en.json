@@ -141,5 +141,9 @@
   "logout_dialog_approve_button": "Yes",
   "Logout_dialog_cancel_button": "No don't Angry",
   "no_prices_until_now": "There is no prices until now",
-  "empty_category": "No car available in this category now"
+  "empty_category": "No car available in this category now",
+  "error_message_title": "Error",
+  "error_message_body": "here exist an error please try again",
+  "error_message_button": "OK",
+  "internet_connection_message": "Please Check Internet Connection"
 }

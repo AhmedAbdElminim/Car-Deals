@@ -1,6 +1,6 @@
 import 'package:car_deals/models/user_model.dart';
 
 
-late UserModel userModel;
+ UserModel? userModel;
 late bool onBoarding;
 late String uId;

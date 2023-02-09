@@ -128,7 +128,11 @@
   "logout_dialog_approve_button": "اه علشان انا بضان",
   "Logout_dialog_cancel_button": "لا خلاص متزعلش❤️",
   "no_prices_until_now": "لا يوجد احد وضع سعر حتي الان",
-  "empty_category": "لا يوجد سيارات متاحه في هذا القسم حاليا"
+  "empty_category": "لا يوجد سيارات متاحه في هذا القسم حاليا",
+  "error_message_title": "خطأ",
+  "error_message_body": "يوجد خطأ من فضلك حاول مرة اخري",
+  "error_message_button": "تم",
+  "internet_connection_message": "من فضلك تاكد من اتصال الانترنت"
 
 
 

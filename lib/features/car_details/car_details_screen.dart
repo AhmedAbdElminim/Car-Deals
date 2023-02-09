@@ -1,4 +1,5 @@
 import 'package:car_deals/features/car_details/components/car_details_argument.dart';
+import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/car_details/put_price_screen.dart';
 import 'package:car_deals/shared/component/app_local.dart';
@@ -25,8 +26,11 @@ class CarDetailScreen extends StatelessWidget {
           CarDetailCubit()..getCarDetail(carId: args.carId),
       child: BlocConsumer<CarDetailCubit, CarDetailStates>(
         listener: (context, state) {
-          if(state is GetCarDetailErrorState){
+          if (state is GetCarDetailErrorState) {
             showMyDialog(context: context, msg: '');
+          }
+          if (state is GetCarDetailInternetConnectionErrorState) {
+            showInternetConnectionDialog(context: context);
           }
         },
         builder: (context, state) {
@@ -38,7 +42,7 @@ class CarDetailScreen extends StatelessWidget {
                     child: LoadingWidget(
                     loadingNum: 1,
                   ))
-                : SafeArea(
+                :state is GetCarDetailInternetConnectionErrorState?const NoInternetScreen(): SafeArea(
                     child: Column(
                       children: [
                         Padding(

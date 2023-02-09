@@ -10,3 +10,4 @@ class GetNotificationErrorState extends NotificationStates {
   final String error;
   GetNotificationErrorState({required this.error});
 }
+class GetNotificationInternetConnectionErrorState extends NotificationStates {}

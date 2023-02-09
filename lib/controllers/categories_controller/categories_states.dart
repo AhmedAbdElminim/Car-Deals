@@ -10,3 +10,5 @@ class GetCategoriesErrorStates extends CategoriesStates {
   final String error;
   GetCategoriesErrorStates({required this.error});
 }
+
+class GetCategoriesInternetConnectionErrorStates extends CategoriesStates {}

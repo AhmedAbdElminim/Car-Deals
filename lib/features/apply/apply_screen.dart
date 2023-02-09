@@ -158,35 +158,43 @@ class _ApplyScreenState extends State<ApplyScreen> {
                       ),
                     )
                   : MaterialButton(
-                      onPressed: () {
+                      onPressed: () async {
                         setState(() {
                           isLoading = true;
                         });
-                       try{
-
-                         ApplyModel applyModel = ApplyModel(
-                           userName: userModel.userName,
-                           uId: userModel.uId,
-                           userPhone: userModel.userPhone,
-                           carBrand: carBrandValue,
-                           carName: carNameValue,
-                           carModel: carModelValue);
-                       FirebaseFirestore.instance
-                           .collection('requests')
-                           .doc(uId)
-                           .set(applyModel.toJson())
-                           .then((value) {
-                         setState(() {
-                           isLoading = false;
-                         });
-                         showToAst(
-                             msg:
-                             '${getLang(context, 'apply_successful_message')}',
-                             isError: false);
-                         Navigator.pop(context);
-                       });}catch(error){
-                         showMyDialog(context: context, msg: '');
-                       }
+                        try {
+                          if (await execute(customInstance) &&
+                              userModel != null) {
+                            ApplyModel applyModel = ApplyModel(
+                                userName: userModel!.userName,
+                                uId: userModel!.uId,
+                                userPhone: userModel!.userPhone,
+                                carBrand: carBrandValue,
+                                carName: carNameValue,
+                                carModel: carModelValue);
+                            FirebaseFirestore.instance
+                                .collection('requests')
+                                .doc(uId)
+                                .set(applyModel.toJson())
+                                .then((value) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                              showToAst(
+                                  msg:
+                                      '${getLang(context, 'apply_successful_message')}',
+                                  isError: false);
+                              Navigator.pop(context);
+                            });
+                          } else {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            showInternetConnectionDialog(context: context);
+                          }
+                        } catch (error) {
+                          showMyDialog(context: context, msg: '');
+                        }
                       },
                       color: defaultColor,
                       child: Text(

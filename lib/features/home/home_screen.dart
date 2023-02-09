@@ -1,11 +1,13 @@
 import 'package:car_deals/controllers/home_controller/home_cubit.dart';
 import 'package:car_deals/controllers/home_controller/home_state.dart';
+import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/home/widgets/banner_widget.dart';
 import 'package:car_deals/features/home/widgets/car_ads_component.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
+import '../../shared/component/constants.dart';
 import '../../shared/component/loading_widget.dart';
 import '../../shared/component/widgets.dart';
 import '../../shared/style/colors.dart';
@@ -18,11 +20,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..getCars(),
+      create: (context) => HomeCubit()..getUserData(userId: uId),
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
-          if(state is HomeGetCarsErrorState){
+          if (state is HomeGetUserDataErrorState) {
             showMyDialog(context: context, msg: '');
+          }
+          if (state is HomeGetUserDataInternetConnectionErrorState) {
+            showInternetConnectionDialog(context: context);
           }
         },
         builder: (context, state) {
@@ -32,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               title: Text('${getLang(context, "home_appbar_title")}'),
               actions: [
                 IconButton(
-                    onPressed: state is HomeGetCarsLoadingState
+                    onPressed: state is HomeGetUserDataLoadingState
                         ? null
                         : () {
                             defaultNavigate(
@@ -44,36 +49,38 @@ class HomeScreen extends StatelessWidget {
                     icon: const Icon(UniconsLine.search))
               ],
             ),
-            body: state is HomeGetCarsLoadingState
+            body: state is HomeGetUserDataLoadingState
                 ? const Center(
                     child: LoadingWidget(
                       loadingNum: 1,
                     ),
                   )
-                : ListView(
-                    children: [
-                      const BannerWidget(),
-                      const SizedBox(
-                        height: 10,
+                : state is HomeGetUserDataInternetConnectionErrorState
+                    ? const NoInternetScreen()
+                    : ListView(
+                        children: [
+                          const BannerWidget(),
+                          const SizedBox(
+                            height: 10,
+                          ),
+
+                          for (int index = 0;
+                              index < cubit.carsList.length;
+                              index++)
+                            CarAdsComponent(
+                              carModel: cubit.carsList[index],
+                            )
+
+                          // ListView.builder(
+                          //   physics: const NeverScrollableScrollPhysics(),
+                          //   shrinkWrap: true,
+                          //   itemBuilder: (context, index) => CarAdsComponent(
+                          //     carModel: cubit.carsList[index],
+                          //   ),
+                          //   itemCount: cubit.carsList.length,
+                          // ),
+                        ],
                       ),
-
-                      for (int index = 0;
-                          index < cubit.carsList.length;
-                          index++)
-                        CarAdsComponent(
-                          carModel: cubit.carsList[index],
-                        )
-
-                      // ListView.builder(
-                      //   physics: const NeverScrollableScrollPhysics(),
-                      //   shrinkWrap: true,
-                      //   itemBuilder: (context, index) => CarAdsComponent(
-                      //     carModel: cubit.carsList[index],
-                      //   ),
-                      //   itemCount: cubit.carsList.length,
-                      // ),
-                    ],
-                  ),
           );
         },
       ),

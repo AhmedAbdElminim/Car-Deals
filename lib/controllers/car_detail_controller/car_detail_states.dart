@@ -10,3 +10,4 @@ class GetCarDetailErrorState extends CarDetailStates {
   final String error;
   GetCarDetailErrorState({required this.error});
 }
+class GetCarDetailInternetConnectionErrorState extends CarDetailStates{}

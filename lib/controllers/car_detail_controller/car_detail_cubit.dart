@@ -2,6 +2,7 @@ import 'package:car_deals/models/car_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/component/widgets.dart';
 import 'car_detail_states.dart';
 
 class CarDetailCubit extends Cubit<CarDetailStates> {
@@ -11,14 +12,17 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
   Future<void> getCarDetail({required String carId}) async {
     try {
       emit(GetCarDetailLoadingState());
-      FirebaseFirestore.instance
-          .collection('cars')
-          .doc(carId)
-          .get()
-          .then((value) {
-        carModel = CarModel.fromJson(value.data()!);
-        emit(GetCarDetailSuccessState());
-      });
+      if(await execute(customInstance)){
+        FirebaseFirestore.instance
+            .collection('cars')
+            .doc(carId)
+            .get()
+            .then((value) {
+          carModel = CarModel.fromJson(value.data()!);
+          emit(GetCarDetailSuccessState());
+        });
+      }else{emit(GetCarDetailInternetConnectionErrorState());}
+
     } catch (error) {
       emit(GetCarDetailErrorState(error: error.toString()));
     }

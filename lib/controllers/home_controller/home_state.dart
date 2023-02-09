@@ -19,3 +19,4 @@ class HomeGetCarsErrorState extends HomeStates {
   final String error;
   HomeGetCarsErrorState({required this.error});
 }
+class HomeGetUserDataInternetConnectionErrorState extends HomeStates{}

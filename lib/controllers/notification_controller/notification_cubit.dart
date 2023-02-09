@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/component/constants.dart';
+import '../../shared/component/widgets.dart';
 
 class NotificationCubit extends Cubit<NotificationStates> {
   NotificationCubit() : super(NotificationInitialState());
@@ -12,6 +13,7 @@ class NotificationCubit extends Cubit<NotificationStates> {
   Future<void> getNotifications() async {
     try {
       emit(GetNotificationLoadingState());
+    if(await execute(customInstance)){
       FirebaseFirestore.instance
           .collection('users')
           .doc(uId)
@@ -24,6 +26,7 @@ class NotificationCubit extends Cubit<NotificationStates> {
         emit(GetNotificationSuccessState());
 
       });
+    }else{ emit(GetNotificationInternetConnectionErrorState()); }
     } catch (error) {
       emit(GetNotificationErrorState(error: error.toString()));
 

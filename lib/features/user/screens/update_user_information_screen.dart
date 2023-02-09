@@ -26,14 +26,19 @@ class UpdateUserInformationScreen extends StatelessWidget {
           if (state is UpdateUserInformationSuccessState) {
             Navigator.of(context).pop(true);
           }
-          if(state is UpdateUserInformationErrorState){
+          if (state is UpdateUserInformationErrorState) {
             showMyDialog(context: context, msg: 'msg');
+          }
+          if (state is InternetConnectionErrorState) {
+            showInternetConnectionDialog(
+              context: context,
+            );
           }
         },
         builder: (context, state) {
           var cubit = UserCubit.get(context);
-          nameController.text = userModel.userName;
-          phoneController.text = userModel.userPhone;
+          nameController.text = userModel!.userName;
+          phoneController.text = userModel!.userPhone;
           return Scaffold(
             appBar: AppBar(
               // backgroundColor: defaultColor,
@@ -62,7 +67,7 @@ class UpdateUserInformationScreen extends StatelessWidget {
                       },
                       decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.edit),
-                          hintText: userModel.userName),
+                          hintText: userModel!.userName),
                     ),
                     const SizedBox(
                       height: 15,
@@ -85,7 +90,7 @@ class UpdateUserInformationScreen extends StatelessWidget {
                       },
                       decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.phone_android),
-                          hintText: userModel.userPhone),
+                          hintText: userModel!.userPhone),
                     ),
                     const SizedBox(
                       height: 15,

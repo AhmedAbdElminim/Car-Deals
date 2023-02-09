@@ -2,6 +2,7 @@ import 'package:car_deals/models/car_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/component/widgets.dart';
 import 'categories_states.dart';
 
 class CategoriesCubit extends Cubit<CategoriesStates> {
@@ -14,18 +15,21 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
   }) async {
     try {
       emit(GetCategoriesLoadingStates());
-
-      FirebaseFirestore.instance
-          .collection('cars')
-          .where("carBrand", isEqualTo: carBrand)
-          .where("carType", isEqualTo: carType)
-          .get()
-          .then((value) {
-        value.docs.forEach((element) {
-          carList.add(CarModel.fromJson(element.data()!));
+      if (await execute(customInstance)) {
+        FirebaseFirestore.instance
+            .collection('cars')
+            .where("carBrand", isEqualTo: carBrand)
+            .where("carType", isEqualTo: carType)
+            .get()
+            .then((value) {
+          value.docs.forEach((element) {
+            carList.add(CarModel.fromJson(element.data()));
+          });
+          emit(GetCategoriesSuccessStates());
         });
-        emit(GetCategoriesSuccessStates());
-      });
+      } else {
+        emit(GetCategoriesInternetConnectionErrorStates());
+      }
     } catch (error) {
       emit(GetCategoriesErrorStates(error: error.toString()));
     }

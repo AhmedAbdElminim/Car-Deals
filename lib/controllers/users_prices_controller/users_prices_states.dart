@@ -18,3 +18,4 @@ class PutPricesErrorState extends UsersPricesStates {
   final String error;
   PutPricesErrorState({required this.error});
 }
+class GetPricesInternetConnectionErrorState extends UsersPricesStates{}

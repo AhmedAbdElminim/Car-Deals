@@ -1,3 +1,4 @@
+import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:car_deals/shared/component/cached_network_image_component.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/shared/component/app_local.dart';
@@ -29,6 +30,9 @@ class PutPriceScreen extends StatelessWidget {
           if (state is GetPricesErrorState) {
             showMyDialog(context: context, msg: '');
           }
+          if(state is GetPricesInternetConnectionErrorState){
+            showInternetConnectionDialog(context: context);
+          }
         },
         builder: (context, state) {
           var cubit = UsersPricesCubit.get(context);
@@ -41,7 +45,7 @@ class PutPriceScreen extends StatelessWidget {
                     child: LoadingWidget(
                     loadingNum: 1,
                   ))
-                : Column(
+                :state is GetPricesInternetConnectionErrorState?const NoInternetScreen(): Column(
                     children: [
                       // Image(
                       //   image: NetworkImage(args.carImage),
