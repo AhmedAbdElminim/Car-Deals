@@ -43,7 +43,6 @@ dependencies:
   simple_animations: ^4.2.0
   supercharged: ^2.1.1
   shared_preferences: ^2.0.15
-  flutter_signin_button: ^2.0.0
   unicons: ^2.1.0
   card_swiper: ^2.0.4
   cached_network_image: ^3.2.2
