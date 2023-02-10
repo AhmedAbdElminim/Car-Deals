@@ -1,5 +1,5 @@
-import 'package:car_deals/controllers/auth_controller/auth_cubit/rergister_cubit.dart';
-import 'package:car_deals/controllers/auth_controller/auth_states/register_states.dart';
+import 'package:car_deals/controllers/auth_controller/register_auth/rergister_cubit.dart';
+import 'package:car_deals/controllers/auth_controller/register_auth/register_states.dart';
 import 'package:car_deals/features/auth/phone_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/fade_animation.dart';
@@ -7,7 +7,7 @@ import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/component/loading_widget.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import '../../shared/style/colors.dart';
 import '../layout/layout_screen.dart';
 import 'login_screen.dart';

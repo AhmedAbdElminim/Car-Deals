@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/component/constants.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 
 class UsersPricesCubit extends Cubit<UsersPricesStates> {
   UsersPricesCubit() : super(UsersPricesInitialState());

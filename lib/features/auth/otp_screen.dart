@@ -9,7 +9,7 @@ import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pinput/pinput.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import '../../shared/style/colors.dart';
 
 class OtpScreen extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:car_deals/features/categories/widgets/brand_cars_screen_argument
 import 'package:car_deals/features/categories/widgets/empty_category_screen.dart';
 import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:car_deals/shared/component/loading_widget.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/categories/widgets/car_card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

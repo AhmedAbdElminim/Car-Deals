@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 import '../../shared/component/constants.dart';
 import '../../shared/component/loading_widget.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import '../search/search_screen.dart';
 import '../search/search_screen_argument.dart';
 

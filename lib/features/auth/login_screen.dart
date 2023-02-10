@@ -1,5 +1,5 @@
-import 'package:car_deals/controllers/auth_controller/auth_cubit/login_cubit.dart';
-import 'package:car_deals/controllers/auth_controller/auth_states/login_states.dart';
+import 'package:car_deals/controllers/auth_controller/login_auth/login_cubit.dart';
+import 'package:car_deals/controllers/auth_controller/login_auth/login_states.dart';
 import 'package:car_deals/features/auth/phone_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/register_screen.dart';
@@ -8,7 +8,7 @@ import 'package:car_deals/shared/component/app_local.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/component/loading_widget.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import '../layout/layout_screen.dart';
 
 class LoginScreen extends StatelessWidget {

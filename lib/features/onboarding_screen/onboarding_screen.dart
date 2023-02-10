@@ -6,7 +6,7 @@ import 'package:car_deals/shared/style/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../models/onboarding_model.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import '../auth/phone_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {

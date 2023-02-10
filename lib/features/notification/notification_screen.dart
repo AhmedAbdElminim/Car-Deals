@@ -1,7 +1,6 @@
 import 'package:car_deals/controllers/notification_controller/notification_cubit.dart';
 import 'package:car_deals/controllers/notification_controller/notification_states.dart';
 import 'package:car_deals/features/no_internet/no_internet_screen.dart';
-import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/notification/widgets/empty_notification.dart';
 import 'package:car_deals/features/notification/widgets/full_notification.dart';
@@ -9,7 +8,7 @@ import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/component/loading_widget.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);

@@ -9,7 +9,7 @@ import 'package:supercharged/supercharged.dart';
 import '../../controllers/users_prices_controller/users_prices_cubit.dart';
 import '../../controllers/users_prices_controller/users_prices_states.dart';
 import '../../shared/component/loading_widget.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import 'components/car_prices_argument.dart';
 import 'components/comment_item_component.dart';
 import 'components/empty_prices_widget.dart';

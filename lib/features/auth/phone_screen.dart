@@ -2,7 +2,7 @@ import 'package:car_deals/features/auth/widgets/otp_screen_argument.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/otp_screen.dart';
 import 'package:car_deals/shared/component/app_local.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:car_deals/shared/style/colors.dart';
 
 import 'fade_animation.dart';

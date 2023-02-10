@@ -3,7 +3,7 @@ import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/car_details/put_price_screen.dart';
 import 'package:car_deals/shared/component/app_local.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controllers/car_detail_controller/car_detail_cubit.dart';

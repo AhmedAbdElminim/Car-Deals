@@ -3,7 +3,7 @@ import 'package:car_deals/features/categories/categories_screen.dart';
 import 'package:car_deals/features/notification/notification_screen.dart';
 import 'package:car_deals/features/home/home_screen.dart';
 import 'package:car_deals/features/user/user_screen.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:car_deals/shared/style/colors.dart';
 
 import 'package:unicons/unicons.dart';

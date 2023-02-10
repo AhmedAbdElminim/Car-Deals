@@ -1,5 +1,5 @@
 import 'package:car_deals/controllers/auth_controller/phone_auth/phone_auth_states.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:car_deals/shared/network/local/cache_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

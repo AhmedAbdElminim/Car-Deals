@@ -14,3 +14,10 @@ class InternetConnectionErrorState extends UserStates {
   final String error;
   InternetConnectionErrorState({required this.error});
 }
+class GetUserDataLoadingState extends UserStates {}
+class GetUserDataSuccessState extends UserStates {}
+class GetUserDataErrorState extends UserStates {
+  final String error;
+  GetUserDataErrorState({required this.error});
+}
+class RefreshState extends UserStates {}

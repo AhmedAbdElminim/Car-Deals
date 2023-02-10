@@ -1,7 +1,7 @@
 import 'package:car_deals/controllers/user_controller/user_cubit.dart';
 import 'package:car_deals/controllers/user_controller/user_states.dart';
 import 'package:car_deals/shared/component/loading_widget.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

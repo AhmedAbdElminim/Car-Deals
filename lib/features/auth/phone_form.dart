@@ -4,7 +4,7 @@ import 'package:car_deals/features/auth/widgets/phone_form_screen_argument.dart'
 import 'package:car_deals/features/layout/layout_screen.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:car_deals/shared/component/loading_widget.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/component/constants.dart';

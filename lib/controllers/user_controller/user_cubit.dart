@@ -1,6 +1,6 @@
 import 'package:car_deals/controllers/user_controller/user_states.dart';
 import 'package:car_deals/shared/component/constants.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,5 +36,34 @@ class UserCubit extends Cubit<UserStates> {
     } catch (error) {
       emit(UpdateUserInformationErrorState(error: error.toString()));
     }
+  }
+
+  Future<void> getUserData() async {
+    emit(GetUserDataLoadingState());
+    if (userModel == null) {
+      try {
+        if (await execute(customInstance)) {
+          FirebaseFirestore.instance
+              .collection('users')
+              .doc(uId)
+              .get()
+              .then((documentSnapshot) {
+            if (documentSnapshot.exists) {
+              userModel = UserModel.fromJson(documentSnapshot.data()!);
+            }
+            emit(GetUserDataSuccessState());
+          });
+        } else {
+          emit(InternetConnectionErrorState(error: ''));
+        }
+      } catch (error) {
+        emit(GetUserDataErrorState(error: error.toString()));
+      }
+    } else {
+      emit(GetUserDataSuccessState());
+    }
+  }
+  void refreshScreen(){
+    emit(RefreshState());
   }
 }

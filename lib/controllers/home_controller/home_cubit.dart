@@ -1,6 +1,6 @@
 import 'package:car_deals/controllers/home_controller/home_state.dart';
 import 'package:car_deals/models/car_model.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

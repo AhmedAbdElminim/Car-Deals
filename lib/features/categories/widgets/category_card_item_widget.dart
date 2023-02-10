@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:car_deals/shared/style/colors.dart';
 
 import '../brand_cars_screen.dart';

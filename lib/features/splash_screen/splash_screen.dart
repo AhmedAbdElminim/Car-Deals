@@ -4,7 +4,7 @@ import 'package:car_deals/features/onboarding_screen/onboarding_screen.dart';
 import 'package:car_deals/shared/component/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import '../../shared/style/colors.dart';
 
 class SplashScreen extends StatefulWidget {

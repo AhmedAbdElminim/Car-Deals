@@ -1,6 +1,6 @@
 import 'package:car_deals/models/apply_model.dart';
 import 'package:car_deals/shared/component/constants.dart';
-import 'package:car_deals/shared/component/widgets.dart';
+import 'package:car_deals/shared/component/function.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

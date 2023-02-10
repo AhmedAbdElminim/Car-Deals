@@ -2,7 +2,7 @@ import 'package:car_deals/models/car_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../shared/component/widgets.dart';
+import '../../shared/component/function.dart';
 import 'categories_states.dart';
 
 class CategoriesCubit extends Cubit<CategoriesStates> {

@@ -2,7 +2,7 @@ import 'package:car_deals/models/car_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/component/cached_network_image_component.dart';
-import '../../../shared/component/widgets.dart';
+import '../../../shared/component/function.dart';
 import '../../car_details/car_details_screen.dart';
 import '../../car_details/components/car_details_argument.dart';
 

@@ -1,8 +1,8 @@
-import 'package:car_deals/features/user/screens/widgets/empty_history_screen.dart';
 import 'package:flutter/material.dart';
 
 
 import '../../../shared/component/app_local.dart';
+import '../widgets/empty_history_screen.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({Key? key}) : super(key: key);
