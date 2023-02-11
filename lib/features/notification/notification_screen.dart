@@ -23,7 +23,9 @@ class NotificationScreen extends StatelessWidget {
             showMyDialog(context: context, msg: '');
           }
           if (state is GetNotificationInternetConnectionErrorState) {
-            showInternetConnectionDialog(context: context);
+            showInternetConnectionDialog(context: context).then((value) {
+              NotificationCubit.get(context).getNotifications();
+            });
           }
         },
         builder: (context, state) {

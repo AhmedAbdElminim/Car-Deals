@@ -11,13 +11,13 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
   static HomeCubit get(context) => BlocProvider.of(context);
   List<CarModel> carsList = [];
-  Future<void> getUserData({required String userId}) async {
+  Future<void> getUserData() async {
     try {
       emit(HomeGetUserDataLoadingState());
       if (await execute(customInstance)) {
         FirebaseFirestore.instance
             .collection('users')
-            .doc(userId)
+            .doc(uId)
             .get()
             .then((documentSnapshot) {
           if (documentSnapshot.exists) {

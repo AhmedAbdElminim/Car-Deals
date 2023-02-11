@@ -23,17 +23,19 @@
   "login_Screen_phone_button_login":"سجل دخول دلوقتي",
 
 
-  "text_form_validate_email": "ما تدخل الايميل ياعم انت",
-  "text_form_validate_password": "ما تدخل الباسورد يبضان",
-  "text_form_validate_phone": "تاني يبضان دخل رقم الفون",
-  "text_form_validate_name": "دخل اسمك يا بيضه متحركه",
-  "text_form_correct_phone_number": "ادخل رقم صحيح",
+  "text_form_validate_email": "من فضلك ادخل البريد الالكتروني",
+  "text_form_validate_password": "من فضلك ادخل الرقم السري",
+  "text_form_validate_phone": "من فضلك ادخل رقم هاتفك",
+  "text_form_validate_name": "من فضلك ادخل اسمك",
+  "text_form_correct_phone_number": "من فضلك ادخل رقم صحيح",
   "otp_validation_message": "من فضلك ادخل الكود صحيح",
   "submit_button": "يلا بينا",
   "successfully_login_message": " تم تسجيل الدخول بنجاح",
   "successfully_logout_message": "تم تسجيل الخروج بنجاح",
   "successfully_register_message": "تم التسجيل بنجاح",
   "apply_successful_message":"تم ارسال الطلب بنجاح",
+  "put_price_condition": "السعر يجب ان يكون اكبر من او يساوي السعر المبدئي",
+  "empty_price": "من فضلك ادخل سعرك",
 
 
 
@@ -81,6 +83,8 @@
   "update_uer_data_phone": "رقم الهاتف",
   "update_uer_data_password": "الرقم السري",
   "update_uer_data_update_button": "تحديث",
+  "update_user_date_successful_message": "تم تحديث البيانات بنجاح",
+
 
 
   "history_appbar_title": "مؤخرا",
@@ -100,7 +104,7 @@
   "post_appbar_title": "انشر سيارتك",
   "post_title_description": "من فضلك حدد المعلومات الاتيه لكي تقدم طلب",
   "post_car_brand": "ماركة السيارة : ",
-  "post_car_name": "طراز السياره : ",
+  "post_car_name": "اسم السياره : ",
   "post_car_model": "موديل السياره : ",
   "post_car_button": "قدم",
 
@@ -128,8 +132,8 @@
   "search_no_result_found": "لا توجد نتائج",
 
   "logout_dialog_title": "انت متاكد انك عاوز تخرج؟\uD83D\uDE14",
-  "logout_dialog_approve_button": "اه علشان انا بضان",
-  "Logout_dialog_cancel_button": "لا خلاص متزعلش❤️",
+  "logout_dialog_approve_button": "نعم",
+  "Logout_dialog_cancel_button": "لا",
   "no_prices_until_now": "لا يوجد احد وضع سعر حتي الان",
   "empty_category": "لا يوجد سيارات متاحه في هذا القسم حاليا",
   "error_message_title": "خطأ",

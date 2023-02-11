@@ -30,8 +30,10 @@ class PutPriceScreen extends StatelessWidget {
           if (state is GetPricesErrorState) {
             showMyDialog(context: context, msg: '');
           }
-          if(state is GetPricesInternetConnectionErrorState){
-            showInternetConnectionDialog(context: context);
+          if (state is GetPricesInternetConnectionErrorState) {
+            showInternetConnectionDialog(context: context).then((value) {
+              UsersPricesCubit.get(context).getPricesList(carId: args.carId);
+            });
           }
         },
         builder: (context, state) {
@@ -45,40 +47,42 @@ class PutPriceScreen extends StatelessWidget {
                     child: LoadingWidget(
                     loadingNum: 1,
                   ))
-                :state is GetPricesInternetConnectionErrorState?const NoInternetScreen(): Column(
-                    children: [
-                      // Image(
-                      //   image: NetworkImage(args.carImage),
-                      //   height: 200,
-                      //   width: double.infinity,
-                      //   fit: BoxFit.cover,
-                      // ),
-                      CacheNetworkImageWidget(
-                          imageHeight: 200,
-                          imageWidth: double.infinity,
-                          imagePath: args.carImage),
-                      Flexible(
-                          child: Padding(
-                        padding: args.carExpired
-                            ? const EdgeInsets.only(left: 20, right: 20)
-                            : const EdgeInsets.only(
-                                left: 20, right: 20, bottom: 80),
-                        child: cubit.pricesList.isEmpty
-                            ? const EmptyPriceWidget()
-                            : ListView(
-                                physics: const BouncingScrollPhysics(),
-                                children: List.generate(
-                                    cubit.pricesList.length,
-                                    (index) => CommentItemComponent(
-                                          userName:
-                                              cubit.pricesList[index].userName,
-                                          userPrice:
-                                              cubit.pricesList[index].userPrice,
-                                        )),
-                              ),
-                      )),
-                    ],
-                  ),
+                : state is GetPricesInternetConnectionErrorState
+                    ? const NoInternetScreen()
+                    : Column(
+                        children: [
+                          // Image(
+                          //   image: NetworkImage(args.carImage),
+                          //   height: 200,
+                          //   width: double.infinity,
+                          //   fit: BoxFit.cover,
+                          // ),
+                          CacheNetworkImageWidget(
+                              imageHeight: 200,
+                              imageWidth: double.infinity,
+                              imagePath: args.carImage),
+                          Flexible(
+                              child: Padding(
+                            padding: args.carExpired
+                                ? const EdgeInsets.only(left: 20, right: 20)
+                                : const EdgeInsets.only(
+                                    left: 20, right: 20, bottom: 80),
+                            child: cubit.pricesList.isEmpty
+                                ? const EmptyPriceWidget()
+                                : ListView(
+                                    physics: const BouncingScrollPhysics(),
+                                    children: List.generate(
+                                        cubit.pricesList.length,
+                                        (index) => CommentItemComponent(
+                                              userName: cubit
+                                                  .pricesList[index].userName,
+                                              userPrice: cubit
+                                                  .pricesList[index].userPrice,
+                                            )),
+                                  ),
+                          )),
+                        ],
+                      ),
             bottomSheet: args.carExpired
                 ? null
                 : Container(
@@ -96,11 +100,11 @@ class PutPriceScreen extends StatelessWidget {
                               controller: priceController,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return "Price must not be empty";
+                                  return "${getLang(context, 'empty_price')}";
                                 }
                                 if (priceController.text.toInt()! <
                                     args.initialPrice) {
-                                  return "Price must be equal or greater than initial price";
+                                  return "${getLang(context, 'put_price_condition')}";
                                 }
                                 return null;
                               },

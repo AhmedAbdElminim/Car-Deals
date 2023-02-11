@@ -24,6 +24,10 @@ class UpdateUserInformationScreen extends StatelessWidget {
       child: BlocConsumer<UserCubit, UserStates>(
         listener: (context, state) {
           if (state is UpdateUserInformationSuccessState) {
+            showToAst(
+                msg:
+                    '${getLang(context, 'update_user_date_successful_message')}',
+                isError: false);
             Navigator.of(context).pop(true);
           }
           if (state is UpdateUserInformationErrorState) {

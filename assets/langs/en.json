@@ -30,6 +30,8 @@
   "text_form_validate_name": "Name must not be empty",
   "text_form_correct_phone_number": "Please enter correct phone number",
   "otp_validation_message": "Please enter the correct otp code",
+  "put_price_condition": "Price must be equal or greater than initial price",
+  "empty_price": "please enter you price",
 
   "submit_button": "Submit",
   "successfully_login_message": "Login Done Successfully",
@@ -91,6 +93,7 @@
   "update_uer_data_phone": "Phone",
   "update_uer_data_password": "Password",
   "update_uer_data_update_button": "UPDATE",
+  "update_user_date_successful_message": "Updated Done Successfully",
 
 
   "history_appbar_title": "History",

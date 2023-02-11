@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:car_deals/shared/component/app_local.dart';
+import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -56,9 +57,8 @@ Future<void> showMyDialog(
   );
 }
 
-Future<void> showInternetConnectionDialog({
-  required BuildContext context,
-}) async {
+Future<void> showInternetConnectionDialog(
+    {required BuildContext context, Function? function}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false,
@@ -68,13 +68,25 @@ Future<void> showInternetConnectionDialog({
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
+              const Image(
+                image: AssetImage(
+                    'assets/images/app_icons/no_internet_connection.png'),
+                height: 60,
+                width: 60,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
               Text('${getLang(context, 'internet_connection_message')}'),
             ],
           ),
         ),
         actions: <Widget>[
           TextButton(
-            child: Text('${getLang(context, 'error_message_button')}'),
+            child: Text(
+              '${getLang(context, 'error_message_button')}',
+              style: TextStyle(color: defaultColor),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },

@@ -24,7 +24,10 @@ class BrandCarsScreen extends StatelessWidget {
             showMyDialog(context: context, msg: '');
           }
           if (state is GetCategoriesInternetConnectionErrorStates) {
-            showInternetConnectionDialog(context: context);
+            showInternetConnectionDialog(context: context).then((value) {
+              CategoriesCubit.get(context).getCategories(
+                  carBrand: args.carBrand, carType: args.carType);
+            });
           }
         },
         builder: (context, state) {

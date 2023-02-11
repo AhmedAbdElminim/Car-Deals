@@ -28,7 +28,9 @@ class UserScreen extends StatelessWidget {
       child: BlocConsumer<UserCubit, UserStates>(
         listener: (context, state) {
           if (state is InternetConnectionErrorState) {
-            showInternetConnectionDialog(context: context);
+            showInternetConnectionDialog(context: context).then((value) {
+              UserCubit.get(context).getUserData();
+            });
           }
         },
         builder: (context, state) {

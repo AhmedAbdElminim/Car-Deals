@@ -19,14 +19,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..getUserData(userId: uId),
+      create: (context) => HomeCubit()..getUserData(),
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
           if (state is HomeGetUserDataErrorState) {
             showMyDialog(context: context, msg: '');
           }
           if (state is HomeGetUserDataInternetConnectionErrorState) {
-            showInternetConnectionDialog(context: context);
+            showInternetConnectionDialog(context: context).then((value) {
+              HomeCubit.get(context).getUserData();
+            });
           }
         },
         builder: (context, state) {
