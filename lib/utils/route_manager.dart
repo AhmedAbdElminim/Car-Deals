@@ -13,6 +13,7 @@ import '../features/onboarding_screen/onboarding_screen.dart';
 import '../features/search/search_screen.dart';
 import '../features/apply/apply_screen.dart';
 import '../features/splash_screen/splash_screen.dart';
+import '../features/user/screens/contact_screen.dart';
 import '../features/user/screens/history_screen.dart';
 import '../features/user/screens/update_user_information_screen.dart';
 
@@ -34,4 +35,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   SplashScreen.splashScreenId: (context) => const SplashScreen(),
   PhoneForm.phoneFormScreenId: (context) => PhoneForm(),
   AboutAppScreen.aboutAppScreenId: (context) => const AboutAppScreen(),
+  ContactUsScreen.contactUsScreenId:(context)=> ContactUsScreen(),
 };

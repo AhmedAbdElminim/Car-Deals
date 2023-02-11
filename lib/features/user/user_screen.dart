@@ -3,6 +3,7 @@ import 'package:car_deals/controllers/user_controller/user_states.dart';
 import 'package:car_deals/features/auth/login_screen.dart';
 import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:car_deals/features/user/screens/about_app_screen.dart';
+import 'package:car_deals/features/user/screens/contact_screen.dart';
 import 'package:car_deals/features/user/screens/history_screen.dart';
 import 'package:car_deals/features/user/screens/update_user_information_screen.dart';
 import 'package:car_deals/shared/component/constants.dart';
@@ -252,7 +253,12 @@ class UserScreen extends StatelessWidget {
                                     ),
                                     title: Text(
                                         '${getLang(context, "profile_contact_with_us")}'),
-                                    onTap: () {},
+                                    onTap: () {
+                                      defaultNavigate(
+                                          context: context,
+                                          screenName: ContactUsScreen
+                                              .contactUsScreenId);
+                                    },
                                   ),
                                 ),
                                 FadeAnimation(

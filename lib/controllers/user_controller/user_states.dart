@@ -21,3 +21,11 @@ class GetUserDataErrorState extends UserStates {
   GetUserDataErrorState({required this.error});
 }
 class RefreshState extends UserStates {}
+class ContactLoadingState extends UserStates {}
+
+class ContactSuccessState extends UserStates {}
+
+class ContactErrorState extends UserStates {
+  final String error;
+  ContactErrorState({required this.error});
+}

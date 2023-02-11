@@ -39,12 +39,12 @@ class MyApp extends StatelessWidget {
             cursorColor: defaultColor, //<-- SEE HERE
           ),
           inputDecorationTheme: InputDecorationTheme(
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: defaultColor,
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: defaultColor,
+                ),
               ),
-            ),
-          )),
+              prefixIconColor: defaultColor)),
       routes: appRoutes,
       initialRoute:
           SplashScreen.splashScreenId, // OnBoardingScreen.onBoardingScreenId,

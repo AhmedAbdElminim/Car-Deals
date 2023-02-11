@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:car_deals/shared/component/app_local.dart';
+import 'package:car_deals/shared/component/loading_widget.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -130,3 +131,25 @@ Future<bool> execute(
 }
 
 // if(await execute(InternetConnectionChecker())){}else{}
+Future<void> loadingDialog({required BuildContext context}) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        //title: const Text('AlertDialog Title'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Center(child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: LoadingWidget(loadingNum: 1),
+              ),)
+            ],
+          ),
+        ),
+
+      );
+    },
+  );
+}

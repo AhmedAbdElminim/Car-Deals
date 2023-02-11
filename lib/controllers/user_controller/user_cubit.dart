@@ -1,4 +1,5 @@
 import 'package:car_deals/controllers/user_controller/user_states.dart';
+import 'package:car_deals/models/contact_model.dart';
 import 'package:car_deals/shared/component/constants.dart';
 import 'package:car_deals/shared/component/function.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -63,7 +64,32 @@ class UserCubit extends Cubit<UserStates> {
       emit(GetUserDataSuccessState());
     }
   }
-  void refreshScreen(){
+
+  void refreshScreen() {
     emit(RefreshState());
+  }
+
+  Future<void> contact({required String msg}) async {
+    emit(ContactLoadingState());
+    try {
+      if (await execute(customInstance)) {
+        ContactModel contactModel = ContactModel(
+            userName: userModel!.userName,
+            uId: uId,
+            userPhone: userModel!.userPhone,
+            userMessage: msg);
+        FirebaseFirestore.instance
+            .collection('contactMessages')
+            .doc(uId)
+            .set(contactModel.toJson())
+            .then((value) {
+          emit(ContactSuccessState());
+        });
+      } else {
+        emit(InternetConnectionErrorState(error: ''));
+      }
+    } catch (error) {
+      emit(ContactErrorState(error: error.toString()));
+    }
   }
 }
