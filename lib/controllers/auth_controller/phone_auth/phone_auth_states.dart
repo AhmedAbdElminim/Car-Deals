@@ -32,4 +32,5 @@ class CreateNewUserErrorStates extends PhoneAuthStates {
 }
 
 class CreateUserInternetConnectionErrorStates extends PhoneAuthStates {}
+
 class OtpInternetConnectionErrorStates extends PhoneAuthStates {}

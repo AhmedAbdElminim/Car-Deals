@@ -1,3 +1,4 @@
+import 'package:android_sms_retriever/android_sms_retriever.dart';
 import 'package:car_deals/features/auth/widgets/otp_screen_argument.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/auth/otp_screen.dart';
@@ -7,15 +8,23 @@ import 'package:car_deals/shared/style/colors.dart';
 
 import 'fade_animation.dart';
 
-class PhoneScreen extends StatelessWidget {
+class PhoneScreen extends StatefulWidget {
   PhoneScreen({Key? key}) : super(key: key);
   static const String phoneScreenId = "PhoneScreenId";
+
+  @override
+  State<PhoneScreen> createState() => _PhoneScreenState();
+}
+
+class _PhoneScreenState extends State<PhoneScreen> {
   final TextEditingController phoneController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
+  bool isFirstTaped = true;
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    final double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Stack(
@@ -73,6 +82,18 @@ class PhoneScreen extends StatelessWidget {
                           child: TextFormField(
                             keyboardType: TextInputType.phone,
                             controller: phoneController,
+                            onTap: () async {
+                              if (isFirstTaped) {
+                                setState(() {
+                                  isFirstTaped = false;
+                                });
+                                await AndroidSmsRetriever.requestPhoneNumber()
+                                    .then((value) {
+                                  phoneController.text =
+                                      (value.toString()).substring(2);
+                                });
+                              }
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "${getLang(context, 'text_form_validate_phone')}";
@@ -108,18 +129,17 @@ class PhoneScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: ()async {
+                    onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        if(await execute(customInstance)){
-                      defaultNavigate(
-                      context: context,
-                      screenName: OtpScreen.otpScreenId,
-                      args: OtpScreenArgument(
-                      phoneNumber: phoneController.text));
-                      }else{
+                        if (await execute(customInstance)) {
+                          defaultNavigate(
+                              context: context,
+                              screenName: OtpScreen.otpScreenId,
+                              args: OtpScreenArgument(
+                                  phoneNumber: phoneController.text));
+                        } else {
                           showInternetConnectionDialog(context: context);
                         }
-
                       }
                     },
                     borderRadius: BorderRadius.circular(20),

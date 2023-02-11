@@ -26,6 +26,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
         phoneNumber: '+2$phoneNumber',
         verificationCompleted: (PhoneAuthCredential credential) {
           otpCode = credential.smsCode;
+          print('the otp code is : $otpCode');
         },
         verificationFailed: (FirebaseAuthException e) {
           if (e.code == 'invalid-phone-number') {
@@ -95,17 +96,12 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
       emit(CreateUserInternetConnectionErrorStates());
     }
   }
-  // void trimController({required TextEditingController pinController}){
-  //   pinController.text=pinController.text.substring(0, pinController.text.length - 1);
-  //   emit(TrimControllerStates());
-  // }
 
   Future<void> listenToNewMessage(
       {required TextEditingController pinController}) async {
     Telephony.instance.listenIncomingSms(
       onNewMessage: (SmsMessage message) {
-        // print(message.address); //+977981******67, sender nubmer
-        // print(message.body); //Your OTP code is 34567
+
 
         String sms = message.body.toString(); //get the message
 
