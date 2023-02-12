@@ -5,7 +5,6 @@ import 'package:car_deals/shared/component/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../shared/component/function.dart';
-import '../../shared/style/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String splashScreenId = 'SplashScreenId';
@@ -52,9 +51,9 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: defaultColor,
+      backgroundColor: Colors.white, // defaultColor,
       body: Center(
-        child: Lottie.asset('assets/images/splash/splash.json'),
+        child: Lottie.asset('assets/images/splash/splash_lottie.json'),
       ),
     );
   }
