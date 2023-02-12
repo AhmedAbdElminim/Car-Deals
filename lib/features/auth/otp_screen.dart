@@ -112,9 +112,10 @@ class OtpScreen extends StatelessWidget {
                               //focusNode: focusNode,
                               length: 6,
                               keyboardType: TextInputType.number,
-                              androidSmsAutofillMethod:
-                                  AndroidSmsAutofillMethod.smsUserConsentApi,
-                              listenForMultipleSmsOnAndroid: true,
+                              // androidSmsAutofillMethod:
+                              //   AndroidSmsAutofillMethod.smsUserConsentApi,
+                              // listenForMultipleSmsOnAndroid: true,
+                              autofocus: true,
                               defaultPinTheme: defaultPinTheme,
                               validator: (value) {
                                 return value == cubit.otpCode

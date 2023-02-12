@@ -101,13 +101,11 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
       {required TextEditingController pinController}) async {
     Telephony.instance.listenIncomingSms(
       onNewMessage: (SmsMessage message) {
-
-
         String sms = message.body.toString(); //get the message
 
         if (message.address == 'CloudOTP') {
           String otpCode = sms.replaceAll(RegExp(r'[^0-9]'), '');
-          pinController.setText(otpCode);
+          pinController.text = otpCode.substring(0,6);
 
           emit(AutoFillSuccessStates());
         }
