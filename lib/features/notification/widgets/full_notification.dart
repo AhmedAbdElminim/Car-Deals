@@ -12,8 +12,7 @@ class FullNotification extends StatelessWidget {
   final String content;
   final String senderName;
   final int index;
-  final String x =
-      'We have received your\nrequest to inspect your car\nand present it to the application\nfor sale.Accordingly,\nwe have scheduled an appointment\nto have your car checked out on day\n(10-11-2022 , 10:00 AM)\nlocation:10 str,nasr city,cairo,egypt';
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,10 +51,13 @@ class FullNotification extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      content,
-                      maxLines: 10,
-                      overflow: TextOverflow.ellipsis,
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Text(
+                        content,
+                        maxLines: 10,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
