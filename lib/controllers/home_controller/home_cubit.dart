@@ -11,6 +11,7 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
   static HomeCubit get(context) => BlocProvider.of(context);
   List<CarModel> carsList = [];
+  String categoriesType = 'All';
   Future<void> getUserData() async {
     try {
       emit(HomeGetUserDataLoadingState());
@@ -50,5 +51,16 @@ class HomeCubit extends Cubit<HomeStates> {
     } catch (error) {
       emit(HomeGetCarsErrorState(error: error.toString()));
     }
+  }
+
+  bool getExpired({required String date}) {
+    //"2023-01-28"
+
+    return DateTime.now().difference(DateTime.parse(date)).inDays >= 7;
+  }
+
+  void changeCategories({required String categoriesTypeString}) {
+    categoriesType = categoriesTypeString;
+    emit(ChangeCategoriesTypeState());
   }
 }

@@ -1,6 +1,7 @@
 import 'package:car_deals/controllers/home_controller/home_cubit.dart';
 import 'package:car_deals/controllers/home_controller/home_state.dart';
 import 'package:car_deals/features/no_internet/no_internet_screen.dart';
+import 'package:car_deals/shared/component/badge_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/home/widgets/banner_widget.dart';
 import 'package:car_deals/features/home/widgets/car_ads_component.dart';
@@ -35,7 +36,52 @@ class HomeScreen extends StatelessWidget {
           var cubit = HomeCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              title: Text('${getLang(context, "home_appbar_title")}'),
+              title: Row(
+                children: [
+                  Text('${getLang(context, "home_appbar_title")}'),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  SizedBox(
+                    width: 50,
+                    child: PopupMenuButton<int>(
+                      icon: Text(
+                        cubit.categoriesType,
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      itemBuilder: (context) => [
+                        const PopupMenuItem(
+                          value: 1,
+                          child: Text("All"),
+                        ),
+                        const PopupMenuItem(
+                          value: 2,
+                          child: Text("OnGoing"),
+                        ),
+                        const PopupMenuItem(
+                          value: 3,
+                          child: Text("Finished"),
+                        ),
+                      ],
+//                      offset: Offset(0, 100),   ----->  change the position of the menu
+                      color: Colors.white,
+                      elevation: 2,
+
+                      onSelected: (value) {
+                        if (value == 1) {
+                          cubit.changeCategories(categoriesTypeString: 'All');
+                        } else if (value == 2) {
+                          cubit.changeCategories(categoriesTypeString: 'OnGoing');
+                        } else if (value == 3) {
+                          cubit.changeCategories(
+                              categoriesTypeString: 'Finished');
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
               actions: [
                 IconButton(
                     onPressed: state is HomeGetUserDataLoadingState
@@ -69,8 +115,20 @@ class HomeScreen extends StatelessWidget {
                           for (int index = 0;
                               index < cubit.carsList.length;
                               index++)
-                            CarAdsComponent(
-                              carModel: cubit.carsList[index],
+                            BadgeComponent(
+                              isFinished: DateTime.now()
+                                          .difference(DateTime.parse(cubit
+                                              .carsList[index]
+                                              .carPublishedDate))
+                                          .inDays >
+                                      7
+                                  ? true
+                                  : false,
+                              remainingDays:
+                                  '${7 - (DateTime.now().difference(DateTime.parse(cubit.carsList[index].carPublishedDate)).inDays)}',
+                              child: CarAdsComponent(
+                                carModel: cubit.carsList[index],
+                              ),
                             )
 
                           // ListView.builder(

@@ -20,3 +20,5 @@ class HomeGetCarsErrorState extends HomeStates {
   HomeGetCarsErrorState({required this.error});
 }
 class HomeGetUserDataInternetConnectionErrorState extends HomeStates{}
+
+class ChangeCategoriesTypeState extends HomeStates {}
