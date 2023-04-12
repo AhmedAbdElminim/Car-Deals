@@ -40,10 +40,10 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Text('${getLang(context, "home_appbar_title")}'),
                   const SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
                   SizedBox(
-                    width: 50,
+                    width: 100,
                     child: PopupMenuButton<int>(
                       icon: Text(
                         cubit.categoriesType,
@@ -72,7 +72,8 @@ class HomeScreen extends StatelessWidget {
                         if (value == 1) {
                           cubit.changeCategories(categoriesTypeString: 'All');
                         } else if (value == 2) {
-                          cubit.changeCategories(categoriesTypeString: 'OnGoing');
+                          cubit.changeCategories(
+                              categoriesTypeString: 'OnGoing');
                         } else if (value == 3) {
                           cubit.changeCategories(
                               categoriesTypeString: 'Finished');
@@ -111,34 +112,63 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-
-                          for (int index = 0;
-                              index < cubit.carsList.length;
-                              index++)
-                            BadgeComponent(
-                              isFinished: DateTime.now()
-                                          .difference(DateTime.parse(cubit
-                                              .carsList[index]
-                                              .carPublishedDate))
-                                          .inDays >
-                                      7
-                                  ? true
-                                  : false,
-                              remainingDays:
-                                  '${7 - (DateTime.now().difference(DateTime.parse(cubit.carsList[index].carPublishedDate)).inDays)}',
-                              child: CarAdsComponent(
-                                carModel: cubit.carsList[index],
+                          if (cubit.categoriesType == 'All')
+                            for (int index = 0;
+                                index < cubit.carsList.length;
+                                index++)
+                              BadgeComponent(
+                                isFinished: DateTime.now()
+                                            .difference(DateTime.parse(cubit
+                                                .carsList[index]
+                                                .carPublishedDate))
+                                            .inDays >
+                                        7
+                                    ? true
+                                    : false,
+                                remainingDays:
+                                    '${7 - (DateTime.now().difference(DateTime.parse(cubit.carsList[index].carPublishedDate)).inDays)}',
+                                child: CarAdsComponent(
+                                  carModel: cubit.carsList[index],
+                                ),
                               ),
-                            )
-
-                          // ListView.builder(
-                          //   physics: const NeverScrollableScrollPhysics(),
-                          //   shrinkWrap: true,
-                          //   itemBuilder: (context, index) => CarAdsComponent(
-                          //     carModel: cubit.carsList[index],
-                          //   ),
-                          //   itemCount: cubit.carsList.length,
-                          // ),
+                          if (cubit.categoriesType == 'OnGoing')
+                            for (int index = 0;
+                                index < cubit.onGoingCarsList.length;
+                                index++)
+                              BadgeComponent(
+                                isFinished: DateTime.now()
+                                            .difference(DateTime.parse(cubit
+                                                .onGoingCarsList[index]
+                                                .carPublishedDate))
+                                            .inDays >
+                                        7
+                                    ? true
+                                    : false,
+                                remainingDays:
+                                    '${7 - (DateTime.now().difference(DateTime.parse(cubit.onGoingCarsList[index].carPublishedDate)).inDays)}',
+                                child: CarAdsComponent(
+                                  carModel: cubit.onGoingCarsList[index],
+                                ),
+                              ),
+                          if (cubit.categoriesType == 'Finished')
+                            for (int index = 0;
+                                index < cubit.finishedCarsList.length;
+                                index++)
+                              BadgeComponent(
+                                isFinished: DateTime.now()
+                                            .difference(DateTime.parse(cubit
+                                                .finishedCarsList[index]
+                                                .carPublishedDate))
+                                            .inDays >
+                                        7
+                                    ? true
+                                    : false,
+                                remainingDays:
+                                    '${7 - (DateTime.now().difference(DateTime.parse(cubit.finishedCarsList[index].carPublishedDate)).inDays)}',
+                                child: CarAdsComponent(
+                                  carModel: cubit.finishedCarsList[index],
+                                ),
+                              ),
                         ],
                       ),
           );

@@ -11,6 +11,8 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
   static HomeCubit get(context) => BlocProvider.of(context);
   List<CarModel> carsList = [];
+  List<CarModel> onGoingCarsList = [];
+  List<CarModel> finishedCarsList = [];
   String categoriesType = 'All';
   Future<void> getUserData() async {
     try {
@@ -43,6 +45,16 @@ class HomeCubit extends Cubit<HomeStates> {
       FirebaseFirestore.instance.collection('cars').get().then((value) {
         value.docs.forEach((value) {
           carsList.add(CarModel.fromJson(value.data()));
+          if ((7 -
+                  (DateTime.now()
+                      .difference(
+                          DateTime.parse(value.data()['carPublishedDate']))
+                      .inDays)) >
+              0) {
+            onGoingCarsList.add(CarModel.fromJson(value.data()));
+          } else {
+            finishedCarsList.add(CarModel.fromJson(value.data()));
+          }
         });
         // _getUserData(userId: uId);
 
