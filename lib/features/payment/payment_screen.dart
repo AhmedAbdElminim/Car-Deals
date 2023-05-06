@@ -1,10 +1,37 @@
+import 'package:car_deals/features/payment/test_screen.dart';
 import 'package:car_deals/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'dart:async';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
   static String paymentScreenId = 'PaymentScreenId';
+
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  bool isLoading = false;
+  void startTimer() {
+    setState(() {
+      isLoading = true;
+    });
+    Timer timer = Timer(const Duration(seconds: 5), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const TestScreen()));
+    });
+
+    timer.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +40,7 @@ class PaymentScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Card(
           color: Colors.white,
-          elevation: 5,
+          elevation: 3,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
@@ -156,15 +183,35 @@ class PaymentScreen extends StatelessWidget {
                     ),
                     Center(
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          Timer timer = Timer(const Duration(seconds: 5), () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => const TestScreen()));
+                          });
+                          if(timer.isActive==false){
+                            setState(() {
+                              isLoading=false;
+                            });
+                           timer.cancel();
+                          }
+
+
+                        },
                         color: defaultColor,
-                        child: const Text(
-                          'Pay',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ),
+                        child: isLoading
+                            ? CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : const Text(
+                                'Pay',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              ),
                       ),
                     ),
                     const SizedBox(
@@ -173,17 +220,20 @@ class PaymentScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Powered By ',style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                        ),),
-
+                        const Text(
+                          'Powered By ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                          ),
+                        ),
                         Text(
                           'PayMob',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                              color: defaultColor,),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                            color: defaultColor,
+                          ),
                         ),
                       ],
                     ),
