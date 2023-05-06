@@ -10,6 +10,7 @@ import '../features/car_details/put_price_screen.dart';
 import '../features/categories/brand_cars_screen.dart';
 import '../features/layout/layout_screen.dart';
 import '../features/onboarding_screen/onboarding_screen.dart';
+import '../features/payment/payment_screen.dart';
 import '../features/search/search_screen.dart';
 import '../features/apply/apply_screen.dart';
 import '../features/splash_screen/splash_screen.dart';
@@ -36,4 +37,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   PhoneForm.phoneFormScreenId: (context) => PhoneForm(),
   AboutAppScreen.aboutAppScreenId: (context) => const AboutAppScreen(),
   ContactUsScreen.contactUsScreenId:(context)=> ContactUsScreen(),
+  PaymentScreen.paymentScreenId:(context)=>PaymentScreen(),
 };

@@ -35,3 +35,8 @@
 // }
 // },
 // ),
+
+
+// Thank you for using the online payment service.
+//
+// The transaction you have attempted to make has been declined. If this problem persists, please contact your service provider.
