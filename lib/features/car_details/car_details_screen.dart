@@ -34,6 +34,9 @@ class CarDetailScreen extends StatelessWidget {
               CarDetailCubit.get(context).getCarDetail(carId: args.carId);
             });
           }
+          if(state is CheckTransactionStatusSuccessState){
+            Navigator.pop(context);
+          }
         },
         builder: (context, state) {
           var cubit = CarDetailCubit.get(context);
@@ -262,21 +265,22 @@ class CarDetailScreen extends StatelessWidget {
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(20)),
                                           onTap: () {
-                                            defaultNavigate(
-                                                context: context,
-                                                screenName: PutPriceScreen
-                                                    .putPriceScreenId,
-                                                args: CarPricesArgument(
-                                                    carId: cubit.carModel.carId,
-                                                    carImage:
-                                                        cubit.carModel.carImage,
-                                                    carName:
-                                                        cubit.carModel.carName,
-                                                    initialPrice:
-                                                        cubit.carModel.carPrice,
-                                                    carExpired: cubit.getExpired(
-                                                        date: cubit.carModel
-                                                            .carPublishedDate)));
+                                            cubit.isUserExit(carId: 'jhMyLlQMZRZAf25Z3JYO');
+                                            // defaultNavigate(
+                                            //     context: context,
+                                            //     screenName: PutPriceScreen
+                                            //         .putPriceScreenId,
+                                            //     args: CarPricesArgument(
+                                            //         carId: cubit.carModel.carId,
+                                            //         carImage:
+                                            //             cubit.carModel.carImage,
+                                            //         carName:
+                                            //             cubit.carModel.carName,
+                                            //         initialPrice:
+                                            //             cubit.carModel.carPrice,
+                                            //         carExpired: cubit.getExpired(
+                                            //             date: cubit.carModel
+                                            //                 .carPublishedDate)));
                                           },
                                           child: Container(
                                             padding: const EdgeInsets.all(8),
