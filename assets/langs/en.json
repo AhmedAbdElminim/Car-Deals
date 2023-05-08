@@ -161,6 +161,10 @@
   "contact_hint_text": "your message",
   "contact_button": "Send",
   "contact_successful_message": "Your message sent successfully we will be contact with you soon",
+  "payment_dialog_info": "Info",
+  "payment_dialog_body": "You are not allowed to enter/view the auction. You must pay the auction fee first. Please pay 100 EGP auction fees first",
+  "payment_button": "Pay Now",
+  "payment_cancel_button": "Cancel",
 
   "about_app_content": "hello Dear. Through this application, you can sell or buy your car at the best price, condition, and least effort. If you want to buy a car, you will be able to buy it at the best price, best condition, and guarantee. If you want to sell your car, you will also guarantee the best price that your car deserves. This is done by examining the cars at our inspection center, evaluating the condition of the car and its initial price by engineers and technicians at the highest level, then the car is uploaded to an auction for an application by us, and the car auction is followed up.\nAnd if you want to contact us to know more details, you can go to your account in the application, and then click on contact us and fill in the existing data, and we will contact you as soon as possible."
 }

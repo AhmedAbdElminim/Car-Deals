@@ -1,5 +1,6 @@
 import 'package:car_deals/features/car_details/payment/payment_constants/payment_constants.dart';
 import 'package:car_deals/models/car_model.dart';
+import 'package:car_deals/shared/component/app_local.dart';
 import 'package:car_deals/shared/component/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -260,24 +261,24 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Info'),
+          title:  Text('${getLang(context, 'payment_dialog_info')}'),
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
+              children:  <Widget>[
                 Text(
-                    'You are not allowed to enter/view the auction. You must pay the auction fee first'),
+                    '${getLang(context, 'payment_dialog_body')}'),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Pay Now'),
+              child:  Text('${getLang(context, 'payment_button')}'),
               onPressed: () {
                 getAccessToken(isNewOrder: true, carId: carId);
               },
             ),
             TextButton(
-              child: const Text('Cancel'),
+              child:  Text('${getLang(context, 'payment_cancel_button')}'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
