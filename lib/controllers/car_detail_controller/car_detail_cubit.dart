@@ -3,6 +3,7 @@ import 'package:car_deals/models/car_model.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:car_deals/shared/component/constants.dart';
 import 'package:car_deals/shared/component/loading_widget.dart';
+import 'package:car_deals/shared/style/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -99,7 +100,7 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
     required bool isNewOrder,
     required String carId,
   }) async {
-    emit(PayLoadingState());
+    //emit(PayLoadingState());
     var response = await http.post(
       Uri.parse(PaymentConstants.authenticationApi),
       headers: {
@@ -195,11 +196,8 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
       addBidderToCar(
         carId: carId,
       );
-
-      //emit(PostDataSuccessState());
     } else {
       print('Request failed with status: ${response.statusCode}.');
-      //  emit(PostDataErrorState());
     }
   }
 
@@ -272,20 +270,63 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
           ),
           actions: <Widget>[
             TextButton(
-              child: state is PayLoadingState
-                  ? LoadingWidget(loadingNum: 1)
-                  : Text('${getLang(context, 'payment_button')}'),
+              child: Text(
+                '${getLang(context, 'payment_button')}',
+                style:
+                    TextStyle(color: defaultColor, fontWeight: FontWeight.bold),
+              ),
               onPressed: () {
-                getAccessToken(isNewOrder: true, carId: carId);
+                test(context: context).then((value) {
+                  emit(PayLoadingState());
+                  getAccessToken(isNewOrder: true, carId: carId)
+                      .then((value) {});
+                });
               },
             ),
             TextButton(
-              child: Text('${getLang(context, 'payment_cancel_button')}'),
+              child: Text(
+                '${getLang(context, 'payment_cancel_button')}',
+                style:
+                    TextStyle(color: defaultColor, fontWeight: FontWeight.bold),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
           ],
+        );
+      },
+    );
+  }
+
+  Future<void> test({required BuildContext context}) async {
+    Navigator.pop(context);
+  }
+
+  Future<void> showLoadingDialog({
+    required BuildContext context,
+
+  }) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                LoadingWidget(loadingNum: 1),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                    child: Text(
+                  'Please Wait....',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                )),
+              ],
+            ),
+          ),
         );
       },
     );

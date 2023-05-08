@@ -40,35 +40,39 @@ class CarDetailScreen extends StatelessWidget {
           //   Navigator.pop(context);
           // }
           if (state is ShowDialogState) {
+            CarDetailCubit.get(context).showInfoDialog(
+              context: context,
+              carId: args.carId,
+            );
+          }
+          if (state is PayLoadingState) {
+            // Navigator.pop(context);
             CarDetailCubit.get(context)
-                .showInfoDialog(context: context, carId: args.carId);
+                .showLoadingDialog(context: context).then((value) {Navigator.pop(context);});
           }
+
           if (state is PayMobAuthSuccessState) {
-            String token=CarDetailCubit.get(context).token!;
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentScreen(token: token,)));
-            // defaultNavigate(
-            //     context: context,
-            //     screenName: PaymentScreen.paymentScreenId,
-            //     args: PaymentScreenArgument(
-            //         token: CarDetailCubit.get(context).token!));
+            String token = CarDetailCubit.get(context).token!;
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PaymentScreen(
+                          token: token,
+                        )));
+
           }
-          if(state is TransactionSuccessState){
-            var cubit=CarDetailCubit.get(context);
+          if (state is TransactionSuccessState) {
+            var cubit = CarDetailCubit.get(context);
             defaultNavigate(
                 context: context,
-                screenName: PutPriceScreen
-                    .putPriceScreenId,
+                screenName: PutPriceScreen.putPriceScreenId,
                 args: CarPricesArgument(
                     carId: cubit.carModel.carId,
-                    carImage:
-                        cubit.carModel.carImage,
-                    carName:
-                        cubit.carModel.carName,
-                    initialPrice:
-                        cubit.carModel.carPrice,
+                    carImage: cubit.carModel.carImage,
+                    carName: cubit.carModel.carName,
+                    initialPrice: cubit.carModel.carPrice,
                     carExpired: cubit.getExpired(
-                        date: cubit.carModel
-                            .carPublishedDate)));
+                        date: cubit.carModel.carPublishedDate)));
           }
         },
         builder: (context, state) {
@@ -317,34 +321,42 @@ class CarDetailScreen extends StatelessWidget {
                                             //             date: cubit.carModel
                                             //                 .carPublishedDate)));
                                           },
-                                          child: Container(
-                                            padding: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                                color: defaultColor,
-                                                borderRadius:
-                                                    const BorderRadius.all(
-                                                        Radius.circular(20))),
-                                            child: cubit.getExpired(
-                                                    date: cubit.carModel
-                                                        .carPublishedDate)
-                                                ? Text(
-                                                    '   ${getLang(context, 'detail_show_price_list')}   ',
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  )
-                                                : state is CheckTransactionStatusLoadingState
-                                                    ? CircularProgressIndicator()
-                                                    : Text(
-                                                        '${getLang(context, 'detail_apply_your_price')}',
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                          ),
+                                          child: state
+                                                  is CheckTransactionStatusLoadingState
+                                              ? const LoadingWidget(
+                                                  loadingNum: 1)
+                                              : Container(
+                                                  padding:
+                                                      const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                      color: defaultColor,
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  20))),
+                                                  child: cubit.getExpired(
+                                                          date: cubit.carModel
+                                                              .carPublishedDate)
+                                                      ? Text(
+                                                          '   ${getLang(context, 'detail_show_price_list')}   ',
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        )
+                                                      : Text(
+                                                          '${getLang(context, 'detail_apply_your_price')}',
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                ),
                                         ),
                                       ],
                                     ),

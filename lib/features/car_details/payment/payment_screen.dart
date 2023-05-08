@@ -44,9 +44,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-   // var args=ModalRoute.of(context)!.settings.arguments as PaymentScreenArgument;
     return Scaffold(
-      appBar: AppBar(title: const Text('Flutter Simple Example')),
+      appBar: AppBar(title: const Text('Payment')),
       body: SafeArea(child: WebViewWidget(controller: controller)),
     );
   }
