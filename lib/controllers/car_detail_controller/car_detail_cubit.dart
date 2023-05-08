@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import '../../shared/component/app_local.dart';
 import '../../shared/component/function.dart';
 import 'car_detail_states.dart';
 
@@ -50,7 +49,6 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
     required String carId,
     required BuildContext context,
   }) async {
-
     try {
       emit(CheckTransactionStatusLoadingState());
       bool isExist = false;
@@ -65,17 +63,19 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
           value.docs.forEach(
             (element) {
               if (element.id == userModel!.uId) {
-
+                orderNumber = element.data()['orderNumber'];
                 isExist = true;
               }
             },
           );
 
           if (isExist) {
-            print('yes your function work successfuly');
+            print('yes your function work successfully');
+            bool isPaid = false;
+            checkPaymentTransactionStatus(orderId: orderNumber!);
+
             emit(CheckTransactionStatusSuccessState());
           } else {
-            print('yes your function did not work successfuly');
             emit(ShowDialogState());
           }
         },
@@ -87,7 +87,7 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
 
   Future<void> checkPaymentTransactionStatus({required int orderId}) async {
     try {
-      getAccessToken(isNewOrder: false, carId: 'carId');
+      getAccessToken(isNewOrder: false, carId: '');
     } catch (error) {
       print('the error in check Payment Transaction Status function is $error');
     }
@@ -112,9 +112,10 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
       accessToken = jsonResponse['token'];
       if (isNewOrder) {
         getOrderNumber(carId: carId);
-
       } else {
-        //getOrderDetails(orderId: orderId, accessToken: accessToken!);
+        getOrderDetails(
+          accessToken: accessToken!,
+        );
       }
     } else {
       print('Request failed with status: ${response.statusCode}.');
@@ -123,7 +124,9 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
   }
 
   ///Get Order Number
-  Future<void> getOrderNumber({required String carId,}) async {
+  Future<void> getOrderNumber({
+    required String carId,
+  }) async {
     var response = await http.post(
       Uri.parse(PaymentConstants.orderApi),
       headers: {
@@ -142,8 +145,7 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
           convert.jsonDecode(response.body) as Map<String, dynamic>;
       orderNumber = jsonResponse['id'];
       print('the order number is : $orderNumber');
-     getToken(carId: carId);
-
+      getToken(carId: carId);
     } else {
       print('Request failed with status: ${response.statusCode}.');
       // emit(PostDataErrorState());
@@ -188,8 +190,9 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
       var jsonResponse =
           convert.jsonDecode(response.body) as Map<String, dynamic>;
       token = jsonResponse['token'];
-      addBidderToCar(carId: carId,);
-
+      addBidderToCar(
+        carId: carId,
+      );
 
       //emit(PostDataSuccessState());
     } else {
@@ -200,12 +203,11 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
 
   bool? isSuccessfulTransaction;
   Future<void> getOrderDetails({
-    required int orderId,
     required String accessToken,
   }) async {
     //emit(GetOrderDetailLoadingState());
     var response = await http.get(
-      Uri.parse(PaymentConstants.getOrderDetailsApi(orderId: orderId)),
+      Uri.parse(PaymentConstants.getOrderDetailsApi(orderId: orderNumber!)),
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer $accessToken"
@@ -217,6 +219,11 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
           convert.jsonDecode(response.body) as Map<String, dynamic>;
       isSuccessfulTransaction =
           jsonResponse['paid_amount_cents'] > 0 ? true : false;
+      if (isSuccessfulTransaction!) {
+        emit(TransactionSuccessState());
+      } else {
+        emit(ShowDialogState());
+      }
 
       // emit(GetOrderDetailSuccessState());
     } else {
@@ -227,7 +234,6 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
 
   Future<void> addBidderToCar({
     required String carId,
-
   }) async {
     try {
       print('the car id is $carId');

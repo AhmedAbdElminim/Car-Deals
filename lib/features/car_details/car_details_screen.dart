@@ -52,6 +52,24 @@ class CarDetailScreen extends StatelessWidget {
             //     args: PaymentScreenArgument(
             //         token: CarDetailCubit.get(context).token!));
           }
+          if(state is TransactionSuccessState){
+            var cubit=CarDetailCubit.get(context);
+            defaultNavigate(
+                context: context,
+                screenName: PutPriceScreen
+                    .putPriceScreenId,
+                args: CarPricesArgument(
+                    carId: cubit.carModel.carId,
+                    carImage:
+                        cubit.carModel.carImage,
+                    carName:
+                        cubit.carModel.carName,
+                    initialPrice:
+                        cubit.carModel.carPrice,
+                    carExpired: cubit.getExpired(
+                        date: cubit.carModel
+                            .carPublishedDate)));
+          }
         },
         builder: (context, state) {
           var cubit = CarDetailCubit.get(context);
