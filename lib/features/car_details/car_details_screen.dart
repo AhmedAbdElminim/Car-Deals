@@ -1,4 +1,6 @@
 import 'package:car_deals/features/car_details/components/car_details_argument.dart';
+import 'package:car_deals/features/car_details/payment/payment_screen.dart';
+import 'package:car_deals/features/car_details/payment/payment_screen_args/payment_screen_args.dart';
 import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/car_details/put_price_screen.dart';
@@ -34,8 +36,21 @@ class CarDetailScreen extends StatelessWidget {
               CarDetailCubit.get(context).getCarDetail(carId: args.carId);
             });
           }
-          if(state is CheckTransactionStatusSuccessState){
-            Navigator.pop(context);
+          // if (state is CheckTransactionStatusSuccessState) {
+          //   Navigator.pop(context);
+          // }
+          if (state is ShowDialogState) {
+            CarDetailCubit.get(context)
+                .showInfoDialog(context: context, carId: args.carId);
+          }
+          if (state is PayMobAuthSuccessState) {
+            String token=CarDetailCubit.get(context).token!;
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentScreen(token: token,)));
+            // defaultNavigate(
+            //     context: context,
+            //     screenName: PaymentScreen.paymentScreenId,
+            //     args: PaymentScreenArgument(
+            //         token: CarDetailCubit.get(context).token!));
           }
         },
         builder: (context, state) {
@@ -265,7 +280,9 @@ class CarDetailScreen extends StatelessWidget {
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(20)),
                                           onTap: () {
-                                            cubit.isUserExit(carId: 'jhMyLlQMZRZAf25Z3JYO');
+                                            cubit.isUserExit(
+                                                carId: args.carId,
+                                                context: context);
                                             // defaultNavigate(
                                             //     context: context,
                                             //     screenName: PutPriceScreen
@@ -299,13 +316,16 @@ class CarDetailScreen extends StatelessWidget {
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   )
-                                                : Text(
-                                                    '${getLang(context, 'detail_apply_your_price')}',
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
+                                                : state is CheckTransactionStatusLoadingState
+                                                    ? CircularProgressIndicator()
+                                                    : Text(
+                                                        '${getLang(context, 'detail_apply_your_price')}',
+                                                        style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                           ),
                                         ),
                                       ],

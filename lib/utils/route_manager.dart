@@ -37,5 +37,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   PhoneForm.phoneFormScreenId: (context) => PhoneForm(),
   AboutAppScreen.aboutAppScreenId: (context) => const AboutAppScreen(),
   ContactUsScreen.contactUsScreenId:(context)=> ContactUsScreen(),
-  PaymentScreen.paymentScreenId:(context)=>PaymentScreen(),
+ // PaymentScreen.paymentScreenId:(context)=>PaymentScreen(),
 };
