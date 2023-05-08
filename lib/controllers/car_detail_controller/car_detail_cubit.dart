@@ -277,7 +277,8 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
               ),
               onPressed: () {
                 test(context: context).then((value) {
-                  emit(PayLoadingState());
+                 emit(PayLoadingState());
+
                   getAccessToken(isNewOrder: true, carId: carId)
                       .then((value) {});
                 });
@@ -305,7 +306,6 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
 
   Future<void> showLoadingDialog({
     required BuildContext context,
-
   }) async {
     return showDialog<void>(
       context: context,

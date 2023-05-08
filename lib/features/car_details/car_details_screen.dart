@@ -48,10 +48,11 @@ class CarDetailScreen extends StatelessWidget {
           if (state is PayLoadingState) {
             // Navigator.pop(context);
             CarDetailCubit.get(context)
-                .showLoadingDialog(context: context).then((value) {Navigator.pop(context);});
+                .showLoadingDialog(context: context);
           }
 
           if (state is PayMobAuthSuccessState) {
+            Navigator.pop(context);
             String token = CarDetailCubit.get(context).token!;
             Navigator.push(
                 context,
