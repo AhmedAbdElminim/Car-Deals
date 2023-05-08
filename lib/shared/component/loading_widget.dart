@@ -8,7 +8,7 @@ class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return loadingNum == 1
-        ? SpinKitFadingCube(
+        ? SpinKitPulse(
             color: defaultColor,
             size: 50.0,
           )

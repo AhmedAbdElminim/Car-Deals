@@ -2,6 +2,7 @@ import 'package:car_deals/features/car_details/payment/payment_constants/payment
 import 'package:car_deals/models/car_model.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:car_deals/shared/component/constants.dart';
+import 'package:car_deals/shared/component/loading_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -98,7 +99,7 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
     required bool isNewOrder,
     required String carId,
   }) async {
-    // emit(PostDataLoadingState());
+    emit(PayLoadingState());
     var response = await http.post(
       Uri.parse(PaymentConstants.authenticationApi),
       headers: {
@@ -261,24 +262,25 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title:  Text('${getLang(context, 'payment_dialog_info')}'),
+          title: Text('${getLang(context, 'payment_dialog_info')}'),
           content: SingleChildScrollView(
             child: ListBody(
-              children:  <Widget>[
-                Text(
-                    '${getLang(context, 'payment_dialog_body')}'),
+              children: <Widget>[
+                Text('${getLang(context, 'payment_dialog_body')}'),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child:  Text('${getLang(context, 'payment_button')}'),
+              child: state is PayLoadingState
+                  ? LoadingWidget(loadingNum: 1)
+                  : Text('${getLang(context, 'payment_button')}'),
               onPressed: () {
                 getAccessToken(isNewOrder: true, carId: carId);
               },
             ),
             TextButton(
-              child:  Text('${getLang(context, 'payment_cancel_button')}'),
+              child: Text('${getLang(context, 'payment_cancel_button')}'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
