@@ -1,6 +1,5 @@
 import 'package:car_deals/features/car_details/components/car_details_argument.dart';
 import 'package:car_deals/features/car_details/payment/payment_screen.dart';
-import 'package:car_deals/features/car_details/payment/payment_screen_args/payment_screen_args.dart';
 import 'package:car_deals/features/no_internet/no_internet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_deals/features/car_details/put_price_screen.dart';
@@ -80,9 +79,8 @@ class CarDetailScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             body: state is GetCarDetailLoadingState
                 ? const Center(
-                    child: LoadingWidget(
-                    loadingNum: 1,
-                  ))
+                    child: LoadingWidget(),
+                  )
                 : state is GetCarDetailInternetConnectionErrorState
                     ? const NoInternetScreen()
                     : SafeArea(
@@ -108,7 +106,7 @@ class CarDetailScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           border: Border.all(
-                                              color: defaultColor!, width: 4)),
+                                              color: defaultColor, width: 4)),
                                       child: const Center(
                                         child:
                                             Icon(Icons.arrow_back_ios_rounded),
@@ -322,8 +320,7 @@ class CarDetailScreen extends StatelessWidget {
                                           },
                                           child: state
                                                   is CheckTransactionStatusLoadingState
-                                              ? const LoadingWidget(
-                                                  loadingNum: 1)
+                                              ? const LoadingWidget()
                                               : Container(
                                                   padding:
                                                       const EdgeInsets.all(8),

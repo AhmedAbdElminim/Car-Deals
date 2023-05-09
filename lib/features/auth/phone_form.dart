@@ -116,7 +116,7 @@ class PhoneForm extends StatelessWidget {
                         ),
                       ),
                     if (state is CreateNewUserLoadingStates)
-                      const LoadingWidget(loadingNum: 1),
+                      const LoadingWidget(),
                   ],
                 ),
               ),

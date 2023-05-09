@@ -89,9 +89,7 @@ class ContactUsScreen extends StatelessWidget {
                     ),
                   if (state is ContactLoadingState)
                     const Center(
-                      child: LoadingWidget(
-                        loadingNum: 1,
-                      ),
+                      child: LoadingWidget(),
                     )
                 ],
               ),

@@ -315,7 +315,7 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                const LoadingWidget(loadingNum: 1),
+                const LoadingWidget(),
                 const SizedBox(
                   height: 20,
                 ),

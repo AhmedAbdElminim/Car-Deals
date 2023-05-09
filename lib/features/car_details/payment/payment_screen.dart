@@ -55,7 +55,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       body: Stack(
         children: [
           WebViewWidget(controller: controller),
-          if (isLoading) const LoadingWidget(loadingNum: 1),
+          if (isLoading) const LoadingWidget(),
         ],
       ),
     );

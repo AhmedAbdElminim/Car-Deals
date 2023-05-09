@@ -153,9 +153,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
               child: isLoading
                   ? const Padding(
                       padding: EdgeInsets.only(bottom: 20),
-                      child: LoadingWidget(
-                        loadingNum: 1,
-                      ),
+                      child: LoadingWidget(),
                     )
                   : MaterialButton(
                       onPressed: () async {

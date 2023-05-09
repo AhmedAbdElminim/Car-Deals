@@ -102,7 +102,7 @@ class UpdateUserInformationScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: state is UpdateUserInformationLoadingState
-                          ? const LoadingWidget(loadingNum: 1)
+                          ? const LoadingWidget()
                           : MaterialButton(
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {

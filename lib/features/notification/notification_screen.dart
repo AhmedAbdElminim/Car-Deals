@@ -37,9 +37,7 @@ class NotificationScreen extends StatelessWidget {
             ),
             body: state is GetNotificationLoadingState
                 ? const Center(
-                    child: LoadingWidget(
-                      loadingNum: 1,
-                    ),
+                    child: LoadingWidget(),
                   )
                 : state is GetNotificationInternetConnectionErrorState
                     ? const NoInternetScreen()

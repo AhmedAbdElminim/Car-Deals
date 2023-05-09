@@ -38,7 +38,9 @@ class BrandCarsScreen extends StatelessWidget {
               title: Text(args.carBrand.toUpperCase()),
             ),
             body: state is GetCategoriesLoadingStates
-                ? const Center(child: LoadingWidget(loadingNum: 1))
+                ? const Center(
+                    child: LoadingWidget(),
+                  )
                 : state is GetCategoriesInternetConnectionErrorStates
                     ? const NoInternetScreen()
                     : cubit.carList.isEmpty

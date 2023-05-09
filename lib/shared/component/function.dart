@@ -141,14 +141,15 @@ Future<void> loadingDialog({required BuildContext context}) async {
         content: SingleChildScrollView(
           child: ListBody(
             children: const <Widget>[
-              Center(child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: LoadingWidget(loadingNum: 1),
-              ),)
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: LoadingWidget(),
+                ),
+              )
             ],
           ),
         ),
-
       );
     },
   );

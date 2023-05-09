@@ -44,9 +44,8 @@ class PutPriceScreen extends StatelessWidget {
             ),
             body: state is GetPricesLoadingState
                 ? const Center(
-                    child: LoadingWidget(
-                    loadingNum: 1,
-                  ))
+                    child: LoadingWidget(),
+                  )
                 : state is GetPricesInternetConnectionErrorState
                     ? const NoInternetScreen()
                     : Column(
@@ -119,8 +118,9 @@ class PutPriceScreen extends StatelessWidget {
                           ),
                           if (state is PutPricesLoadingState)
                             const SizedBox(
-                                height: 50,
-                                child: LoadingWidget(loadingNum: 1)),
+                              height: 50,
+                              child: LoadingWidget(),
+                            ),
                           if (state is! PutPricesLoadingState)
                             MaterialButton(
                               onPressed: () {

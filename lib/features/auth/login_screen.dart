@@ -14,8 +14,8 @@ import '../layout/layout_screen.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   static const loginScreenId = 'LoginScreenId';
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
   static final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -175,9 +175,7 @@ class LoginScreen extends StatelessWidget {
                             }
                           },
                           child: state is LoginLoadingState
-                              ? const LoadingWidget(
-                                  loadingNum: 1,
-                                )
+                              ? const LoadingWidget()
                               : Container(
                                   width: screenWidth,
                                   decoration: BoxDecoration(

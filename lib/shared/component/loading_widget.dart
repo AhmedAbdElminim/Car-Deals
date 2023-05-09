@@ -3,18 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({required this.loadingNum, Key? key}) : super(key: key);
-  final int loadingNum;
+  const LoadingWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return loadingNum == 1
-        ? SpinKitPulse(
-            color: defaultColor,
-            size: 50.0,
-          )
-        : SpinKitDoubleBounce(
-            color: defaultColor,
-            size: 50,
-          );
+    return SpinKitPulse(
+      color: defaultColor,
+      size: 50.0,
+    );
   }
 }

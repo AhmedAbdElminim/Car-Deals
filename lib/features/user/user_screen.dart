@@ -37,7 +37,7 @@ class UserScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             body: state is GetUserDataLoadingState
-                ? const Center(child: LoadingWidget(loadingNum: 1))
+                ? const Center(child: LoadingWidget())
                 : state is InternetConnectionErrorState
                     ? const NoInternetScreen()
                     : Stack(

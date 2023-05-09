@@ -101,9 +101,7 @@ class HomeScreen extends StatelessWidget {
             ),
             body: state is HomeGetUserDataLoadingState
                 ? const Center(
-                    child: LoadingWidget(
-                      loadingNum: 1,
-                    ),
+                    child: LoadingWidget(),
                   )
                 : state is HomeGetUserDataInternetConnectionErrorState
                     ? const NoInternetScreen()

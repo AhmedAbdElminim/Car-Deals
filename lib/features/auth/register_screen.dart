@@ -15,10 +15,10 @@ import 'login_screen.dart';
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
   static const String registerScreenId = 'RegisterScreenId';
-  TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
   static final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -217,9 +217,7 @@ class RegisterScreen extends StatelessWidget {
                             }
                           },
                           child: state is RegisterLoadingState
-                              ? const LoadingWidget(
-                                  loadingNum: 1,
-                                )
+                              ? const LoadingWidget()
                               : Container(
                                   width: screenWidth,
                                   decoration: BoxDecoration(
