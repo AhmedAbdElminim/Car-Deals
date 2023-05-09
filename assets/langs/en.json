@@ -161,6 +161,7 @@
   "contact_hint_text": "your message",
   "contact_button": "Send",
   "contact_successful_message": "Your message sent successfully we will be contact with you soon",
+  "payment": "Payment",
   "payment_dialog_info": "Info",
   "payment_dialog_body": "You are not allowed to enter/view the auction. You must pay the auction fee first. Please pay 100 EGP auction fees first",
   "payment_button": "Pay Now",

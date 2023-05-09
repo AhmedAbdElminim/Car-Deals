@@ -149,6 +149,7 @@
   "contact_hint_text": "رسالتك",
   "contact_button": "ابعت",
   "contact_successful_message": "تم ارسال رسالتك بنجاح سيتم التواصل معك في اقرب وقت",
+  "payment": "الدفع",
   "payment_dialog_info": "ملاحظات",
   "payment_dialog_body": "لا يسمح لك بالدخول / مشاهدة المزاد. يجب عليك دفع رسوم المزاد أولاً. برجاء دفع 100 جنيه رسوم المزاد أولا",
   "payment_button": "ادفع الان",
