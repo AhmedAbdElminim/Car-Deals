@@ -11,6 +11,8 @@ class GetCarDetailErrorState extends CarDetailStates {
   GetCarDetailErrorState({required this.error});
 }
 class GetCarDetailInternetConnectionErrorState extends CarDetailStates{}
+class InternetConnectionErrorState extends CarDetailStates{}
+
 class CheckTransactionStatusSuccessState extends CarDetailStates {}
 class CheckTransactionStatusLoadingState extends CarDetailStates {}
 class ShowDialogState extends CarDetailStates {}

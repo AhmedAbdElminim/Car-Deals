@@ -54,35 +54,39 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
   }) async {
     try {
       emit(CheckTransactionStatusLoadingState());
-      bool isExist = false;
+      if (await execute(customInstance)) {
+        bool isExist = false;
 
-      FirebaseFirestore.instance
-          .collection('cars')
-          .doc(carId)
-          .collection('bidders')
-          .get()
-          .then(
-        (value) {
-          value.docs.forEach(
-            (element) {
-              if (element.id == userModel!.uId) {
-                orderNumber = element.data()['orderNumber'];
-                isExist = true;
-              }
-            },
-          );
+        FirebaseFirestore.instance
+            .collection('cars')
+            .doc(carId)
+            .collection('bidders')
+            .get()
+            .then(
+          (value) {
+            value.docs.forEach(
+              (element) {
+                if (element.id == userModel!.uId) {
+                  orderNumber = element.data()['orderNumber'];
+                  isExist = true;
+                }
+              },
+            );
 
-          if (isExist) {
-            print('yes your function work successfully');
-            bool isPaid = false;
-            checkPaymentTransactionStatus(orderId: orderNumber!);
+            if (isExist) {
+              print('yes your function work successfully');
+              bool isPaid = false;
+              checkPaymentTransactionStatus(orderId: orderNumber!);
 
-            emit(CheckTransactionStatusSuccessState());
-          } else {
-            emit(ShowDialogState());
-          }
-        },
-      );
+              emit(CheckTransactionStatusSuccessState());
+            } else {
+              emit(ShowDialogState());
+            }
+          },
+        );
+      } else {
+        emit(InternetConnectionErrorState());
+      }
     } catch (error) {
       print('the error in check function is $error');
     }

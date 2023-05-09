@@ -35,9 +35,9 @@ class CarDetailScreen extends StatelessWidget {
               CarDetailCubit.get(context).getCarDetail(carId: args.carId);
             });
           }
-          // if (state is CheckTransactionStatusSuccessState) {
-          //   Navigator.pop(context);
-          // }
+          if (state is InternetConnectionErrorState) {
+            showInternetConnectionDialog(context: context);
+          }
           if (state is ShowDialogState) {
             CarDetailCubit.get(context).showInfoDialog(
               context: context,
