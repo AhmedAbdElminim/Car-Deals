@@ -47,8 +47,7 @@ class CarDetailScreen extends StatelessWidget {
           }
           if (state is PayLoadingState) {
             // Navigator.pop(context);
-            CarDetailCubit.get(context)
-                .showLoadingDialog(context: context);
+            CarDetailCubit.get(context).showLoadingDialog(context: context);
           }
 
           if (state is PayMobAuthSuccessState) {
@@ -60,7 +59,6 @@ class CarDetailScreen extends StatelessWidget {
                     builder: (context) => PaymentScreen(
                           token: token,
                         )));
-
           }
           if (state is TransactionSuccessState) {
             var cubit = CarDetailCubit.get(context);

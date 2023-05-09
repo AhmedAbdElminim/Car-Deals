@@ -14,6 +14,11 @@ class HomeCubit extends Cubit<HomeStates> {
   List<CarModel> onGoingCarsList = [];
   List<CarModel> finishedCarsList = [];
   String categoriesType = 'All';
+  Map<String, String> getLangMap = {
+    "All": "home_popup_menu_all",
+    "OnGoing": "home_popup_menu_ongoing",
+    "Finished": "home_popup_menu_finished",
+  };
   Future<void> getUserData() async {
     try {
       emit(HomeGetUserDataLoadingState());

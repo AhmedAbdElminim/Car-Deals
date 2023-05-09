@@ -277,7 +277,7 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
               ),
               onPressed: () {
                 test(context: context).then((value) {
-                 emit(PayLoadingState());
+                  emit(PayLoadingState());
 
                   getAccessToken(isNewOrder: true, carId: carId)
                       .then((value) {});
@@ -314,15 +314,16 @@ class CarDetailCubit extends Cubit<CarDetailStates> {
         return AlertDialog(
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                LoadingWidget(loadingNum: 1),
-                SizedBox(
+              children: <Widget>[
+                const LoadingWidget(loadingNum: 1),
+                const SizedBox(
                   height: 20,
                 ),
                 Center(
                     child: Text(
-                  'Please Wait....',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  '${getLang(context, 'payment_please_wait')}',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 )),
               ],
             ),

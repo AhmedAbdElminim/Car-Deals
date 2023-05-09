@@ -8,7 +8,6 @@ import 'package:car_deals/features/home/widgets/car_ads_component.dart';
 import 'package:car_deals/shared/component/app_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
-import '../../shared/component/constants.dart';
 import '../../shared/component/loading_widget.dart';
 import '../../shared/component/function.dart';
 import '../search/search_screen.dart';
@@ -46,22 +45,25 @@ class HomeScreen extends StatelessWidget {
                     width: 100,
                     child: PopupMenuButton<int>(
                       icon: Text(
-                        cubit.categoriesType,
+                        "${getLang(context, '${cubit.getLangMap[cubit.categoriesType]}')}",
                         style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       itemBuilder: (context) => [
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 1,
-                          child: Text("All"),
+                          child: Text(
+                              "${getLang(context, 'home_popup_menu_all')}"),
                         ),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 2,
-                          child: Text("OnGoing"),
+                          child: Text(
+                              "${getLang(context, 'home_popup_menu_ongoing')}"),
                         ),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 3,
-                          child: Text("Finished"),
+                          child: Text(
+                              "${getLang(context, 'home_popup_menu_finished')}"),
                         ),
                       ],
 //                      offset: Offset(0, 100),   ----->  change the position of the menu
